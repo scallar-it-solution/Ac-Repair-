@@ -1,36 +1,32 @@
-import { DEFAULT_WA, SITE } from "../data";
+import { DEFAULT_WA, SITE, TEL } from "../data/site";
 import { IconPhone, IconWhatsApp } from "./Icons";
 import { Reveal } from "./Reveal";
+import { Kicker } from "./ui";
 
 export function CTA({
   title = "AC down. Heat does not wait.",
   text = "Send a photo of the indoor unit and your area. You get a slot, a name, and a quote before anyone opens a panel.",
+  wa = DEFAULT_WA,
 }: {
   title?: string;
   text?: string;
+  wa?: string;
 }) {
   return (
-    <section className="bg-forest text-cream">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 py-16 md:flex-row md:items-center md:px-8 md:py-20">
+    <section className="relative overflow-hidden bg-forest text-cream">
+      <div className="glow absolute inset-0" aria-hidden="true" />
+      <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 py-16 md:flex-row md:items-center md:px-8 md:py-24">
         <Reveal>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brass">Same-day slots</p>
-          <h2 className="font-display mt-3 max-w-xl text-3xl font-bold tracking-tight md:text-5xl">{title}</h2>
+          <Kicker tone="brass">Same-day slots · {SITE.hours}</Kicker>
+          <h2 className="font-display mt-4 max-w-xl text-3xl font-bold tracking-tight text-balance md:text-5xl">{title}</h2>
           <p className="mt-4 max-w-lg text-mist/80">{text}</p>
         </Reveal>
-        <Reveal delay={2}>
+        <Reveal delay={2} className="w-full sm:w-auto">
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <a
-              href={DEFAULT_WA}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 font-semibold text-white transition hover:brightness-110"
-            >
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-wa">
               <IconWhatsApp size={18} /> WhatsApp {SITE.phoneDisplay}
             </a>
-            <a
-              href={`tel:${SITE.phone}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-6 py-3.5 font-semibold transition hover:bg-cream/10"
-            >
+            <a href={TEL} className="btn btn-outline-light">
               <IconPhone size={18} /> Call now
             </a>
           </div>

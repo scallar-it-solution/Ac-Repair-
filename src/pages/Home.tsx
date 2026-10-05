@@ -1,156 +1,210 @@
 import { BrandMarquee } from "../components/BrandMarquee";
 import { CTA } from "../components/CTA";
+import { ContactForm } from "../components/ContactForm";
 import { FAQ } from "../components/FAQ";
+import { AreaCard, GuideCard, PriceTable, ServiceCard } from "../components/cards";
 import {
+  IconAlert,
   IconArrow,
   IconCheck,
   IconClock,
+  IconDroplet,
   IconFile,
+  IconGas,
+  IconPhone,
   IconShield,
+  IconSparkle,
   IconStar,
+  IconThermo,
+  IconWave,
   IconWhatsApp,
-  SERVICE_ICONS,
+  IconX,
 } from "../components/Icons";
 import { Reveal } from "../components/Reveal";
-import {
-  DEFAULT_WA,
-  IMAGES,
-  PRICING,
-  PROCESS,
-  REASONS,
-  SERVICES,
-  SITE,
-  TESTIMONIALS,
-  type PageId,
-} from "../data";
+import { Photo, SectionHead, formatCount } from "../components/ui";
+import { AREAS } from "../data/areas";
+import { routeFaqs } from "../data/faqs";
+import { GUIDES } from "../data/guides";
+import { SERVICES } from "../data/services";
+import { DEFAULT_WA, HERO_IMAGE, PRICING, PROCESS, REASONS, SITE, TEL, TESTIMONIALS } from "../data/site";
+import { Link } from "../lib/router";
+import type { RouteDef } from "../routes";
 
-export function Home({ onNavigate }: { onNavigate: (id: PageId) => void }) {
+const SYMPTOMS = [
+  { icon: IconThermo, title: "Running, but not cooling", text: "Ten causes, five checks you can do yourself.", to: "/guides/ac-not-cooling" },
+  { icon: IconDroplet, title: "Water dripping indoors", text: "Usually a blocked drain — a ₹499-range fix.", to: "/guides/ac-water-leakage" },
+  { icon: IconAlert, title: "Error code blinking", text: "Daikin, LG, Samsung codes decoded.", to: "/guides/ac-error-codes" },
+  { icon: IconGas, title: "“Needs gas”?", text: "Six signs of a real leak — and the look-alikes.", to: "/guides/ac-gas-leak-signs" },
+  { icon: IconWave, title: "Noisy or vibrating", text: "What rattling, buzzing and hissing mean.", to: "/guides/ac-making-noise" },
+  { icon: IconSparkle, title: "Due for a service", text: "Foam + jet wet service from ₹449.", to: "/services/ac-service" },
+];
+
+const VERSUS = [
+  ["“Gas khatam” from the gate", "Pressures and current measured first"],
+  ["Handwritten bill, if any", "GST invoice on every job"],
+  ["Warranty on a promise", "90 days, written on the invoice"],
+  ["Unknown, unbranded boards", "OEM or OEM-grade — named before fitting"],
+  ["Quote changes after the panel is open", "You approve the quote on WhatsApp first"],
+];
+
+export function Home({ route }: { route: RouteDef }) {
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden bg-ink text-cream">
+      {/* ---------------- Hero ---------------- */}
+      <section className="relative overflow-hidden bg-ink text-cream">
         <img
-          src={IMAGES.hero}
-          alt="Airkraft technician servicing a split AC indoor unit in a Delhi home"
-          className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+          src={HERO_IMAGE.src}
+          srcSet={HERO_IMAGE.srcSet}
+          sizes="100vw"
+          width={HERO_IMAGE.width}
+          height={HERO_IMAGE.height}
+          alt={HERO_IMAGE.alt}
           fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-[60%_30%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/70 to-ink/25" />
-        <div className="grain absolute inset-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/40" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" aria-hidden="true" />
+        <div className="grain absolute inset-0" aria-hidden="true" />
 
-        <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-32 md:px-8 md:pb-28">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-brass">
-            Delhi NCR · Since {SITE.founded}
-          </p>
-          <h1 className="font-display mt-4 max-w-3xl text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl lg:text-[5.4rem]">
-            Your AC is not a mystery.
-            <span className="mt-2 block text-sand">It is a machine.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-mist/90 md:text-lg">
-            Same-day split, window and cassette repair. Diagnosis before the spare. GST invoice.
-            90-day warranty. Book on WhatsApp — {SITE.phoneDisplay}.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={DEFAULT_WA}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-[15px] font-semibold text-white transition hover:brightness-110"
-            >
-              <IconWhatsApp size={18} /> Book a technician
-            </a>
-            <button
-              onClick={() => onNavigate("services")}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-cream/30 px-7 py-3.5 text-[15px] font-semibold hover:bg-cream/10"
-            >
-              See services <IconArrow size={18} />
-            </button>
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-5 pb-16 pt-32 md:px-8 md:pt-40 lg:min-h-[100svh] lg:grid-cols-12 lg:items-center lg:pb-24">
+          <div className="lg:col-span-7">
+            <p className="rise inline-flex items-center gap-2.5 rounded-full border border-cream/15 bg-cream/5 px-3.5 py-1.5 text-xs font-medium text-mist backdrop-blur">
+              <span className="live-dot h-2 w-2 rounded-full bg-wa" aria-hidden="true" />
+              Same-day slots · {SITE.hours}
+            </p>
+            <h1 className="rise font-display mt-6 max-w-3xl text-[2.6rem] font-extrabold leading-[1] tracking-tight sm:text-6xl lg:text-7xl">
+              Same-day AC repair in Delhi NCR.
+              <span className="mt-2 block text-sand">Diagnosed, not guessed.</span>
+            </h1>
+            <p className="rise-2 mt-6 max-w-xl text-base leading-relaxed text-mist/90 md:text-lg">
+              Split, window, inverter and cassette ACs across Delhi, Noida, Gurugram, Ghaziabad and Faridabad. Pressures
+              measured before any part is named. GST invoice. {SITE.warranty} warranty.
+            </p>
+            <div className="rise-2 mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href={DEFAULT_WA} target="_blank" rel="noopener noreferrer" className="btn btn-wa">
+                <IconWhatsApp size={18} /> Book on WhatsApp
+              </a>
+              <a href={TEL} className="btn btn-outline-light">
+                <IconPhone size={18} /> {SITE.phoneDisplay}
+              </a>
+            </div>
+            <div className="rise-3 mt-7 flex items-center gap-3 text-sm text-mist/80">
+              <span className="flex text-brass" aria-hidden="true">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <IconStar key={i} size={15} />
+                ))}
+              </span>
+              <span>
+                <strong className="font-semibold text-cream">{SITE.rating}/5</strong> from {formatCount(SITE.reviewCount)}+
+                customers
+              </span>
+            </div>
+
+            <dl className="rise-3 mt-12 grid max-w-2xl grid-cols-2 gap-6 border-t border-cream/15 pt-8 sm:grid-cols-4">
+              {[
+                [SITE.jobs, "Jobs done"],
+                [SITE.eta, "Typical arrival"],
+                [SITE.warranty, "Repair warranty"],
+                [`Since ${SITE.founded}`, "In Delhi NCR"],
+              ].map(([k, v]) => (
+                <div key={v}>
+                  <dt className="text-[11px] uppercase tracking-[0.18em] text-mist/60">{v}</dt>
+                  <dd className="font-display stat-number mt-1 text-2xl font-bold md:text-[1.7rem]">{k}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <dl className="mt-14 grid max-w-3xl grid-cols-2 gap-6 border-t border-cream/15 pt-8 sm:grid-cols-4">
-            {[
-              [SITE.jobs, "Jobs done"],
-              [SITE.eta, "Typical ETA"],
-              [SITE.warranty, "Repair cover"],
-              [`${SITE.rating}★`, `${SITE.reviewCount}+ reviews`],
-            ].map(([k, v]) => (
-              <div key={v}>
-                <dt className="text-[11px] uppercase tracking-[0.18em] text-mist/60">{v}</dt>
-                <dd className="font-display mt-1 text-2xl font-bold md:text-3xl">{k}</dd>
-              </div>
-            ))}
-          </dl>
+
+          <div className="rise-2 hidden lg:col-span-5 lg:block">
+            <div className="rounded-3xl border border-cream/10 bg-cream p-7 text-ink shadow-2xl shadow-black/40">
+              <p className="font-display text-2xl font-bold">Book a technician</p>
+              <p className="mb-6 mt-1.5 text-sm text-muted">Takes 30 seconds. We reply on WhatsApp with a slot and a name.</p>
+              <ContactForm compact />
+            </div>
+          </div>
         </div>
       </section>
 
       <BrandMarquee />
 
-      <section className="bg-cream py-20 md:py-28" aria-labelledby="services-preview">
+      {/* ---------------- Services ---------------- */}
+      <section className="bg-cream py-20 md:py-28" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <Reveal>
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sage">What we do</p>
-                <h2 id="services-preview" className="font-display mt-3 max-w-lg text-3xl font-bold tracking-tight md:text-5xl">
-                  Repair first. Replace only when the machine is actually done.
-                </h2>
-              </div>
-              <button
-                onClick={() => onNavigate("services")}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-forest"
-              >
-                Full service list <IconArrow size={16} />
-              </button>
-            </div>
+          <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <SectionHead
+              id="services-heading"
+              kicker="What we do"
+              title="Repair first. Replace only when the machine is actually done."
+            />
+            <Link to="/services" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+              All services <IconArrow size={16} />
+            </Link>
           </Reveal>
-
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s, i) => {
-              const Icon = SERVICE_ICONS[i];
-              return (
-                <Reveal key={s.slug} delay={(Math.min(i, 4) + 1) as 1 | 2 | 3 | 4 | 5}>
-                  <article className="group h-full border border-line bg-paper p-7 transition hover:border-forest hover:bg-white">
-                    <div className="flex items-start justify-between">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest text-sand">
-                        <Icon size={20} />
-                      </span>
-                      <span className="text-xs font-semibold text-copper">{s.price}</span>
-                    </div>
-                    <h3 className="font-display mt-6 text-2xl font-semibold">{s.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted">{s.blurb}</p>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {SERVICES.map((s, i) => (
+              <Reveal as="li" key={s.slug} delay={(i % 4) + 1}>
+                <ServiceCard s={s} />
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
+      {/* ---------------- Symptom finder ---------------- */}
+      <section className="border-y border-line bg-paper py-20 md:py-24" aria-labelledby="symptoms-heading">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal>
+            <SectionHead
+              id="symptoms-heading"
+              kicker="Start with the symptom"
+              title="What is your AC doing?"
+              text="Pick the closest match. Each one leads to a plain explanation of the likely causes and what the fix costs."
+            />
+          </Reveal>
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SYMPTOMS.map((s, i) => (
+              <Reveal as="li" key={s.title} delay={(i % 3) + 1}>
+                <Link
+                  to={s.to}
+                  className="group flex h-full items-start gap-4 rounded-2xl border border-line bg-cream p-6 transition hover:border-forest/40 hover:shadow-lg hover:shadow-forest/5"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-mist text-forest transition-colors group-hover:bg-forest group-hover:text-sand">
+                    <s.icon size={20} />
+                  </span>
+                  <span className="flex-1">
+                    <span className="font-display block text-lg font-semibold">{s.title}</span>
+                    <span className="mt-1 block text-sm text-muted">{s.text}</span>
+                  </span>
+                  <IconArrow size={18} className="mt-1 shrink-0 text-moss transition-transform group-hover:translate-x-1 group-hover:text-forest" />
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---------------- Process ---------------- */}
       <section className="overflow-hidden bg-forest text-cream">
         <div className="mx-auto grid max-w-7xl md:grid-cols-2">
           <div className="relative min-h-[320px] md:min-h-full">
-            <img
-              src={IMAGES.workshop}
-              alt="AC repair bench and indoor units being serviced in a New Delhi workshop"
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="lazy"
-            />
+            <Photo name="workshop" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent md:bg-gradient-to-r" aria-hidden="true" />
           </div>
           <div className="px-5 py-16 md:px-14 md:py-24">
             <Reveal>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brass">How we work</p>
-              <h2 className="font-display mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-                Four steps. No theatre.
-              </h2>
+              <SectionHead tone="brass" kicker="How we work" title="Four steps. No theatre." />
             </Reveal>
             <ol className="mt-10 space-y-8">
               {PROCESS.map((p, i) => (
-                <Reveal key={p.step} delay={(Math.min(i, 4) + 1) as 1 | 2 | 3 | 4 | 5}>
-                  <li className="grid grid-cols-[auto_1fr] gap-5">
-                    <span className="font-display text-sm font-bold text-brass">{p.step}</span>
-                    <div>
-                      <h3 className="font-display text-xl font-semibold">{p.title}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-mist/80">{p.text}</p>
-                    </div>
-                  </li>
+                <Reveal as="li" key={p.step} delay={i + 1} className="grid grid-cols-[auto_1fr] gap-5">
+                  <span className="font-display flex h-10 w-10 items-center justify-center rounded-full border border-brass/50 text-sm font-bold text-brass">
+                    {p.step}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl font-semibold">{p.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-mist/80">{p.text}</p>
+                  </div>
                 </Reveal>
               ))}
             </ol>
@@ -158,126 +212,169 @@ export function Home({ onNavigate }: { onNavigate: (id: PageId) => void }) {
         </div>
       </section>
 
-      <section className="bg-paper py-20 md:py-28">
+      {/* ---------------- Why + versus ---------------- */}
+      <section className="bg-cream py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sage">Why Airkraft</p>
-            <h2 className="font-display mt-3 max-w-2xl text-3xl font-bold tracking-tight md:text-5xl">
-              Built by people who still carry a manifold gauge, not a sales script.
-            </h2>
+            <SectionHead kicker="Why Airkraft" title="Built by people who still carry a manifold gauge, not a sales script." />
           </Reveal>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {REASONS.map((r, i) => (
-              <Reveal key={r.title} delay={(Math.min(i, 4) + 1) as 1 | 2 | 3 | 4 | 5}>
-                <article className="border-t border-line pt-6">
-                  <div className="mb-4 text-sage">
-                    {i === 0 && <IconCheck size={22} />}
-                    {i === 1 && <IconShield size={22} />}
-                    {i === 2 && <IconClock size={22} />}
-                    {i === 3 && <IconFile size={22} />}
-                  </div>
-                  <h3 className="font-display text-2xl font-semibold">{r.title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted">{r.text}</p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
+            {REASONS.map((r, i) => {
+              const Icon = [IconCheck, IconShield, IconClock, IconFile][i];
+              return (
+                <Reveal key={r.title} delay={(i % 2) + 1}>
+                  <article className="border-t border-line pt-6">
+                    <Icon size={22} className="text-sage" />
+                    <h3 className="font-display mt-4 text-2xl font-semibold">{r.title}</h3>
+                    <p className="mt-3 leading-relaxed text-muted">{r.text}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
           </div>
+
+          <Reveal className="mt-16">
+            <div className="overflow-hidden rounded-2xl border border-line">
+              <table className="w-full text-left text-sm md:text-[15px]">
+                <caption className="sr-only">How Airkraft compares with a typical AC repair visit</caption>
+                <thead>
+                  <tr>
+                    <th scope="col" className="w-1/2 bg-paper px-5 py-4 font-semibold text-muted">
+                      The usual visit
+                    </th>
+                    <th scope="col" className="w-1/2 bg-forest px-5 py-4 font-semibold text-cream">
+                      An Airkraft visit
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {VERSUS.map(([bad, good]) => (
+                    <tr key={bad} className="border-t border-line">
+                      <td className="bg-paper/60 px-5 py-4 text-muted">
+                        <span className="flex items-start gap-2.5">
+                          <IconX size={16} className="mt-0.5 shrink-0 text-red-700/70" /> {bad}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 font-medium">
+                        <span className="flex items-start gap-2.5">
+                          <IconCheck size={16} className="mt-0.5 shrink-0 text-sage" /> {good}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-cream py-20 md:py-28" aria-labelledby="pricing">
+      {/* ---------------- Pricing ---------------- */}
+      <section className="bg-paper py-20 md:py-28" aria-labelledby="pricing-heading">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-12 md:px-8">
-          <div className="md:col-span-4">
-            <Reveal>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sage">Starting prices</p>
-              <h2 id="pricing" className="font-display mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-                Published rates. Final bill after diagnosis.
-              </h2>
-              <p className="mt-4 text-muted">
-                Visiting charge ₹199, waived on same-visit repair. Gas, PCB and coil work quoted after
-                test — never from the gate.
-              </p>
-            </Reveal>
-          </div>
-          <div className="md:col-span-8">
-            <ul>
-              {PRICING.map((p) => (
-                <li
-                  key={p.job}
-                  className="flex items-baseline justify-between gap-4 border-b border-line py-4"
-                >
-                  <div>
-                    <p className="font-medium">{p.job}</p>
-                    <p className="text-xs text-muted">{p.note}</p>
-                  </div>
-                  <p className="font-display shrink-0 text-lg font-semibold text-forest">{p.from}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Reveal className="md:col-span-5">
+            <SectionHead
+              id="pricing-heading"
+              kicker="Starting prices"
+              title="Published rates. Final bill after diagnosis."
+              text={`Inspection ${SITE.visitFee}, waived when you approve the repair on the same visit. Gas, PCB and coil work is quoted after testing — never from the gate.`}
+            />
+            <Link to="/pricing" className="btn btn-primary mt-8">
+              Full price list <IconArrow size={16} />
+            </Link>
+          </Reveal>
+          <Reveal delay={2} className="md:col-span-7">
+            <PriceTable rows={PRICING} caption="Airkraft AC service starting prices in Delhi NCR" />
+          </Reveal>
         </div>
       </section>
 
-      <section className="bg-ink py-20 text-cream md:py-28">
+      {/* ---------------- Testimonials ---------------- */}
+      <section className="bg-ink py-20 text-cream md:py-28" aria-labelledby="reviews-heading">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brass">Field notes</p>
-            <h2 className="font-display mt-3 max-w-xl text-3xl font-bold tracking-tight md:text-5xl">
-              What people say after the room actually cools.
-            </h2>
+            <SectionHead
+              id="reviews-heading"
+              tone="brass"
+              kicker="Field notes"
+              title="What people say after the room actually cools."
+            />
           </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <ul className="mt-12 grid gap-5 md:grid-cols-2">
             {TESTIMONIALS.map((t, i) => (
-              <Reveal key={t.name} delay={(Math.min(i, 4) + 1) as 1 | 2 | 3 | 4 | 5}>
-                <blockquote className="h-full border border-cream/10 bg-pine/40 p-7">
-                  <div className="flex gap-1 text-brass">
+              <Reveal as="li" key={t.name} delay={(i % 2) + 1}>
+                <figure className="flex h-full flex-col rounded-2xl border border-cream/10 bg-pine/40 p-7">
+                  <div className="flex gap-1 text-brass" role="img" aria-label={`Rated ${t.rating} out of 5`}>
                     {Array.from({ length: t.rating }).map((_, s) => (
                       <IconStar key={s} size={14} />
                     ))}
                   </div>
-                  <p className="mt-5 text-[17px] leading-relaxed text-mist/95">“{t.text}”</p>
-                  <footer className="mt-6 flex items-end justify-between gap-4 text-sm">
-                    <div>
-                      <cite className="not-italic font-semibold text-cream">{t.name}</cite>
-                      <p className="text-mist/60">{t.area}</p>
-                    </div>
-                    <p className="text-xs text-brass">{t.machine}</p>
-                  </footer>
-                </blockquote>
+                  <blockquote className="mt-5 flex-1 text-[17px] leading-relaxed text-mist/95">“{t.text}”</blockquote>
+                  <figcaption className="mt-6 flex items-end justify-between gap-4 text-sm">
+                    <span>
+                      <span className="block font-semibold text-cream">{t.name}</span>
+                      <span className="text-mist/60">{t.area}</span>
+                    </span>
+                    <span className="text-right text-xs text-brass">{t.machine}</span>
+                  </figcaption>
+                </figure>
               </Reveal>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      <section className="relative overflow-hidden">
-        <img
-          src={IMAGES.delhi}
-          alt="Aerial view of New Delhi rooftops and neighbourhoods we service"
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-forest/80" />
-        <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-5 py-24 md:flex-row md:items-end md:justify-between md:px-8">
-          <div className="text-cream">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brass">Coverage</p>
-            <h2 className="font-display mt-3 max-w-lg text-3xl font-bold md:text-5xl">
-              Delhi, Noida, Gurugram, Ghaziabad, Faridabad.
-            </h2>
-            <p className="mt-4 max-w-md text-mist/85">
-              Forty-plus neighbourhoods. Same WhatsApp number. Same warranty.
-            </p>
-          </div>
-          <button
-            onClick={() => onNavigate("areas")}
-            className="inline-flex items-center gap-2 rounded-full bg-cream px-6 py-3 font-semibold text-forest"
-          >
-            See service areas <IconArrow size={16} />
-          </button>
+      {/* ---------------- Areas ---------------- */}
+      <section className="relative overflow-hidden" aria-labelledby="areas-heading">
+        <Photo name="delhi" sizes="100vw" alt="" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-forest/90" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28">
+          <Reveal className="flex flex-col justify-between gap-6 text-cream md:flex-row md:items-end">
+            <SectionHead
+              id="areas-heading"
+              tone="brass"
+              kicker="Coverage"
+              title="Delhi, Noida, Gurugram, Ghaziabad, Faridabad."
+              text="Fifty-plus neighbourhoods. Same WhatsApp number. Same warranty."
+            />
+            <Link to="/service-areas" className="btn btn-light shrink-0">
+              All service areas <IconArrow size={16} />
+            </Link>
+          </Reveal>
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {AREAS.map((a, i) => (
+              <Reveal as="li" key={a.slug} delay={(i % 3) + 1}>
+                <AreaCard a={a} />
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <FAQ />
+      {/* ---------------- Guides ---------------- */}
+      <section className="bg-cream py-20 md:py-28" aria-labelledby="guides-heading">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <SectionHead
+              id="guides-heading"
+              kicker="From the bench"
+              title="Know what is wrong before anyone quotes you."
+            />
+            <Link to="/guides" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+              All guides <IconArrow size={16} />
+            </Link>
+          </Reveal>
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {GUIDES.slice(0, 3).map((g, i) => (
+              <Reveal as="li" key={g.slug} delay={i + 1}>
+                <GuideCard g={g} />
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <FAQ items={routeFaqs(route)} />
       <CTA />
     </>
   );

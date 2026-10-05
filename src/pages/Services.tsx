@@ -1,114 +1,84 @@
 import { BrandMarquee } from "../components/BrandMarquee";
 import { CTA } from "../components/CTA";
 import { FAQ } from "../components/FAQ";
-import { IconCheck, SERVICE_ICONS } from "../components/Icons";
+import { PriceTable, ServiceCard } from "../components/cards";
+import { IconArrow } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { FAQS, IMAGES, PRICING, SERVICES, waLink } from "../data";
+import { AnswerBox, SectionHead } from "../components/ui";
+import { routeFaqs } from "../data/faqs";
+import { SERVICES } from "../data/services";
+import { PRICING, PROCESS, SITE } from "../data/site";
+import { Link } from "../lib/router";
+import type { RouteDef } from "../routes";
 
-const extraFaqs = [
-  {
-    q: "Will a wet service fix a machine that is not cooling?",
-    a: "Sometimes. A clogged filter and a filthy evaporator can look like a gas problem. We always wash and then measure pressures. If cooling is still short, we quote gas or parts — we do not sell a service as a repair.",
-  },
-  {
-    q: "Do you install copper yourself?",
-    a: "Yes. Standard 3-metre kit is in the install price. Extra run is billed per metre, flared and vacuumed, never just ‘connected’.",
-  },
-  {
-    q: "Can you service a machine under brand warranty?",
-    a: "If it is still in OEM warranty, we will tell you to call the brand for free cover. We step in for out-of-warranty, expired AMC, or when you need someone today.",
-  },
-];
-
-export function Services() {
+export function Services({ route }: { route: RouteDef }) {
   return (
     <>
       <PageHero
+        crumbs={route.crumbs}
         kicker="Services"
-        title="Repair, gas, install, AMC — written in prices, not vibes."
+        title="AC repair, servicing, gas, installation & AMC in Delhi NCR"
         lede="Every job starts with a diagnosis. You approve the quote on WhatsApp. Then we open the unit. That order is not negotiable."
-        image={IMAGES.outdoor}
-        imageAlt="Technician repairing an outdoor AC compressor unit on a building wall"
+        photo="gauges"
       />
 
-      <section className="bg-cream py-20 md:py-28">
-        <div className="mx-auto max-w-7xl space-y-24 px-5 md:px-8">
-          {SERVICES.map((s, i) => {
-            const Icon = SERVICE_ICONS[i];
-            const reverse = i % 2 === 1;
-            const img = [IMAGES.techWork, IMAGES.acUnit, IMAGES.tools, IMAGES.living, IMAGES.panel, IMAGES.apartments][i];
-            return (
-              <article key={s.slug} id={s.slug} className="grid items-center gap-10 md:grid-cols-12">
-                <div className={`md:col-span-6 ${reverse ? "md:order-2" : ""}`}>
-                  <Reveal>
-                    <div className="img-zoom aspect-[4/3] overflow-hidden">
-                      <img src={img} alt={`${s.title} — Airkraft Delhi NCR`} className="h-full w-full object-cover" loading="lazy" />
-                    </div>
-                  </Reveal>
-                </div>
-                <div className={`md:col-span-6 ${reverse ? "md:order-1" : ""}`}>
-                  <Reveal delay={2}>
-                    <div className="flex items-center gap-3 text-sage">
-                      <Icon size={22} />
-                      <span className="text-xs font-semibold uppercase tracking-[0.22em]">{s.price}</span>
-                    </div>
-                    <h2 className="font-display mt-4 text-3xl font-bold tracking-tight md:text-4xl">{s.title}</h2>
-                    <p className="mt-4 leading-relaxed text-muted">{s.details}</p>
-                    <ul className="mt-6 space-y-2">
-                      {s.items.map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-sm">
-                          <IconCheck size={16} className="text-sage" /> {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={waLink(`Hi Airkraft, I need ${s.title} in Delhi NCR. Please share a slot.`)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-8 inline-flex rounded-full bg-forest px-5 py-3 text-sm font-semibold text-cream hover:bg-pine"
-                    >
-                      WhatsApp this job
-                    </a>
-                  </Reveal>
-                </div>
-              </article>
-            );
-          })}
+      <section className="bg-cream py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <AnswerBox
+              label="In short"
+              updated={SITE.updated}
+              text={`Airkraft offers eight AC services across Delhi NCR: wet servicing from ₹449, split and window AC repair from ₹449–₹499, inverter and PCB repair from ₹799, gas filling from ₹1,799, installation from ₹1,499, AMC plans from ₹2,499 per year, and cassette, ductable and VRF work on quote. Every visit starts with a ${SITE.visitFee} inspection, waived when you approve the repair.`}
+            />
+          </div>
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {SERVICES.map((s, i) => (
+              <Reveal as="li" key={s.slug} delay={(i % 4) + 1}>
+                <ServiceCard s={s} />
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="bg-paper py-20">
+      <section className="bg-forest py-20 text-cream md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <h2 className="font-display text-3xl font-bold">Rate card</h2>
-          <p className="mt-2 max-w-xl text-muted">
-            Starting prices for Delhi NCR. PCB, compressor and coil work is quoted after test.
-          </p>
-          <div className="mt-10 overflow-hidden border border-line">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-forest text-cream">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Job</th>
-                  <th className="px-5 py-3 font-medium">From</th>
-                  <th className="hidden px-5 py-3 font-medium sm:table-cell">Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PRICING.map((p) => (
-                  <tr key={p.job} className="border-t border-line">
-                    <td className="px-5 py-3.5 font-medium">{p.job}</td>
-                    <td className="px-5 py-3.5 text-forest">{p.from}</td>
-                    <td className="hidden px-5 py-3.5 text-muted sm:table-cell">{p.note}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Reveal>
+            <SectionHead tone="brass" kicker="Every service, same order" title="Diagnose. Quote. Approve. Fix." />
+          </Reveal>
+          <ol className="mt-12 grid gap-6 md:grid-cols-4">
+            {PROCESS.map((p, i) => (
+              <Reveal as="li" key={p.step} delay={i + 1} className="rounded-2xl border border-cream/10 bg-pine/40 p-6">
+                <span className="font-display text-sm font-bold text-brass">{p.step}</span>
+                <h3 className="font-display mt-3 text-xl font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-mist/80">{p.text}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="bg-paper py-20 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-12 md:px-8">
+          <Reveal className="md:col-span-5">
+            <SectionHead
+              kicker="Rate card"
+              title="Starting prices for Delhi NCR"
+              text="PCB, compressor and coil work is quoted after testing. You see the number before any work starts."
+            />
+            <Link to="/pricing" className="btn btn-primary mt-8">
+              Full price list <IconArrow size={16} />
+            </Link>
+          </Reveal>
+          <Reveal delay={2} className="md:col-span-7">
+            <PriceTable rows={PRICING} caption="Airkraft AC service starting prices" />
+          </Reveal>
         </div>
       </section>
 
       <BrandMarquee />
-      <FAQ items={[...FAQS, ...extraFaqs]} />
+      <FAQ items={routeFaqs(route)} />
       <CTA title="Tell us the brand and the fault." text="We reply with a slot, not a brochure." />
     </>
   );

@@ -1,86 +1,139 @@
-import { DEFAULT_WA, NAV, SITE, type PageId } from "../data";
-import { IconPhone, IconPin, IconWhatsApp, LogoMark } from "./Icons";
+import { AREAS, areaPath } from "../data/areas";
+import { SERVICES, servicePath } from "../data/services";
+import { BRAND_DISCLAIMER, DEFAULT_WA, SITE, TEL } from "../data/site";
+import { Link } from "../lib/router";
+import { IconClock, IconMail, IconPhone, IconPin, IconWhatsApp, LogoMark } from "./Icons";
 
-export function Footer({ onNavigate }: { onNavigate: (id: PageId) => void }) {
+const COMPANY = [
+  { label: "About us", to: "/about" },
+  { label: "Price list", to: "/pricing" },
+  { label: "Brands we service", to: "/brands" },
+  { label: "AC guides", to: "/guides" },
+  { label: "FAQ", to: "/faq" },
+  { label: "Contact", to: "/contact" },
+];
+
+export function Footer() {
   return (
     <footer className="bg-ink text-cream">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-12 md:px-8 md:py-20">
-        <div className="md:col-span-5">
-          <div className="flex items-center gap-2.5">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-12 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
+        <div className="md:col-span-4">
+          <Link to="/" className="inline-flex items-center gap-2.5" aria-label="Airkraft Cooling — home">
             <LogoMark className="h-10 w-10" />
-            <div>
-              <p className="font-display text-xl font-bold leading-none">Airkraft</p>
-              <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-brass">Cooling · Delhi NCR</p>
-            </div>
-          </div>
+            <span>
+              <span className="font-display block text-xl font-bold leading-none">Airkraft</span>
+              <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-brass">Cooling · Delhi NCR</span>
+            </span>
+          </Link>
           <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-mist/80">
-            Same-day AC repair without the scare-sell. Split, window, cassette and small VRF —
-            diagnosed properly, billed on GST, warranted for 90 days.
+            Same-day AC repair without the scare-sell. Split, window, inverter, cassette and VRF — diagnosed properly,
+            billed on GST, warranted for 90 days.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href={DEFAULT_WA}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-sm font-semibold text-white"
-            >
+          <address className="mt-6 space-y-2.5 text-sm not-italic text-mist/80">
+            <p className="flex items-start gap-2.5">
+              <IconPin size={16} className="mt-0.5 shrink-0 text-brass" />
+              <span>
+                {SITE.legal}, dispatch desk {SITE.address.locality} {SITE.address.postalCode}
+                <br />
+                Mobile service across Delhi NCR
+              </span>
+            </p>
+            <p className="flex items-center gap-2.5">
+              <IconPhone size={16} className="shrink-0 text-brass" />
+              <a href={TEL} className="tabular-nums hover:text-cream">
+                {SITE.phoneDisplay}
+              </a>
+            </p>
+            <p className="flex items-center gap-2.5">
+              <IconMail size={16} className="shrink-0 text-brass" />
+              <a href={`mailto:${SITE.email}`} className="hover:text-cream">
+                {SITE.email}
+              </a>
+            </p>
+            <p className="flex items-center gap-2.5">
+              <IconClock size={16} className="shrink-0 text-brass" />
+              <span>
+                {SITE.hours} · {SITE.emergency}
+              </span>
+            </p>
+          </address>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <a href={DEFAULT_WA} target="_blank" rel="noopener noreferrer" className="btn btn-wa px-5 py-2.5 text-sm">
               <IconWhatsApp size={16} /> WhatsApp
             </a>
-            <a
-              href={`tel:${SITE.phone}`}
-              className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-4 py-2.5 text-sm font-semibold"
-            >
-              <IconPhone size={16} /> {SITE.phoneDisplay}
+            <a href={TEL} className="btn btn-outline-light px-5 py-2.5 text-sm">
+              <IconPhone size={16} /> Call now
             </a>
           </div>
         </div>
 
-        <div className="md:col-span-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Pages</p>
-          <ul className="mt-4 space-y-2.5 text-sm text-mist/80">
-            {NAV.map((n) => (
-              <li key={n.id}>
-                <button onClick={() => onNavigate(n.id)} className="hover:text-cream">
-                  {n.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <FooterCol title="Services" className="md:col-span-3">
+          {SERVICES.map((s) => (
+            <li key={s.slug}>
+              <Link to={servicePath(s.slug)} className="hover:text-cream">
+                {s.name}
+              </Link>
+            </li>
+          ))}
+        </FooterCol>
 
-        <div className="md:col-span-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Work</p>
-          <ul className="mt-4 space-y-2.5 text-sm text-mist/80">
-            <li>Split AC repair</li>
-            <li>Window AC service</li>
-            <li>Gas filling</li>
-            <li>Installation</li>
-            <li>AMC plans</li>
-            <li>Cassette & VRF</li>
-          </ul>
-        </div>
+        <FooterCol title="Service areas" className="md:col-span-2">
+          {AREAS.map((a) => (
+            <li key={a.slug}>
+              <Link to={areaPath(a.slug)} className="hover:text-cream">
+                AC repair {a.city}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link to="/service-areas" className="text-brass hover:text-cream">
+              All areas →
+            </Link>
+          </li>
+        </FooterCol>
 
-        <div className="md:col-span-3">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Visit / hours</p>
-          <address className="mt-4 not-italic text-sm leading-relaxed text-mist/80">
-            <span className="inline-flex items-start gap-2">
-              <IconPin size={16} className="mt-0.5 shrink-0 text-brass" />
-              Mobile workshop across Delhi NCR.
-              <br />
-              Dispatch: New Delhi
-            </span>
-            <p className="mt-3">{SITE.hours}</p>
-            <p>{SITE.emergency}</p>
-          </address>
-        </div>
+        <FooterCol title="Company" className="md:col-span-3">
+          {COMPANY.map((c) => (
+            <li key={c.to}>
+              <Link to={c.to} className="hover:text-cream">
+                {c.label}
+              </Link>
+            </li>
+          ))}
+        </FooterCol>
       </div>
 
       <div className="border-t border-cream/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-mist/50 md:flex-row md:items-center md:justify-between md:px-8">
-          <p>© {new Date().getFullYear()} {SITE.legal}. All rights reserved.</p>
-          <p>GST invoices · 90-day repair warranty · Serving Delhi NCR since {SITE.founded}</p>
+        <div className="mx-auto max-w-7xl px-5 py-6 text-xs leading-relaxed text-mist/60 md:px-8">
+          <p className="max-w-4xl">{BRAND_DISCLAIMER}</p>
+          <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <p suppressHydrationWarning>
+              © {new Date().getFullYear()} {SITE.legal}. All rights reserved. GST invoices · 90-day repair warranty ·
+              Serving Delhi NCR since {SITE.founded}.
+            </p>
+            <p className="flex gap-5">
+              <Link to="/privacy-policy" className="hover:text-cream">
+                Privacy
+              </Link>
+              <Link to="/terms" className="hover:text-cream">
+                Terms & warranty
+              </Link>
+              <a href="/sitemap.xml" className="hover:text-cream">
+                Sitemap
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterCol({ title, className, children }: { title: string; className?: string; children: React.ReactNode }) {
+  return (
+    <nav className={className} aria-label={title}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">{title}</p>
+      <ul className="mt-4 space-y-2.5 text-sm text-mist/80">{children}</ul>
+    </nav>
   );
 }

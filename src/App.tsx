@@ -1,67 +1,90 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Footer } from "./components/Footer";
+import { Head } from "./components/Head";
 import { Header } from "./components/Header";
-import { JsonLd } from "./components/JsonLd";
-import { Seo } from "./components/Seo";
 import { WhatsAppButton } from "./components/WhatsAppButton";
-import { NAV, type PageId } from "./data";
+import { RouterProvider, useRouter } from "./lib/router";
+import { installLeadTracking } from "./lib/track";
 import { About } from "./pages/About";
+import { AreaPage } from "./pages/AreaPage";
 import { Areas } from "./pages/Areas";
+import { Brands } from "./pages/Brands";
 import { Contact } from "./pages/Contact";
+import { FaqPage } from "./pages/FaqPage";
+import { GuidePage } from "./pages/GuidePage";
+import { Guides } from "./pages/Guides";
 import { Home } from "./pages/Home";
+import { Legal } from "./pages/Legal";
+import { NotFound } from "./pages/NotFound";
+import { Pricing } from "./pages/Pricing";
+import { ServicePage } from "./pages/ServicePage";
 import { Services } from "./pages/Services";
+import { matchRoute, type RouteDef } from "./routes";
+import { cn } from "./utils/cn";
 
-function pathToPage(hash: string): PageId {
-  const clean = hash.replace(/^#\/?/, "").split("?")[0].replace(/\/$/, "");
-  const found = NAV.find((n) => n.path.replace(/^#\/?/, "") === clean);
-  if (found) return found.id;
-  if (clean === "" || clean === "home") return "home";
-  return "home";
+export default function App({ initialPath }: { initialPath: string }) {
+  return (
+    <RouterProvider initialPath={initialPath}>
+      <Shell />
+    </RouterProvider>
+  );
 }
 
-export default function App() {
-  const [page, setPage] = useState<PageId>(() =>
-    typeof window === "undefined" ? "home" : pathToPage(window.location.hash)
-  );
+function Shell() {
+  const { path, navigated } = useRouter();
+  const route = matchRoute(path);
 
-  const onNavigate = useCallback((id: PageId) => {
-    const item = NAV.find((n) => n.id === id);
-    if (item) window.location.hash = item.path.replace(/^#/, "");
-    setPage(id);
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const onHash = () => setPage(pathToPage(window.location.hash));
-    window.addEventListener("hashchange", onHash);
-    if (!window.location.hash) window.location.hash = "/";
-    return () => window.removeEventListener("hashchange", onHash);
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [page]);
+  useEffect(() => installLeadTracking(), []);
 
   return (
     <>
-      <JsonLd />
-      <Seo page={page} />
+      <Head route={route} />
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-cream focus:px-4 focus:py-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-cream focus:px-5 focus:py-3 focus:font-semibold focus:text-forest focus:shadow-lg"
       >
         Skip to content
       </a>
-      <Header page={page} onNavigate={onNavigate} />
-      <main id="main" className="page-enter pb-14 md:pb-0" key={page}>
-        {page === "home" && <Home onNavigate={onNavigate} />}
-        {page === "services" && <Services />}
-        {page === "about" && <About />}
-        {page === "areas" && <Areas />}
-        {page === "contact" && <Contact />}
+      <Header />
+      <main id="main" tabIndex={-1} key={route.path} className={cn("pb-16 outline-none md:pb-0", navigated && "page-enter")}>
+        <Page route={route} />
       </main>
-      <Footer onNavigate={onNavigate} />
+      <Footer />
       <WhatsAppButton />
     </>
   );
+}
+
+function Page({ route }: { route: RouteDef }) {
+  switch (route.kind) {
+    case "home":
+      return <Home route={route} />;
+    case "services":
+      return <Services route={route} />;
+    case "service":
+      return <ServicePage route={route} />;
+    case "pricing":
+      return <Pricing route={route} />;
+    case "areas":
+      return <Areas route={route} />;
+    case "area":
+      return <AreaPage route={route} />;
+    case "guides":
+      return <Guides route={route} />;
+    case "guide":
+      return <GuidePage route={route} />;
+    case "about":
+      return <About route={route} />;
+    case "contact":
+      return <Contact route={route} />;
+    case "faq":
+      return <FaqPage route={route} />;
+    case "brands":
+      return <Brands route={route} />;
+    case "privacy":
+    case "terms":
+      return <Legal route={route} />;
+    default:
+      return <NotFound route={route} />;
+  }
 }

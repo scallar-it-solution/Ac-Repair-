@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { useReveal } from "../hooks/useReveal";
 import { cn } from "../utils/cn";
 
@@ -5,15 +6,18 @@ export function Reveal({
   children,
   className,
   delay,
+  as: Tag = "div",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  delay?: 1 | 2 | 3 | 4 | 5;
+  delay?: number;
+  as?: "div" | "li";
 }) {
-  const ref = useReveal<HTMLDivElement>();
+  const ref = useReveal<HTMLDivElement & HTMLLIElement>();
+  const d = delay ? Math.min(Math.max(Math.round(delay), 1), 5) : 0;
   return (
-    <div ref={ref} className={cn("reveal", delay ? `delay-${delay}` : "", className)}>
+    <Tag ref={ref} className={cn("reveal", d && `delay-${d}`, className)}>
       {children}
-    </div>
+    </Tag>
   );
 }

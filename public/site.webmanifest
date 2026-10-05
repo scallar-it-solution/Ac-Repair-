@@ -1,0 +1,16 @@
+{
+  "name": "Airkraft Cooling — AC Repair Delhi NCR",
+  "short_name": "Airkraft",
+  "description": "Same-day AC repair, gas filling, installation and AMC across Delhi NCR.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf7",
+  "theme_color": "#14352c",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

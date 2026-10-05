@@ -1,52 +1,74 @@
-import { useState } from "react";
-import { FAQS } from "../data";
-import { Reveal } from "./Reveal";
+import { useId, useState } from "react";
+import type { Faq } from "../data/site";
 import { cn } from "../utils/cn";
+import { Reveal } from "./Reveal";
+import { SectionHead } from "./ui";
 
-export function FAQ({ items = FAQS }: { items?: readonly { q: string; a: string }[] }) {
-  const [open, setOpen] = useState(0);
+export function FAQList({ items, defaultOpen = 0 }: { items: Faq[]; defaultOpen?: number }) {
+  const [open, setOpen] = useState(defaultOpen);
+  const uid = useId();
+  return (
+    <div className="border-t border-line">
+      {items.map((item, i) => {
+        const isOpen = open === i;
+        const btnId = `${uid}-q${i}`;
+        const panelId = `${uid}-a${i}`;
+        return (
+          <div key={item.q} className="border-b border-line">
+            <h3>
+              <button
+                id={btnId}
+                type="button"
+                className="flex w-full items-start justify-between gap-6 py-5 text-left"
+                onClick={() => setOpen(isOpen ? -1 : i)}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+              >
+                <span className="font-display text-lg font-semibold md:text-xl">{item.q}</span>
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-sage transition-transform duration-300",
+                    isOpen && "rotate-45 border-forest bg-forest text-cream"
+                  )}
+                >
+                  +
+                </span>
+              </button>
+            </h3>
+            {/* Answers stay in the DOM when collapsed so crawlers and AI engines can read them. */}
+            <div id={panelId} role="region" aria-labelledby={btnId} className={cn("accordion-body", isOpen && "open")}>
+              <p className="min-h-0 overflow-hidden pr-12 text-[15px] leading-relaxed text-muted">
+                <span className="block pb-5">{item.a}</span>
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
+export function FAQ({
+  items,
+  title = "Questions we actually get asked",
+  kicker = "FAQ",
+  text = "If yours is not here, WhatsApp it. A human answers — not a chatbot with a menu.",
+}: {
+  items: Faq[];
+  title?: string;
+  kicker?: string;
+  text?: string;
+}) {
+  if (!items.length) return null;
   return (
     <section className="bg-paper py-20 md:py-28" aria-labelledby="faq-heading">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-12 md:px-8">
-        <div className="md:col-span-4">
-          <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-sage">FAQ</p>
-            <h2 id="faq-heading" className="font-display mt-3 text-3xl font-bold tracking-tight md:text-4xl">
-              Questions we actually get asked
-            </h2>
-            <p className="mt-4 text-muted">
-              If yours is not here, WhatsApp it. A human answers — not a chatbot with a menu.
-            </p>
-          </Reveal>
-        </div>
+        <Reveal className="md:col-span-4">
+          <SectionHead id="faq-heading" kicker={kicker} title={title} text={text} />
+        </Reveal>
         <div className="md:col-span-8">
-          {items.map((item, i) => (
-            <Reveal key={item.q} delay={i < 5 ? ((i + 1) as 1 | 2 | 3 | 4 | 5) : undefined}>
-              <div className="border-b border-line">
-                <button
-                  className="flex w-full items-start justify-between gap-6 py-5 text-left"
-                  onClick={() => setOpen(open === i ? -1 : i)}
-                  aria-expanded={open === i}
-                >
-                  <span className="font-display text-lg font-semibold md:text-xl">{item.q}</span>
-                  <span
-                    className={cn(
-                      "mt-1 text-sage transition-transform duration-300",
-                      open === i && "rotate-45"
-                    )}
-                  >
-                    +
-                  </span>
-                </button>
-                <div className={cn("accordion-body", open === i && "open")}>
-                  <p className="min-h-0 overflow-hidden pb-5 text-[15px] leading-relaxed text-muted">
-                    {item.a}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
+          <FAQList items={items} />
         </div>
       </div>
     </section>

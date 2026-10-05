@@ -1,12 +1,16 @@
 {
   "name": "airkraft-services",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Airkraft Cooling - AC Repair and Maintenance Services in Delhi NCR",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist-ssr",
+    "prerender": "node scripts/prerender.mjs",
+    "build": "npm run typecheck && npm run build:client && npm run build:server && npm run prerender",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,6 +27,6 @@
     "@vitejs/plugin-react": "5.1.1",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3",
-    "vite": "7.3.2"
+    "vite": "7.3.6"
   }
 }
