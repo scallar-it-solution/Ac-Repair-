@@ -42,7 +42,7 @@ export function Areas({ route }: { route: RouteDef }) {
                     <div>
                       <h3 className="font-display text-2xl font-bold">
                         <Link to={areaPath(a.slug)} className="hover:text-forest">
-                          AC repair in {a.city}
+                          {a.city}
                         </Link>
                       </h3>
                       <p className="mt-1.5 flex items-center gap-1.5 text-xs text-muted">

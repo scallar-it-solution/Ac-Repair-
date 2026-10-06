@@ -46,7 +46,7 @@ export const MAINTENANCE: Guide[] = [
       },
       {
         t: "p",
-        text: "Clean filters are the cheapest efficiency upgrade there is. The US Department of Energy estimates that replacing a dirty, clogged filter with a clean one can lower an air conditioner’s energy consumption by 5–15%. More savings in [how to cut your AC electricity bill](/guides/reduce-ac-electricity-bill).",
+        text: "Clean filters are the cheapest efficiency upgrade there is. According to the US Department of Energy, routinely cleaning or replacing the filters can lower an air conditioner’s energy consumption by 5–15%. More savings in [how to cut your AC electricity bill](/guides/reduce-ac-electricity-bill).",
       },
       { t: "h2", id: "service-sooner", text: "Signs you need a service sooner" },
       {
@@ -82,11 +82,12 @@ export const MAINTENANCE: Guide[] = [
       },
       {
         q: "Does AC servicing reduce the electricity bill?",
-        a: "Yes. Dirty filters, coils and condensers make the compressor run longer for the same cooling. The US Department of Energy estimates a clean filter alone can cut AC energy use by 5–15%.",
+        a: "Yes. Dirty filters, coils and condensers make the compressor run longer for the same cooling. The US Department of Energy says routinely cleaning or replacing filters can cut AC energy use by 5–15%.",
       },
     ],
     related: ["ac-service", "ac-amc", "split-ac-repair"],
     relatedGuides: ["ac-amc-worth-it", "reduce-ac-electricity-bill", "ac-bad-smell"],
+    sources: [{ label: "US Department of Energy — Energy Saver 101: Home Cooling", url: "https://www.energy.gov/sites/prod/files/2016/11/f34/Energy%20Saver%20101%20Infographic%20Home%20Cooling_0.pdf" }],
   },
   {
     slug: "ac-amc-worth-it",
@@ -210,7 +211,7 @@ export const MAINTENANCE: Guide[] = [
       {
         t: "ol",
         items: [
-          "**Clean filters every two weeks** in summer — the US Department of Energy puts the saving from a clean filter at 5–15%. How-to in the [service schedule](/guides/ac-service-schedule).",
+          "**Clean filters every two weeks** in summer — the US Department of Energy puts the saving from routinely cleaning or replacing filters at 5–15%. How-to in the [service schedule](/guides/ac-service-schedule).",
           "**Keep the outdoor unit breathing** — shaded if possible, but never boxed in or covered while running, and washed before summer.",
           "**Fix leaks properly** — an undercharged AC runs longer for less cooling. See [signs of low gas](/guides/ac-gas-leak-signs).",
           "**Right-size and upgrade wisely** — an undersized AC never switches off; an old fixed-speed unit can use far more than a modern inverter. Compare the annual kWh on the BEE star label. See [inverter vs non-inverter](/guides/inverter-vs-non-inverter-ac) and [which tonnage](/guides/ac-tonnage-guide).",
@@ -233,10 +234,11 @@ export const MAINTENANCE: Guide[] = [
       },
       {
         q: "Does servicing the AC reduce the electricity bill?",
-        a: "Yes. Clean filters, coil and condenser let the AC reach the set temperature faster and run less. The US Department of Energy estimates a clean filter alone saves 5–15%.",
+        a: "Yes. Clean filters, coil and condenser let the AC reach the set temperature faster and run less. The US Department of Energy says routinely cleaning or replacing filters saves 5–15%.",
       },
     ],
     related: ["ac-service", "ac-amc"],
+    sources: [{ label: "Ministry of Power (PIB) — FAQs on BEE recommendations on AC temperature setting", url: "https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1537124" }, { label: "US Department of Energy — Energy Saver 101: Home Cooling", url: "https://www.energy.gov/sites/prod/files/2016/11/f34/Energy%20Saver%20101%20Infographic%20Home%20Cooling_0.pdf" }, { label: "Bureau of Energy Efficiency — Standards & Labelling: Air Conditioners", url: "https://beeindia.gov.in/en/standards-labelling/air-conditioners" }],
     relatedGuides: ["ac-service-schedule", "inverter-vs-non-inverter-ac", "ac-tonnage-guide"],
   },
 ];

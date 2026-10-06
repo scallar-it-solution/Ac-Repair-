@@ -163,6 +163,7 @@ export const PRICE_GROUPS: { title: string; rows: PriceRow[] }[] = [
     title: "Visit & diagnosis",
     rows: [
       { job: "Inspection visit", from: "₹199", value: 199, note: "Waived if you approve the repair on the same visit" },
+      { job: "Night emergency call-out", from: "On quote", note: "Surcharge told before booking" },
     ],
   },
   {
@@ -177,6 +178,9 @@ export const PRICE_GROUPS: { title: string; rows: PriceRow[] }[] = [
     rows: [
       { job: "Water leak repair", from: "₹499", value: 499, note: "Drain / insulation" },
       { job: "PCB inspection & repair", from: "₹799", value: 799, note: "Board-level parts extra" },
+      { job: "Fan motor / capacitor replacement", from: "On quote", note: "Quoted after testing" },
+      { job: "Compressor replacement", from: "On quote", note: "After electrical tests; compared with a new AC" },
+      { job: "Coil leak repair or replacement", from: "On quote", note: "After a nitrogen leak test" },
     ],
   },
   {

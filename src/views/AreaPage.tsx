@@ -1,14 +1,15 @@
 import { CTA } from "../components/CTA";
 import { FAQ } from "../components/FAQ";
-import { IconArrow, IconClock, IconPin, IconShield, IconStar, SERVICE_ICONS } from "../components/Icons";
+import { IconClock, IconPin, IconShield, IconStar } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { GuideList } from "../components/cards";
+import { GuideList, ServiceLinkGrid } from "../components/cards";
 import { AnswerBox, RichText, SectionHead } from "../components/ui";
 import { AREAS, AREA_GUIDES, areaBySlug, areaPath } from "../data/areas";
+import { BRAND_PAGES, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { guideBySlug, type Guide } from "../data/guides";
-import { SERVICES, servicePath } from "../data/services";
+import { SERVICES } from "../data/services";
 import { SITE, TESTIMONIALS, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
@@ -127,28 +128,9 @@ export function AreaPage({ route }: { route: RouteDef }) {
       <section className="bg-cream py-20 md:py-24" aria-labelledby="area-services">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionHead id="area-services" kicker={`Services in ${a.city}`} title={`Every AC service, available in ${a.city}`} />
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((s) => {
-              const Icon = SERVICE_ICONS[s.icon];
-              return (
-                <li key={s.slug}>
-                  <Link
-                    to={servicePath(s.slug)}
-                    className="group flex h-full items-center gap-3 rounded-xl border border-line bg-paper p-4 transition hover:border-forest/40 hover:bg-white"
-                  >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
-                      <Icon size={18} />
-                    </span>
-                    <span className="flex-1">
-                      <span className="block text-sm font-semibold">{s.name}</span>
-                      <span className="block text-xs text-copper">{s.price}</span>
-                    </span>
-                    <IconArrow size={16} className="text-moss transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="mt-10">
+            <ServiceLinkGrid services={SERVICES} />
+          </div>
 
           {guides.length > 0 && (
             <div className="mt-16">
@@ -172,16 +154,34 @@ export function AreaPage({ route }: { route: RouteDef }) {
                     to={areaPath(o.slug)}
                     className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-sm font-medium transition hover:border-forest hover:text-forest"
                   >
-                    AC repair in {o.city}
+                    {o.city}
                   </Link>
                 </li>
               ))}
+            </ul>
+            <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Brands we fix in {a.city}</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {BRAND_PAGES.map((b) => (
+                <li key={b.slug}>
+                  <Link
+                    to={brandPath(b.slug)}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-line px-4 py-2 text-sm font-medium transition hover:border-forest hover:text-forest"
+                  >
+                    {b.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/brands" className="inline-block rounded-full px-4 py-2 text-sm font-semibold text-forest">
+                  All brands →
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <FAQ items={routeFaqs(route)} title={`AC repair in ${a.city}: questions`} />
+      <FAQ items={routeFaqs(route)} title={`${a.city}: common questions`} />
       <CTA
         title={`AC down in ${a.city}?`}
         text="Send your landmark and the fault. We reply with an honest arrival window and a technician’s name."

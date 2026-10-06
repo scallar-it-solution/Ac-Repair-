@@ -140,6 +140,7 @@ export const BUYING: Guide[] = [
     ],
     related: ["inverter-ac-pcb-repair", "ac-installation", "split-ac-repair"],
     relatedGuides: ["ac-stabilizer-guide", "ac-tonnage-guide", "repair-or-replace-ac"],
+    sources: [{ label: "Bureau of Energy Efficiency — Standards & Labelling: Air Conditioners", url: "https://beeindia.gov.in/en/standards-labelling/air-conditioners" }],
   },
   {
     slug: "ac-stabilizer-guide",
@@ -262,7 +263,7 @@ export const BUYING: Guide[] = [
       {
         t: "callout",
         title: "We give you both numbers",
-        text: "On a diagnosis visit we quote the repair and tell you plainly when replacement is the better spend — and we install the new AC too if you want. See [AC installation](/services/ac-installation).",
+        text: "On a diagnosis visit we quote the repair and tell you plainly when replacement is the better spend — see [compressor replacement](/services/ac-compressor-replacement) and [coil repair](/services/ac-coil-repair). If you replace, we install the new AC too: [AC installation](/services/ac-installation).",
       },
     ],
     faqs: [
@@ -275,7 +276,7 @@ export const BUYING: Guide[] = [
         a: "A well-maintained split AC commonly lasts 10–12 years or more in Delhi NCR. Regular wet servicing and voltage protection extend it; dust, heat and neglect shorten it.",
       },
     ],
-    related: ["split-ac-repair", "ac-installation", "window-ac-repair"],
+    related: ["split-ac-repair", "ac-compressor-replacement", "ac-coil-repair", "ac-installation"],
     relatedGuides: ["ac-gas-filling-cost", "inverter-vs-non-inverter-ac", "ac-tonnage-guide"],
   },
   {
@@ -332,7 +333,7 @@ export const BUYING: Guide[] = [
       {
         t: "callout",
         title: "Already installed badly?",
-        text: "Dripping, noise and poor cooling in the first year are usually fixable without replacing the AC — re-routing the drain, re-making flares, re-mounting the outdoor unit. Book [AC installation & re-installation](/services/ac-installation).",
+        text: "Dripping, noise and poor cooling in the first year are usually fixable without replacing the AC — re-routing the drain, re-making flares, re-mounting the outdoor unit. Book [AC installation](/services/ac-installation), or [AC shifting](/services/ac-shifting) if you are moving.",
       },
       {
         t: "p",
@@ -349,7 +350,7 @@ export const BUYING: Guide[] = [
         a: "Yes. Vacuuming removes air and moisture from the copper lines. Purging with the AC’s own refrigerant wastes gas and leaves moisture that harms the compressor.",
       },
     ],
-    related: ["ac-installation", "ac-gas-filling"],
+    related: ["ac-installation", "ac-shifting", "ac-gas-filling"],
     relatedGuides: ["ac-tonnage-guide", "ac-water-leakage", "ac-making-noise"],
   },
 ];

@@ -182,6 +182,23 @@ export function GuidePage({ route }: { route: RouteDef }) {
               ))}
             </div>
 
+            {g.sources && g.sources.length > 0 && (
+              <section aria-labelledby="sources" className="mt-12 border-t border-line pt-8">
+                <h2 id="sources" className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">
+                  Sources
+                </h2>
+                <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm text-muted">
+                  {g.sources.map((src) => (
+                    <li key={src.url}>
+                      <a href={src.url} target="_blank" rel="noopener" className="text-forest underline underline-offset-4 hover:text-pine">
+                        {src.label}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
             <div className="mt-14 flex gap-5 rounded-2xl border border-line bg-paper p-6">
               <span className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-forest text-lg font-bold text-sand">
                 {AUTHOR.name

@@ -7,7 +7,7 @@ import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { AnswerBox, SectionHead } from "../components/ui";
 import { routeFaqs } from "../data/faqs";
-import { SERVICES } from "../data/services";
+import { CORE_SERVICES, SPECIALIST_SERVICES } from "../data/services";
 import { PRICING, PROCESS, SITE } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
@@ -29,12 +29,22 @@ export function Services({ route }: { route: RouteDef }) {
             <AnswerBox
               label="In short"
               updated={SITE.updated}
-              text={`Airkraft offers eight AC services across Delhi NCR: wet servicing from ₹449, split and window AC repair from ₹449–₹499, inverter and PCB repair from ₹799, gas filling from ₹1,799, installation from ₹1,499, AMC plans from ₹2,499 per year, and cassette, ductable and VRF work on quote. Every visit starts with a ${SITE.visitFee} inspection, waived when you approve the repair.`}
+              text={`Airkraft offers eight core AC services across Delhi NCR — wet servicing from ₹449, split and window AC repair from ₹449–₹499, inverter and PCB repair from ₹799, gas filling from ₹1,799, installation from ₹1,499, AMC plans from ₹2,499 per year, and cassette, ductable and VRF work on quote — plus specialist repairs: emergency call-outs, compressor and coil replacement, fan motors, water leakage and AC shifting. Every visit starts with a ${SITE.visitFee} inspection, waived when you approve the repair.`}
             />
           </div>
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((s, i) => (
+          <h2 className="font-display mt-16 text-3xl font-bold tracking-tight">Core services</h2>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {CORE_SERVICES().map((s, i) => (
               <Reveal as="li" key={s.slug} delay={(i % 4) + 1}>
+                <ServiceCard s={s} />
+              </Reveal>
+            ))}
+          </ul>
+          <h2 className="font-display mt-16 text-3xl font-bold tracking-tight">Specialist repairs</h2>
+          <p className="mt-2 max-w-2xl text-muted">When the fault is already known — or it cannot wait.</p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SPECIALIST_SERVICES().map((s, i) => (
+              <Reveal as="li" key={s.slug} delay={(i % 3) + 1}>
                 <ServiceCard s={s} />
               </Reveal>
             ))}

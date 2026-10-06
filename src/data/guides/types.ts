@@ -35,4 +35,6 @@ export type Guide = {
   related: string[];
   /** Hand-picked sibling guides; same-cluster guides fill any remaining slots. */
   relatedGuides?: string[];
+  /** Verified external sources for statistics and facts quoted in the guide. */
+  sources?: { label: string; url: string }[];
 };

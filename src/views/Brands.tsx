@@ -4,6 +4,7 @@ import { IconArrow } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { AnswerBox } from "../components/ui";
+import { brandPathByName } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { BRAND_DISCLAIMER, SITE, waLink } from "../data/site";
 import { Link } from "../lib/router";
@@ -46,22 +47,40 @@ export function Brands({ route }: { route: RouteDef }) {
             />
           </div>
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {BRAND_NOTES.map((b, i) => (
-              <Reveal as="li" key={b.name} delay={(i % 3) + 1}>
-                <article className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
-                  <h2 className="font-display text-2xl font-bold">{b.name} AC repair</h2>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{b.note}</p>
-                  <a
-                    href={waLink(`Hi Airkraft, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-forest"
-                  >
-                    Book {b.name} service <IconArrow size={16} />
-                  </a>
-                </article>
-              </Reveal>
-            ))}
+            {BRAND_NOTES.map((b, i) => {
+              const page = brandPathByName(b.name);
+              return (
+                <Reveal as="li" key={b.name} delay={(i % 3) + 1}>
+                  <article className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
+                    <h2 className="font-display text-2xl font-bold">
+                      {page ? (
+                        <Link to={page} className="hover:text-forest">
+                          {b.name}
+                        </Link>
+                      ) : (
+                        <>{b.name}</>
+                      )}
+                    </h2>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{b.note}</p>
+                    <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold">
+                      {page && (
+                        <Link to={page} className="inline-flex items-center gap-2 text-forest">
+                          Faults, codes & service <IconArrow size={16} />
+                        </Link>
+                      )}
+                      <a
+                        href={waLink(`Hi Airkraft, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={page ? "text-muted hover:text-forest" : "inline-flex items-center gap-2 text-forest"}
+                      >
+                        Book {b.name} service {!page && <IconArrow size={16} />}
+                      </a>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
           </ul>
           <p className="mt-10 max-w-3xl rounded-2xl border border-line p-5 text-sm text-muted">{BRAND_DISCLAIMER}</p>
           <p className="mt-6 text-sm text-muted">

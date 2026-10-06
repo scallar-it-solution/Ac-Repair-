@@ -21,7 +21,7 @@ import {
 type Menu = "services" | "areas" | null;
 
 /** Lightweight menu data, passed from the server layout so full page content stays out of the client bundle. */
-export type MenuService = { href: string; name: string; short: string; price: string; icon: IconName };
+export type MenuService = { href: string; name: string; short: string; price: string; icon: IconName; tier?: "core" | "specialist" };
 export type MenuArea = { href: string; city: string };
 
 export function Header({ services, areas }: { services: MenuService[]; areas: MenuArea[] }) {
@@ -243,10 +243,13 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
 }
 
 function ServicesPanel({ services }: { services: MenuService[] }) {
+  const specialist = services.filter((s) => s.tier === "specialist");
   return (
-    <div className="w-[640px] rounded-2xl border border-line bg-cream p-3 shadow-2xl shadow-ink/10">
+    <div className="w-[680px] rounded-2xl border border-line bg-cream p-3 shadow-2xl shadow-ink/10">
       <ul className="grid grid-cols-2 gap-1">
-        {services.map((s) => {
+        {services
+          .filter((s) => s.tier !== "specialist")
+          .map((s) => {
           const Icon = SERVICE_ICONS[s.icon];
           return (
             <li key={s.href}>
@@ -263,6 +266,20 @@ function ServicesPanel({ services }: { services: MenuService[] }) {
           );
         })}
       </ul>
+      {specialist.length > 0 && (
+        <div className="mt-1 border-t border-line px-3 pb-1 pt-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-sage">Specialist repairs</p>
+          <ul className="mt-2 grid grid-cols-3 gap-x-3 gap-y-1.5 text-[13px]">
+            {specialist.map((s) => (
+              <li key={s.href}>
+                <Link to={s.href} className="font-medium text-ink/80 hover:text-forest">
+                  {s.short.charAt(0).toUpperCase() + s.short.slice(1)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div className="mt-2 flex items-center justify-between rounded-xl bg-paper px-4 py-3 text-sm">
         <Link to="/services" className="inline-flex items-center gap-1.5 font-semibold text-forest">
           All services <IconArrow size={14} />
@@ -283,7 +300,7 @@ function AreasPanel({ areas }: { areas: MenuArea[] }) {
           <li key={a.href}>
             <Link to={a.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-paper">
               <IconPin size={16} className="text-brass" />
-              <span className="font-medium">AC repair in {a.city}</span>
+              <span className="font-medium">{a.city}</span>
             </Link>
           </li>
         ))}

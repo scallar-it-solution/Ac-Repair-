@@ -1,4 +1,5 @@
 import { DEFAULT_WA, SITE, TEL } from "../data/site";
+import { Link } from "../lib/router";
 import { IconPhone, IconWhatsApp } from "./Icons";
 import { Reveal } from "./Reveal";
 import { Kicker } from "./ui";
@@ -7,10 +8,13 @@ export function CTA({
   title = "AC down. Heat does not wait.",
   text = "Send a photo of the indoor unit and your area. You get a slot, a name, and a quote before anyone opens a panel.",
   wa = DEFAULT_WA,
+  emergencyLink = true,
 }: {
   title?: string;
   text?: string;
   wa?: string;
+  /** Sitewide link to the emergency page; off on that page itself. */
+  emergencyLink?: boolean;
 }) {
   return (
     <section className="relative overflow-hidden bg-forest text-cream">
@@ -30,6 +34,14 @@ export function CTA({
               <IconPhone size={18} /> Call now
             </a>
           </div>
+          {emergencyLink && (
+          <p className="mt-4 text-sm text-mist/70">
+            AC dead at night or someone vulnerable at home?{" "}
+            <Link to="/services/emergency-ac-repair" className="font-semibold text-sand underline underline-offset-4 hover:text-cream">
+              Emergency AC repair
+            </Link>
+          </p>
+          )}
         </Reveal>
       </div>
     </section>

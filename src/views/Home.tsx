@@ -3,7 +3,7 @@ import { BrandMarquee } from "../components/BrandMarquee";
 import { CTA } from "../components/CTA";
 import { ContactForm } from "../components/ContactForm";
 import { FAQ } from "../components/FAQ";
-import { AreaCard, GuideCard, PriceTable, ServiceCard } from "../components/cards";
+import { AreaCard, GuideCard, PriceTable, ServiceCard, ServiceLinkGrid } from "../components/cards";
 import {
   IconAlert,
   IconArrow,
@@ -26,7 +26,7 @@ import { Photo, SectionHead, formatCount } from "../components/ui";
 import { AREAS } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES } from "../data/guides";
-import { SERVICES } from "../data/services";
+import { CORE_SERVICES, SPECIALIST_SERVICES } from "../data/services";
 import { DEFAULT_WA, HERO_IMAGE, PRICING, PROCESS, REASONS, SITE, TEL, TESTIMONIALS } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
@@ -146,12 +146,18 @@ export function Home({ route }: { route: RouteDef }) {
             </Link>
           </Reveal>
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {SERVICES.map((s, i) => (
+            {CORE_SERVICES().map((s, i) => (
               <Reveal as="li" key={s.slug} delay={(i % 4) + 1}>
                 <ServiceCard s={s} />
               </Reveal>
             ))}
           </ul>
+          <div className="mt-12">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Specialist repairs</p>
+            <div className="mt-4">
+              <ServiceLinkGrid services={SPECIALIST_SERVICES()} />
+            </div>
+          </div>
         </div>
       </section>
 

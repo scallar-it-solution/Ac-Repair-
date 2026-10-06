@@ -18,7 +18,11 @@ const LEGACY: Record<string, string> = { "/areas": "/service-areas", "/home": "/
 export function ClientEffects() {
   const router = useRouter();
 
-  useEffect(() => installLeadTracking(), []);
+  useEffect(() => {
+    // Tells the inline safety-net script in layout.tsx that hydration succeeded.
+    document.documentElement.setAttribute("data-hydrated", "");
+    return installLeadTracking();
+  }, []);
 
   useEffect(() => {
     const mark = () => document.documentElement.setAttribute("data-navigated", "");

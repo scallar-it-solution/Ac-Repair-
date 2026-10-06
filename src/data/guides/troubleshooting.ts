@@ -78,6 +78,7 @@ export const TROUBLESHOOTING: Guide[] = [
           "An error code is blinking on the display — see our [AC error codes guide](/guides/ac-error-codes).",
           "The MCB trips when the compressor starts.",
           "You smell burning or see scorch marks near the wiring — switch off at the MCB. See [AC smells](/guides/ac-bad-smell).",
+          "Someone elderly, an infant or anyone unwell is in a room that is heating up fast — use [emergency AC repair](/services/emergency-ac-repair).",
         ],
       },
       { t: "h2", id: "what-to-send", text: "What to send when you book" },
@@ -110,7 +111,7 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "No. Refrigerant is not consumed. If the gas is low, there is a leak that needs to be found and fixed before recharging.",
       },
     ],
-    related: ["ac-service", "split-ac-repair", "ac-gas-filling"],
+    related: ["ac-service", "split-ac-repair", "ac-gas-filling", "emergency-ac-repair"],
     relatedGuides: ["ac-outdoor-unit-not-working", "ac-gas-leak-signs", "ac-error-codes"],
   },
   {
@@ -172,7 +173,7 @@ export const TROUBLESHOOTING: Guide[] = [
       { t: "h2", id: "cost", text: "What it costs" },
       {
         t: "p",
-        text: "Drain and insulation repairs start at ₹499, and a full [wet service](/services/ac-service) — which cleans the tray and line — is ₹499 for a split AC and ₹449 for a window AC. If the leak comes from a frozen coil caused by low refrigerant, the gas repair is quoted after a leak test. See [split AC repair](/services/split-ac-repair) or [window AC repair](/services/window-ac-repair).",
+        text: "[Water leakage repairs](/services/ac-water-leakage-repair) — drain and insulation — start at ₹499, and a full [wet service](/services/ac-service) — which cleans the tray and line — is ₹499 for a split AC and ₹449 for a window AC. If the leak comes from a frozen coil caused by low refrigerant, the gas repair is quoted after a leak test. See [split AC repair](/services/split-ac-repair) or [window AC repair](/services/window-ac-repair).",
       },
     ],
     faqs: [
@@ -189,7 +190,7 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "At Airkraft, drain and insulation repairs start at ₹499. A wet service that cleans the tray and drain line is ₹449–₹499.",
       },
     ],
-    related: ["split-ac-repair", "ac-service", "window-ac-repair"],
+    related: ["ac-water-leakage-repair", "ac-service", "split-ac-repair", "window-ac-repair"],
     relatedGuides: ["ac-bad-smell", "ac-service-schedule", "ac-not-cooling"],
   },
   {
@@ -243,7 +244,7 @@ export const TROUBLESHOOTING: Guide[] = [
       { t: "h2", id: "causes", text: "The common faults behind it" },
       {
         t: "p",
-        text: "**Capacitors** are the most common failure in fixed-speed ACs, especially after a Delhi summer — cheap to replace and usually a same-visit fix. **Contactors** pit and stick. **Inverter ACs** have no start capacitor for the compressor; there the culprit is more often the outdoor board, a sensor, or the cable between indoor and outdoor units — see [inverter & PCB repair](/services/inverter-ac-pcb-repair).",
+        text: "**Capacitors** are the most common failure in fixed-speed ACs, especially after a Delhi summer — cheap to replace and usually a same-visit fix (see [fan motor repair](/services/ac-fan-motor-repair)). A compressor is only condemned after its start parts and windings are tested — see [compressor repair & replacement](/services/ac-compressor-replacement). **Contactors** pit and stick. **Inverter ACs** have no start capacitor for the compressor; there the culprit is more often the outdoor board, a sensor, or the cable between indoor and outdoor units — see [inverter & PCB repair](/services/inverter-ac-pcb-repair).",
       },
       {
         t: "p",
@@ -260,7 +261,7 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "Switch the AC off. A humming unit with a stopped fan usually has a failed fan capacitor or motor, and running it can overheat the compressor. It is typically a quick repair.",
       },
     ],
-    related: ["split-ac-repair", "inverter-ac-pcb-repair"],
+    related: ["ac-fan-motor-repair", "ac-compressor-replacement", "split-ac-repair", "inverter-ac-pcb-repair"],
     relatedGuides: ["ac-error-codes", "ac-stabilizer-guide", "ac-not-cooling"],
   },
   {
@@ -299,7 +300,7 @@ export const TROUBLESHOOTING: Guide[] = [
       { t: "h2", id: "indoor-vs-outdoor", text: "Indoor or outdoor?" },
       {
         t: "p",
-        text: "Indoor noises are usually the blower wheel (dust build-up throws it off balance), the swing motor, or the front panel. Outdoor noises are usually the fan, the compressor mounts, the stand, or loose sheet metal. A dusty blower wheel is cleaned in a [wet service](/services/ac-service); worn motors and mounts are a [repair](/services/split-ac-repair).",
+        text: "Indoor noises are usually the blower wheel (dust build-up throws it off balance), the swing motor, or the front panel. Outdoor noises are usually the fan, the compressor mounts, the stand, or loose sheet metal. A dusty blower wheel is cleaned in a [wet service](/services/ac-service); worn motors and bearings are a [fan motor repair](/services/ac-fan-motor-repair), and loose mounts a [general repair](/services/split-ac-repair).",
       },
       { t: "h2", id: "stand", text: "Rattles from the outdoor stand" },
       {
@@ -322,7 +323,7 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "Usually loose panels or screws, debris in the fan, a worn fan motor, or a loose or rusted outdoor stand without anti-vibration pads.",
       },
     ],
-    related: ["split-ac-repair", "window-ac-repair", "ac-service"],
+    related: ["ac-fan-motor-repair", "split-ac-repair", "window-ac-repair", "ac-service"],
     relatedGuides: ["ac-outdoor-unit-not-working", "ac-installation-checklist", "ac-gas-leak-signs"],
   },
   {
@@ -384,7 +385,7 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "Yes. It usually means wiring, a motor or a board is overheating. Switch off at the MCB and have it checked before using the AC again.",
       },
     ],
-    related: ["ac-service", "split-ac-repair", "ac-amc"],
+    related: ["ac-service", "split-ac-repair", "emergency-ac-repair", "ac-amc"],
     relatedGuides: ["ac-water-leakage", "ac-service-schedule", "ac-making-noise"],
   },
   {
@@ -435,6 +436,7 @@ export const TROUBLESHOOTING: Guide[] = [
           ["L5", "Compressor overcurrent", "Inverter drive (IPM) or compressor fault"],
         ],
       },
+      { t: "p", text: "Need a technician for a Daikin? See [Daikin AC repair in Delhi NCR](/brands/daikin-ac-repair)." },
       { t: "h2", id: "lg", text: "LG error codes" },
       {
         t: "table",
@@ -451,6 +453,7 @@ export const TROUBLESHOOTING: Guide[] = [
           ["CH67", "Outdoor fan motor lock", "Outdoor fan motor or obstruction"],
         ],
       },
+      { t: "p", text: "More on LG faults in [LG AC repair in Delhi NCR](/brands/lg-ac-repair)." },
       { t: "h2", id: "samsung", text: "Samsung error codes" },
       {
         t: "table",
@@ -464,10 +467,11 @@ export const TROUBLESHOOTING: Guide[] = [
           ["E554", "Refrigerant leak detected", "Gas leak — needs leak test"],
         ],
       },
+      { t: "p", text: "More on Samsung faults in [Samsung AC repair in Delhi NCR](/brands/samsung-ac-repair)." },
       { t: "h2", id: "other-brands", text: "Voltas, Lloyd, Blue Star and others" },
       {
         t: "p",
-        text: "Many Indian-market brands use short ‘E’ or ‘F’ codes that change meaning between series — an E5 on one Voltas model is not the same as an E5 on another. Check the manual for your exact model, or send us a photo of the display and the model sticker on WhatsApp and we will tell you what it means. See the [brands we service](/brands).",
+        text: "Many Indian-market brands use short ‘E’ or ‘F’ codes that change meaning between series — an E5 on one Voltas model is not the same as an E5 on another. Check the manual for your exact model, or send us a photo of the display and the model sticker on WhatsApp and we will tell you what it means. See [Voltas AC repair](/brands/voltas-ac-repair) or all [brands we service](/brands).",
       },
       { t: "h2", id: "patterns", text: "What the code families usually mean" },
       {

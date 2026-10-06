@@ -89,5 +89,6 @@ export const REFERENCE: Guide[] = [
     ],
     related: ["ac-service", "split-ac-repair", "ac-gas-filling"],
     relatedGuides: ["ac-tonnage-guide", "ac-error-codes", "inverter-vs-non-inverter-ac"],
+    sources: [{ label: "Bureau of Energy Efficiency — Standards & Labelling: Air Conditioners", url: "https://beeindia.gov.in/en/standards-labelling/air-conditioners" }, { label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" }],
   },
 ];

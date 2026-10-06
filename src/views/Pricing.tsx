@@ -1,11 +1,12 @@
 import { CTA } from "../components/CTA";
 import { FAQ } from "../components/FAQ";
-import { PriceTable } from "../components/cards";
+import { PriceTable, ServiceLinkGrid } from "../components/cards";
 import { IconCheck, IconFile, IconRupee, IconShield, IconWhatsApp } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { AnswerBox, SectionHead, formatDate } from "../components/ui";
 import { routeFaqs } from "../data/faqs";
+import { SERVICES } from "../data/services";
 import { PRICE_GROUPS, SITE } from "../data/site";
 import type { RouteDef } from "../routes";
 
@@ -102,6 +103,20 @@ export function Pricing({ route }: { route: RouteDef }) {
           <p className="mt-8 flex items-center gap-2 text-sm text-muted">
             <IconCheck size={16} className="text-sage" /> Payment by {SITE.payment.join(", ")} after the work is tested.
           </p>
+        </div>
+      </section>
+
+      <section className="bg-cream py-20" aria-labelledby="by-service">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <SectionHead
+            id="by-service"
+            kicker="Prices by service"
+            title="What each job includes"
+            text="Every service page lists what is included, what is quoted separately, and its starting price."
+          />
+          <div className="mt-10">
+            <ServiceLinkGrid services={SERVICES} />
+          </div>
         </div>
       </section>
 

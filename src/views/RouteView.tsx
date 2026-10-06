@@ -2,6 +2,7 @@ import { JsonLd } from "../components/JsonLd";
 import type { RouteDef } from "../routes";
 import { About } from "./About";
 import { AreaPage } from "./AreaPage";
+import { BrandDetail } from "./BrandDetail";
 import { Areas } from "./Areas";
 import { Brands } from "./Brands";
 import { Contact } from "./Contact";
@@ -41,6 +42,8 @@ function View({ route }: { route: RouteDef }) {
       return <FaqPage route={route} />;
     case "brands":
       return <Brands route={route} />;
+    case "brand":
+      return <BrandDetail route={route} />;
     case "privacy":
     case "terms":
       return <Legal route={route} />;

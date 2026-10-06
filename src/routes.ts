@@ -1,4 +1,5 @@
 import { AREAS, areaBySlug, areaPath } from "./data/areas";
+import { BRAND_PAGES, brandBySlug, brandPath } from "./data/brands";
 import { GUIDES, guideBySlug, guidePath } from "./data/guides";
 import { SERVICES, serviceBySlug, servicePath } from "./data/services";
 import { SITE } from "./data/site";
@@ -17,6 +18,7 @@ export type RouteKind =
   | "contact"
   | "faq"
   | "brands"
+  | "brand"
   | "privacy"
   | "terms"
   | "notfound";
@@ -39,6 +41,7 @@ const HOME: Crumb = { name: "Home", path: "/" };
 const SERVICES_CRUMB: Crumb = { name: "Services", path: "/services" };
 const AREAS_CRUMB: Crumb = { name: "Service Areas", path: "/service-areas" };
 const GUIDES_CRUMB: Crumb = { name: "Guides", path: "/guides" };
+const BRANDS_CRUMB: Crumb = { name: "Brands", path: "/brands" };
 
 const STATIC: RouteDef[] = [
   {
@@ -119,7 +122,7 @@ const STATIC: RouteDef[] = [
     title: "Daikin, Voltas, LG & All-Brand AC Repair in Delhi NCR | Airkraft",
     description:
       "Independent repair and service for Daikin, Voltas, LG, Samsung, Blue Star, Lloyd, Hitachi, Carrier, Panasonic and more across Delhi NCR. Same-day slots.",
-    crumbs: [HOME, { name: "Brands", path: "/brands" }],
+    crumbs: [HOME, BRANDS_CRUMB],
     priority: 0.6,
   },
   {
@@ -160,7 +163,7 @@ export function allRoutes(): RouteDef[] {
       title: s.metaTitle,
       description: s.metaDescription,
       crumbs: [HOME, SERVICES_CRUMB, { name: s.name, path: servicePath(s.slug) }],
-      priority: 0.9,
+      priority: s.tier === "specialist" ? 0.8 : 0.9,
     })),
     ...AREAS.map<RouteDef>((a) => ({
       path: areaPath(a.slug),
@@ -170,6 +173,15 @@ export function allRoutes(): RouteDef[] {
       description: a.metaDescription,
       crumbs: [HOME, AREAS_CRUMB, { name: a.city, path: areaPath(a.slug) }],
       priority: 0.9,
+    })),
+    ...BRAND_PAGES.map<RouteDef>((b) => ({
+      path: brandPath(b.slug),
+      kind: "brand",
+      slug: b.slug,
+      title: b.metaTitle,
+      description: b.metaDescription,
+      crumbs: [HOME, BRANDS_CRUMB, { name: `${b.name} AC repair`, path: brandPath(b.slug) }],
+      priority: 0.8,
     })),
     ...GUIDES.map<RouteDef>((g) => ({
       path: guidePath(g.slug),
@@ -193,4 +205,4 @@ export function matchRoute(rawPath: string): RouteDef {
 export const notFoundRoute = NOT_FOUND;
 
 // Re-exported for page components that need the entity behind a route.
-export { areaBySlug, guideBySlug, serviceBySlug };
+export { areaBySlug, brandBySlug, guideBySlug, serviceBySlug };

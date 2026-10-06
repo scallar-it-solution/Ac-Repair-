@@ -84,6 +84,37 @@ export function GuideCard({ g }: { g: Guide }) {
   );
 }
 
+/** Compact service links (icon, name, price) — used wherever a full card grid would be too heavy. */
+export function ServiceLinkGrid({ services, tone = "paper" }: { services: Service[]; tone?: "paper" | "cream" }) {
+  return (
+    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => {
+        const Icon = SERVICE_ICONS[s.icon];
+        return (
+          <li key={s.slug}>
+            <Link
+              to={servicePath(s.slug)}
+              className={cn(
+                "group flex h-full items-center gap-3 rounded-xl border border-line p-4 transition hover:border-forest/40 hover:bg-white",
+                tone === "paper" ? "bg-paper" : "bg-cream"
+              )}
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
+                <Icon size={18} />
+              </span>
+              <span className="flex-1">
+                <span className="block text-sm font-semibold">{s.name}</span>
+                <span className="block text-xs text-copper">{s.price}</span>
+              </span>
+              <IconArrow size={16} className="text-moss transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 /** Compact guide links — used to wire service and city pages into the guide clusters. */
 export function GuideList({ guides, tone = "cream" }: { guides: Guide[]; tone?: "cream" | "paper" }) {
   return (

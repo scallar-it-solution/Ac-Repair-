@@ -276,6 +276,44 @@ export function IconMail(p: IconProps) {
   );
 }
 
+export function IconCompressor(p: IconProps) {
+  return (
+    <I {...p}>
+      <rect x="6" y="4" width="12" height="16" rx="6" />
+      <path d="M9 9h6M9 12h6M9 15h6M12 1.5V4M8 20v2.5M16 20v2.5" />
+    </I>
+  );
+}
+
+export function IconTruck(p: IconProps) {
+  return (
+    <I {...p}>
+      <path d="M2.5 6.5h11v9h-11zM13.5 9.5h4l3 3v3h-7" />
+      <circle cx="6.5" cy="17.5" r="1.8" />
+      <circle cx="17" cy="17.5" r="1.8" />
+    </I>
+  );
+}
+
+export function IconFan(p: IconProps) {
+  return (
+    <I {...p}>
+      <circle cx="12" cy="12" r="2" />
+      <path d="M12 10c2-4 6-5 8-3-1 3-4 5-8 5" />
+      <path d="M13.7 13c2 4 .8 8-2 9-2-3-1.5-6.5 2-9z" />
+      <path d="M10.3 13C6 14 3 11.5 3 8c4 0 6.5 2 7.3 5z" />
+    </I>
+  );
+}
+
+export function IconCoil(p: IconProps) {
+  return (
+    <I {...p}>
+      <path d="M4 5h13a2.5 2.5 0 0 1 0 5H7a2.5 2.5 0 0 0 0 5h10a2.5 2.5 0 0 1 0 5H4" />
+    </I>
+  );
+}
+
 export const SERVICE_ICONS = {
   sparkle: IconSparkle,
   split: IconSplit,
@@ -285,6 +323,12 @@ export const SERVICE_ICONS = {
   install: IconInstall,
   calendar: IconCalendar,
   building: IconBuilding,
+  bolt: IconBolt,
+  compressor: IconCompressor,
+  droplet: IconDroplet,
+  truck: IconTruck,
+  fan: IconFan,
+  coil: IconCoil,
 } as const;
 
 export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {

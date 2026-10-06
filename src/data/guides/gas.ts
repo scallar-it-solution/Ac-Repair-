@@ -100,8 +100,9 @@ export const GAS: Guide[] = [
         a: "Yes. R32 is widely available, while R22 is being phased out and is harder to source, so R22 charges cost more.",
       },
     ],
-    related: ["ac-gas-filling", "split-ac-repair", "window-ac-repair"],
+    related: ["ac-gas-filling", "ac-coil-repair", "split-ac-repair", "window-ac-repair"],
     relatedGuides: ["ac-gas-leak-signs", "ac-not-cooling", "repair-or-replace-ac"],
+    sources: [{ label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" }],
   },
   {
     slug: "ac-gas-leak-signs",
@@ -153,7 +154,7 @@ export const GAS: Guide[] = [
         items: [
           "**Flare joints** at the indoor and outdoor units — the most common, especially after shifting or a rushed installation.",
           "**Long copper runs** in high-rise flats, where pipes are bent and joined.",
-          "**Coils**, where corrosion or vibration opens pinholes.",
+          "**Coils**, where corrosion or vibration opens pinholes — see [coil leak repair](/services/ac-coil-repair).",
           "**Service valves** and brazed joints on the outdoor unit.",
         ],
       },
@@ -186,7 +187,7 @@ export const GAS: Guide[] = [
         a: "Not for long. The compressor relies on returning refrigerant for cooling and can overheat when undercharged. Switch to Fan mode and book a leak test.",
       },
     ],
-    related: ["ac-gas-filling", "split-ac-repair"],
+    related: ["ac-gas-filling", "ac-coil-repair", "split-ac-repair"],
     relatedGuides: ["ac-gas-filling-cost", "ac-not-cooling", "ac-error-codes"],
   },
 ];

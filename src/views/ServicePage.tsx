@@ -202,6 +202,7 @@ export function ServicePage({ route }: { route: RouteDef }) {
         title={`Book ${s.short} today.`}
         text="Send the brand, the fault and a photo. You get a slot, a name and a quote before anyone opens a panel."
         wa={waLink(waText)}
+        emergencyLink={s.slug !== "emergency-ac-repair"}
       />
     </>
   );

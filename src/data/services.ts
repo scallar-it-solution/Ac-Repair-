@@ -1,3 +1,4 @@
+import { SPECIALIST } from "./services-specialist";
 import type { Faq, PhotoKey, PriceRow } from "./site";
 
 export type IconName =
@@ -8,7 +9,13 @@ export type IconName =
   | "gas"
   | "install"
   | "calendar"
-  | "building";
+  | "building"
+  | "bolt"
+  | "compressor"
+  | "droplet"
+  | "truck"
+  | "fan"
+  | "coil";
 
 export type Service = {
   slug: string;
@@ -16,6 +23,8 @@ export type Service = {
   /** Short label for menus and cards. */
   short: string;
   icon: IconName;
+  /** core = everyday services (home page, main menu); specialist = high-intent repair pages. Defaults to core. */
+  tier?: "core" | "specialist";
   price: string;
   /** Lowest published price in INR, used for Offer structured data. */
   priceValue?: number;
@@ -585,7 +594,11 @@ export const SERVICES: Service[] = [
     ],
     related: ["ac-amc", "inverter-ac-pcb-repair", "ac-installation"],
   },
+  ...SPECIALIST,
 ];
+
+export const CORE_SERVICES = () => SERVICES.filter((s) => (s.tier ?? "core") === "core");
+export const SPECIALIST_SERVICES = () => SERVICES.filter((s) => s.tier === "specialist");
 
 export const serviceBySlug = (slug: string) => SERVICES.find((s) => s.slug === slug);
 export const servicePath = (slug: string) => `/services/${slug}`;

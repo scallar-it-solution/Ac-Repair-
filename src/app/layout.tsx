@@ -52,6 +52,7 @@ const menuServices: MenuService[] = SERVICES.map((s) => ({
   short: s.short,
   price: s.price,
   icon: s.icon,
+  tier: s.tier ?? "core",
 }));
 
 const menuAreas: MenuArea[] = AREAS.map((a) => ({ href: areaPath(a.slug), city: a.city }));
@@ -65,8 +66,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        {/* Enables scroll-reveal styles only when JS runs, so no-JS visitors and crawlers always see content. */}
-        <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.classList.add("js")' }} />
+        {/*
+          Scroll-reveal styles apply only when JS runs, so no-JS visitors and crawlers always see content.
+          Safety net: if the app has not hydrated within 4s (blocked or failed script), reveal everything.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'var d=document.documentElement;d.classList.add("js");setTimeout(function(){if(!d.hasAttribute("data-hydrated"))d.classList.remove("js")},4000);',
+          }}
+        />
       </head>
       <body>
         <a

@@ -1,5 +1,6 @@
 import type { RouteDef } from "../routes";
 import { areaBySlug } from "./areas";
+import { brandBySlug } from "./brands";
 import { guideBySlug } from "./guides";
 import { serviceBySlug } from "./services";
 import { FAQS, type Faq } from "./site";
@@ -82,6 +83,8 @@ export function routeFaqs(route: RouteDef): Faq[] {
       return FAQ_GROUPS.flatMap((g) => g.items);
     case "brands":
       return BRAND_FAQS;
+    case "brand":
+      return brandBySlug(route.slug!)?.faqs ?? [];
     default:
       return [];
   }

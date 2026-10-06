@@ -1,8 +1,9 @@
 import { AREAS, areaBySlug, areaPath } from "../data/areas";
+import { brandBySlug, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES, clusterOf, guideBySlug, guidePath, readingMinutes } from "../data/guides";
 import { SERVICES, serviceBySlug, servicePath } from "../data/services";
-import { AUTHOR, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, TEAM, abs } from "../data/site";
+import { AUTHOR, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, abs } from "../data/site";
 import type { RouteDef } from "../routes";
 
 type Node = Record<string, unknown>;
@@ -69,7 +70,6 @@ function business(): Node {
       "AC annual maintenance contracts",
       "Cassette, ductable and VRF air conditioning",
     ],
-    employee: TEAM.map((t) => ({ "@type": "Person", name: t.name, jobTitle: t.role })),
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "AC repair and maintenance services",
@@ -172,6 +172,22 @@ function areaServiceNode(slug: string): Node {
   };
 }
 
+function brandServiceNode(slug: string): Node {
+  const b = brandBySlug(slug)!;
+  const url = abs(brandPath(b.slug));
+  return {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: `${b.name} AC repair and service`,
+    serviceType: "Air conditioner repair and maintenance",
+    description: b.answer,
+    url,
+    brand: { "@type": "Brand", name: b.name },
+    provider: { "@id": BUSINESS_ID },
+    areaServed: AREAS.map(cityNode),
+  };
+}
+
 function articleNode(slug: string, webpageId: string): Node {
   const g = guideBySlug(slug)!;
   return {
@@ -197,6 +213,9 @@ function articleNode(slug: string, webpageId: string): Node {
     publisher: { "@id": BUSINESS_ID },
     mainEntityOfPage: { "@id": webpageId },
     about: g.related.map((r) => ({ "@id": `${abs(servicePath(r))}#service` })),
+    ...(g.sources?.length
+      ? { citation: g.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })) }
+      : {}),
   };
 }
 
@@ -259,6 +278,9 @@ export function buildGraph(route: RouteDef): Node {
       break;
     case "area":
       graph.push(areaServiceNode(route.slug!));
+      break;
+    case "brand":
+      graph.push(brandServiceNode(route.slug!));
       break;
     case "guide":
       graph.push(articleNode(route.slug!, webpageId));

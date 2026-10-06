@@ -1,6 +1,7 @@
 import { AREAS, areaPath } from "../data/areas";
 import { guideBySlug, guidePath, guideShortTitle, type Guide } from "../data/guides";
-import { SERVICES, servicePath } from "../data/services";
+import { BRAND_PAGES, brandPath } from "../data/brands";
+import { CORE_SERVICES, SPECIALIST_SERVICES, servicePath } from "../data/services";
 import { BRAND_DISCLAIMER, DEFAULT_WA, SITE, TEL } from "../data/site";
 import { Link } from "../lib/router";
 import { IconClock, IconMail, IconPhone, IconPin, IconWhatsApp, LogoMark } from "./Icons";
@@ -20,9 +21,10 @@ const COMPANY = [
   { label: "About us", to: "/about" },
   { label: "Price list", to: "/pricing" },
   { label: "Brands we service", to: "/brands" },
-  { label: "AC guides", to: "/guides" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
+  { label: "Privacy", to: "/privacy-policy" },
+  { label: "Terms & warranty", to: "/terms" },
 ];
 
 export function Footer() {
@@ -80,7 +82,7 @@ export function Footer() {
         </div>
 
         <FooterCol title="Services" className="lg:col-span-2">
-          {SERVICES.map((s) => (
+          {CORE_SERVICES().map((s) => (
             <li key={s.slug}>
               <Link to={servicePath(s.slug)} className="hover:text-cream">
                 {s.name}
@@ -89,11 +91,28 @@ export function Footer() {
           ))}
         </FooterCol>
 
-        <FooterCol title="Service areas" className="lg:col-span-2">
+        <FooterCol title="Specialist repairs" className="lg:col-span-2">
+          {SPECIALIST_SERVICES().map((s) => (
+            <li key={s.slug}>
+              <Link to={servicePath(s.slug)} className="hover:text-cream">
+                {s.name}
+              </Link>
+            </li>
+          ))}
+          {BRAND_PAGES.map((b) => (
+            <li key={b.slug}>
+              <Link to={brandPath(b.slug)} className="hover:text-cream">
+                {b.name} AC
+              </Link>
+            </li>
+          ))}
+        </FooterCol>
+
+        <FooterCol title="AC repair by city" className="lg:col-span-2">
           {AREAS.map((a) => (
             <li key={a.slug}>
               <Link to={areaPath(a.slug)} className="hover:text-cream">
-                AC repair {a.city}
+                {a.city}
               </Link>
             </li>
           ))}
@@ -118,16 +137,6 @@ export function Footer() {
             </Link>
           </li>
         </FooterCol>
-
-        <FooterCol title="Company" className="lg:col-span-2">
-          {COMPANY.map((c) => (
-            <li key={c.to}>
-              <Link to={c.to} className="hover:text-cream">
-                {c.label}
-              </Link>
-            </li>
-          ))}
-        </FooterCol>
       </div>
 
       <div className="border-t border-cream/10">
@@ -138,17 +147,22 @@ export function Footer() {
               © {new Date().getFullYear()} {SITE.legal}. All rights reserved. GST invoices · 90-day repair warranty ·
               Serving Delhi NCR since {SITE.founded}.
             </p>
-            <p className="flex gap-5">
-              <Link to="/privacy-policy" className="hover:text-cream">
-                Privacy
-              </Link>
-              <Link to="/terms" className="hover:text-cream">
-                Terms & warranty
-              </Link>
-              <a href="/sitemap.xml" className="hover:text-cream">
-                Sitemap
-              </a>
-            </p>
+            <nav aria-label="Company">
+              <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                {COMPANY.map((c) => (
+                  <li key={c.to}>
+                    <Link to={c.to} className="hover:text-cream">
+                      {c.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <a href="/sitemap.xml" className="hover:text-cream">
+                    Sitemap
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>
