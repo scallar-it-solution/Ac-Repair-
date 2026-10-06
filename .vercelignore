@@ -1,0 +1,6 @@
+# The Vercel CLI does not read .gitignore — this file decides what gets uploaded on deploy.
+# Original artwork in assets/ is not used by `next build`.
+assets/
+.next/
+node_modules/
+.env*

@@ -113,7 +113,7 @@ export const AREAS: Area[] = [
     zones: [
       { name: "Central Noida", places: ["Sector 18", "Sector 37", "Sector 50", "Sector 62", "Sector 76"] },
       { name: "Expressway", places: ["Sector 137", "Sector 150"] },
-      { name: "Noida Extension", places: ["Noida Extension", "Greater Noida West"] },
+      { name: "Noida Extension", places: ["Noida Extension"] },
     ],
     local: [
       {
@@ -161,13 +161,13 @@ export const AREAS: Area[] = [
     metaDescription:
       "AC repair, service and gas filling in Greater Noida — Pari Chowk, Alpha, Beta, Gamma, Knowledge Park, Greater Noida West. Same-day slots, 90-day warranty.",
     h1: "AC repair & service in Greater Noida",
-    lede: "Plotted houses in Alpha, Beta and Gamma, hostels and PGs around Knowledge Park, and towers in Greater Noida West. Distances are longer here, so we confirm the slot honestly before anyone sets off.",
+    lede: "Plotted houses in Alpha, Beta and Gamma, hostels and PGs around Knowledge Park, and the high-rise societies of the western sectors. Distances are longer here, so we confirm the slot honestly before anyone sets off.",
     answer:
       "Airkraft provides AC repair, wet servicing, gas filling and installation across Greater Noida, including Pari Chowk, Alpha, Beta, Gamma, Knowledge Park and Greater Noida West. Same-day slots are available; outlying pockets may carry a small travel add-on, which we confirm on WhatsApp before the visit. Repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
     zones: [
       { name: "Sectors", places: ["Alpha / Beta / Gamma", "Pari Chowk", "Knowledge Park"] },
-      { name: "Greater Noida West", places: ["Greater Noida West", "Noida Extension"] },
+      { name: "West", places: ["Greater Noida West"] },
     ],
     local: [
       {
@@ -180,13 +180,13 @@ export const AREAS: Area[] = [
       },
       {
         title: "Longer distances, honest timings",
-        text: "Greater Noida is spread out. We batch jobs by area so the technician is not crossing the city twice, and we tell you the real arrival window rather than a 20-minute promise.",
+        text: "The city is spread out. We batch jobs by area so the technician is not crossing the city twice, and we tell you the real arrival window rather than a 20-minute promise.",
       },
     ],
     faqs: [
       {
         q: "Is there an extra charge for Greater Noida?",
-        a: "Most of Greater Noida is covered at the standard ₹199 inspection. Some outlying pockets, including parts of Greater Noida West, may carry a small travel add-on, which we tell you on WhatsApp before booking.",
+        a: "Most of the city is covered at the standard ₹199 inspection. Some outlying pockets, including parts of the western sectors, may carry a small travel add-on, which we tell you on WhatsApp before booking.",
       },
       {
         q: "Do you service ACs in hostels and PGs?",

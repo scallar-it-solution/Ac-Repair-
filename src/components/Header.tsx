@@ -42,9 +42,13 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
     setMenu(null);
   }, [path]);
 
+  // Lock background scroll while the mobile menu is open (html as well as body — iOS Safari needs both).
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    const value = open ? "hidden" : "";
+    document.documentElement.style.overflow = value;
+    document.body.style.overflow = value;
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [open]);
@@ -65,6 +69,7 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
   const solid = scrolled || open || menu !== null;
 
   return (
+    <>
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300",
@@ -174,16 +179,29 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
           </button>
         </div>
       </div>
+    </header>
 
+      {/*
+        The drawer lives OUTSIDE <header>: the header gets backdrop-filter when solid, and a backdrop-filter
+        ancestor becomes the containing block for position:fixed children — which collapsed the drawer to
+        the 72px header box on phones. As a sibling it is positioned against the viewport.
+      */}
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-x-0 top-[72px] bottom-0 overflow-y-auto overscroll-contain bg-cream transition-[opacity,visibility] duration-300 lg:hidden",
+          "fixed inset-x-0 top-[72px] bottom-0 z-[45] overflow-y-auto overscroll-contain bg-cream transition-[opacity,visibility] duration-300 lg:hidden",
           open ? "visible opacity-100" : "invisible opacity-0"
         )}
+        // Close on any link tap — including links to the page already open, which do not change the path.
+        onClick={(e) => {
+          if ((e.target as Element).closest("a")) setOpen(false);
+        }}
       >
         <nav className="px-5 pb-28 pt-6" aria-label="Mobile">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Services</p>
+          <Link to="/services" className="flex items-center justify-between rounded-xl bg-forest px-4 py-3.5 font-semibold text-cream">
+            All services & prices <IconArrow size={18} />
+          </Link>
+          <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Services</p>
           <ul className="mt-3 grid grid-cols-2 gap-2">
             {services.map((s) => {
               const Icon = SERVICE_ICONS[s.icon];
@@ -209,6 +227,11 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/service-areas" className="inline-block rounded-full px-3.5 py-2 text-sm font-semibold text-forest">
+                All areas →
+              </Link>
+            </li>
           </ul>
           <ul className="mt-6 border-t border-line">
             {NAV.filter((n) => !n.menu).map((n) => (
@@ -238,7 +261,7 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
           </div>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
 

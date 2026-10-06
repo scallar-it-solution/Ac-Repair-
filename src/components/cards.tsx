@@ -6,7 +6,7 @@ import type { PriceRow } from "../data/site";
 import { Link } from "../lib/router";
 import { cn } from "../utils/cn";
 import { IconArrow, IconBook, IconClock, IconPin, SERVICE_ICONS } from "./Icons";
-import { Photo, formatDate } from "./ui";
+import { Photo } from "./ui";
 
 export function ServiceCard({ s, tone = "paper" }: { s: Service; tone?: "paper" | "cream" }) {
   const Icon = SERVICE_ICONS[s.icon];
@@ -71,14 +71,12 @@ export function GuideCard({ g }: { g: Guide }) {
         <span className="flex items-center gap-3 text-xs text-muted">
           <span className="rounded-full bg-mist px-2.5 py-0.5 font-semibold text-forest">{clusterOf(g).name}</span>
           <span className="inline-flex items-center gap-1">
-            <IconClock size={13} /> {readingMinutes(g)} min read
+            <IconClock size={13} />
+            <span aria-label={`${readingMinutes(g)} minute read`}>{readingMinutes(g)} min</span>
           </span>
         </span>
         <span className="font-display mt-4 block text-xl font-semibold leading-snug group-hover:text-forest">{g.title}</span>
         <span className="mt-3 block flex-1 text-sm leading-relaxed text-muted">{g.excerpt}</span>
-        <span className="mt-5 text-xs text-muted">
-          Updated <time dateTime={g.updated}>{formatDate(g.updated)}</time>
-        </span>
       </span>
     </Link>
   );
@@ -134,7 +132,7 @@ export function GuideList({ guides, tone = "cream" }: { guides: Guide[]; tone?: 
             <span className="flex-1">
               <span className="block text-[15px] font-semibold leading-snug group-hover:text-forest">{g.title}</span>
               <span className="mt-1 block text-xs text-muted">
-                {clusterOf(g).name} · {readingMinutes(g)} min read
+                {clusterOf(g).name} · {readingMinutes(g)} min
               </span>
             </span>
             <IconArrow size={16} className="mt-1 shrink-0 text-moss transition-transform group-hover:translate-x-0.5" />

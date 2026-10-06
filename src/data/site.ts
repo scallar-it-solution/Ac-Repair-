@@ -90,6 +90,7 @@ export type PhotoKey = keyof typeof PHOTOS;
 export const HERO_IMAGE = {
   src: "/images/hero-1376.webp",
   srcSet: "/images/hero-640.webp 640w, /images/hero-960.webp 960w, /images/hero-1376.webp 1376w",
+  avifSrcSet: "/images/hero-640.avif 640w, /images/hero-960.avif 960w, /images/hero-1376.avif 1376w",
   width: 1376,
   height: 768,
   alt: "AC technician checking a split air conditioner's indoor unit with gauges in a Delhi apartment",

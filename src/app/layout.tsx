@@ -77,7 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
       </head>
-      <body>
+      <body className="pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-cream focus:px-5 focus:py-3 focus:font-semibold focus:text-forest focus:shadow-lg"
@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <Header services={menuServices} areas={menuAreas} />
-        <main id="main" tabIndex={-1} className="pb-16 outline-none md:pb-0">
+        <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
         <Footer />

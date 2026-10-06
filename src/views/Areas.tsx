@@ -93,7 +93,7 @@ export function Areas({ route }: { route: RouteDef }) {
         <div className="mx-auto max-w-3xl px-5 text-center md:px-8">
           <h2 className="font-display text-3xl font-bold">Not on the list?</h2>
           <p className="mt-3 text-muted">
-            Sohna, Ballabhgarh, Greater Noida West, Bahadurgarh — we cover many of these with a small travel add-on.
+            Sohna, Bahadurgarh and other edge-of-NCR towns — we cover many of these with a small travel add-on.
             WhatsApp the pin code before you wait.
           </p>
         </div>

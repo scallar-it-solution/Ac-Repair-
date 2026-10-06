@@ -5,7 +5,7 @@ export function BrandMarquee() {
   return (
     <section className="border-y border-line bg-cream py-8" aria-labelledby="brands-heading">
       <h2 id="brands-heading" className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.28em] text-sage">
-        <Link to="/brands" className="hover:text-forest">
+        <Link to="/brands" className="inline-block py-2 hover:text-forest">
           Every major brand. No orphan machines.
         </Link>
       </h2>

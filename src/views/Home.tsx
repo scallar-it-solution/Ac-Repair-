@@ -50,23 +50,26 @@ const VERSUS = [
 
 export function Home({ route }: { route: RouteDef }) {
   // LCP image: hoisted into <head> as <link rel="preload"> during server rendering.
-  preload(HERO_IMAGE.src, { as: "image", imageSrcSet: HERO_IMAGE.srcSet, imageSizes: "100vw", fetchPriority: "high" });
+  preload("/images/hero-1376.avif", { as: "image", type: "image/avif", imageSrcSet: HERO_IMAGE.avifSrcSet, imageSizes: "100vw", fetchPriority: "high" });
 
   return (
     <>
       {/* ---------------- Hero ---------------- */}
       <section className="relative overflow-hidden bg-ink text-cream">
-        <img
-          src={HERO_IMAGE.src}
-          srcSet={HERO_IMAGE.srcSet}
-          sizes="100vw"
-          width={HERO_IMAGE.width}
-          height={HERO_IMAGE.height}
-          alt={HERO_IMAGE.alt}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-[60%_30%]"
-        />
+        <picture className="contents">
+          <source type="image/avif" srcSet={HERO_IMAGE.avifSrcSet} sizes="100vw" />
+          <img
+            src={HERO_IMAGE.src}
+            srcSet={HERO_IMAGE.srcSet}
+            sizes="100vw"
+            width={HERO_IMAGE.width}
+            height={HERO_IMAGE.height}
+            alt={HERO_IMAGE.alt}
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-[60%_30%]"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/40" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
@@ -141,7 +144,7 @@ export function Home({ route }: { route: RouteDef }) {
               kicker="What we do"
               title="Repair first. Replace only when the machine is actually done."
             />
-            <Link to="/services" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+            <Link to="/services" className="inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-forest">
               All services <IconArrow size={16} />
             </Link>
           </Reveal>
@@ -370,7 +373,7 @@ export function Home({ route }: { route: RouteDef }) {
               kicker="From the bench"
               title="Know what is wrong before anyone quotes you."
             />
-            <Link to="/guides" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+            <Link to="/guides" className="inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-forest">
               All guides <IconArrow size={16} />
             </Link>
           </Reveal>

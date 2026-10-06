@@ -61,7 +61,7 @@ export function Guides({ route }: { route: RouteDef }) {
                       <p className="mt-2 max-w-2xl text-muted">{c.intro}</p>
                     </div>
                     {pillar && (
-                      <Link to={servicePath(pillar.slug)} className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+                      <Link to={servicePath(pillar.slug)} className="inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-forest">
                         {pillar.name} <IconArrow size={16} />
                       </Link>
                     )}

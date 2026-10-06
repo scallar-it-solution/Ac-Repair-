@@ -312,7 +312,7 @@ export const SPECIALIST: Service[] = [
       { title: "Fan spins slowly", text: "A weak capacitor or worn bearings." },
       { title: "Grinding or squealing", text: "Bearings on their way out.", guide: "ac-making-noise" },
       { title: "Weak airflow indoors", text: "A dust-packed blower wheel or a failing indoor motor.", guide: "ac-service-schedule" },
-      { title: "Fan motor error code", text: "Codes such as Daikin A6 / E7 or LG CH10 / CH67 point to the fan motors.", guide: "ac-error-codes" },
+      { title: "Fan error code", text: "Codes such as Daikin A6 / E7 or LG CH10 / CH67 point to the indoor or outdoor fan.", guide: "ac-error-codes" },
       { title: "Wobbling or cracked blade", text: "An unbalanced blade destroys bearings — replace it before the motor goes." },
     ],
     process: [
@@ -331,14 +331,14 @@ export const SPECIALIST: Service[] = [
     excluded: ["Inverter board replacement if the fan driver has failed (quoted)", "Compressor work"],
     prices: [
       VISIT,
-      { job: "Fan motor or capacitor replacement", from: "On quote", note: "Depends on model; quoted after testing" },
+      { job: "Motor or capacitor replacement", from: "On quote", note: "Depends on model; quoted after testing" },
       { job: "Split AC wet service", from: "₹499", value: 499, note: "Cleans a dust-packed blower wheel" },
       { job: "PCB inspection & repair", from: "₹799", value: 799, note: "For inverter fan-drive faults" },
     ],
     faqs: [
       {
         q: "Why is my AC outdoor fan not spinning?",
-        a: "Most often a failed fan capacitor on fixed-speed ACs, or a fan motor or driver fault on inverter ACs. Switch the AC off — running without the outdoor fan overheats the compressor.",
+        a: "Most often a failed fan capacitor on fixed-speed ACs, or a motor or driver fault on inverter ACs. Switch the AC off — running without the outdoor fan overheats the compressor.",
       },
       {
         q: "Can an AC fan motor be repaired?",
@@ -346,7 +346,7 @@ export const SPECIALIST: Service[] = [
       },
       {
         q: "How much does AC fan motor replacement cost?",
-        a: "It depends on the motor type and the model — a capacitor is a small part, a DC fan motor costs more. We test first and quote on WhatsApp before fitting anything.",
+        a: "It depends on the motor type and the model — a capacitor is a small part, a DC motor costs more. We test first and quote on WhatsApp before fitting anything.",
       },
     ],
     related: ["split-ac-repair", "inverter-ac-pcb-repair", "ac-service"],

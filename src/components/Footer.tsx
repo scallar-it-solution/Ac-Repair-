@@ -148,7 +148,7 @@ export function Footer() {
               Serving Delhi NCR since {SITE.founded}.
             </p>
             <nav aria-label="Company">
-              <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              <ul className="flex flex-wrap gap-x-3 gap-y-1 [&_a]:inline-block [&_a]:px-1.5 [&_a]:py-1.5">
                 {COMPANY.map((c) => (
                   <li key={c.to}>
                     <Link to={c.to} className="hover:text-cream">
@@ -174,7 +174,7 @@ function FooterCol({ title, className, children }: { title: string; className?: 
   return (
     <nav className={className} aria-label={title}>
       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">{title}</p>
-      <ul className="mt-4 space-y-2.5 text-sm text-mist/80">{children}</ul>
+      <ul className="mt-3 space-y-0.5 text-sm text-mist/80 [&_a]:inline-block [&_a]:py-1.5">{children}</ul>
     </nav>
   );
 }

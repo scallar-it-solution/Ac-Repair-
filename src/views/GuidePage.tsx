@@ -250,7 +250,7 @@ export function GuidePage({ route }: { route: RouteDef }) {
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <SectionHead id="more-guides" kicker="Keep reading" title="Related guides" />
-            <Link to="/guides" className="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-forest">
+            <Link to="/guides" className="inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-forest">
               All guides <IconArrow size={16} />
             </Link>
           </div>

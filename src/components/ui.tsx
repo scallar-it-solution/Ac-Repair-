@@ -18,19 +18,24 @@ export function Photo({
   priority?: boolean;
 }) {
   const base = `/images/photos/${name}`;
+  const set = (ext: string) => `${base}-640.${ext} 640w, ${base}-1024.${ext} 1024w, ${base}-1600.${ext} 1600w`;
+  // AVIF (~35% smaller) for browsers that support it, WebP otherwise. `contents` keeps <picture> out of layout.
   return (
-    <img
-      src={`${base}-1024.webp`}
-      srcSet={`${base}-640.webp 640w, ${base}-1024.webp 1024w, ${base}-1600.webp 1600w`}
-      sizes={sizes}
-      width={1600}
-      height={1067}
-      alt={alt ?? PHOTOS[name]}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      fetchPriority={priority ? "high" : undefined}
-      className={className}
-    />
+    <picture className="contents">
+      <source type="image/avif" srcSet={set("avif")} sizes={sizes} />
+      <img
+        src={`${base}-1024.webp`}
+        srcSet={set("webp")}
+        sizes={sizes}
+        width={1600}
+        height={1067}
+        alt={alt ?? PHOTOS[name]}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : undefined}
+        className={className}
+      />
+    </picture>
   );
 }
 

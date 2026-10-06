@@ -37,7 +37,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
             {[
               { Icon: IconClock, k: "Typical arrival", v: a.eta },
               { Icon: IconClock, k: "Hours", v: SITE.hours },
-              { Icon: IconPin, k: "Neighbourhoods", v: `${places.length} covered in ${a.city}` },
+              { Icon: IconPin, k: "Neighbourhoods", v: `${places.length} covered` },
               { Icon: IconShield, k: "Warranty", v: `${SITE.warranty} on repairs, GST invoice` },
             ].map(({ Icon, k, v }) => (
               <div key={k} className="flex items-start gap-4 bg-forest/95 p-5">
@@ -92,7 +92,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
       <section className="bg-paper py-20 md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <SectionHead kicker="Local knowledge" title={`What AC repair in ${a.city} actually involves`} />
+            <SectionHead kicker="Local knowledge" title="What the job actually involves here" />
           </Reveal>
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {a.local.map((l, i) => (
@@ -127,7 +127,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
 
       <section className="bg-cream py-20 md:py-24" aria-labelledby="area-services">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
-          <SectionHead id="area-services" kicker={`Services in ${a.city}`} title={`Every AC service, available in ${a.city}`} />
+          <SectionHead id="area-services" kicker="Services" title="Every AC service, same-day" />
           <div className="mt-10">
             <ServiceLinkGrid services={SERVICES} />
           </div>
@@ -136,7 +136,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
             <div className="mt-16">
               <SectionHead
                 kicker="Helpful guides"
-                title={`What ${a.city} customers read before booking`}
+                title="What customers here read before booking"
                 text="Technician-written guides on the problems we see most in this part of NCR."
               />
               <div className="mt-8">
@@ -159,7 +159,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Brands we fix in {a.city}</p>
+            <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Brands we fix</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {BRAND_PAGES.map((b) => (
                 <li key={b.slug}>
@@ -181,7 +181,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
         </div>
       </section>
 
-      <FAQ items={routeFaqs(route)} title={`${a.city}: common questions`} />
+      <FAQ items={routeFaqs(route)} title="Common questions" />
       <CTA
         title={`AC down in ${a.city}?`}
         text="Send your landmark and the fault. We reply with an honest arrival window and a technician’s name."
