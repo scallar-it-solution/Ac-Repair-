@@ -1,51 +1,72 @@
-# Airkraft Cooling Services
+# Airkraft Cooling — AC Repair Delhi NCR
 
-Official website for Airkraft Cooling — professional AC repair, installation, and maintenance services across Delhi NCR.
+Website for Airkraft Cooling: same-day AC repair, servicing, gas filling, installation and AMC across Delhi, Noida, Greater Noida, Gurugram, Ghaziabad and Faridabad.
 
-## Tech Stack
+## Stack
 
-- **Framework:** [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- **Bundler:** [Vite 7](https://vite.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **SEO:** Dynamic Meta tags and JSON-LD LocalBusiness schema
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (PostCSS plugin)
+- Fonts self-hosted with `next/font` (Bricolage Grotesque, Outfit)
+- Every page is statically generated at build time (SSG) — full HTML for search engines and AI crawlers
 
-## Features
+## Getting started
 
-- **Responsive Design:** Optimized experience across mobile, tablet, and desktop devices
-- **Fast WhatsApp Dispatch:** Direct links to book technicians via WhatsApp with pre-filled service details
-- **Comprehensive Service Catalog:** Transparent pricing and breakdown for Split AC, Window AC, Gas Refill, PCB repair, and AMCs
-- **SEO & Performance Optimized:** Structured metadata, preconnects, and clean semantic markup
-
-## Getting Started
-
-### Prerequisites
-
-Node.js (v18+) and npm installed on your machine.
-
-### Installation
+Requires Node.js 20.9+.
 
 ```bash
 npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (all pages prerendered)
+npm run start      # serve the production build
+npm run typecheck
 ```
 
-### Development Server
+## Project structure
 
-Run the development server locally:
-
-```bash
-npm run dev
+```
+src/
+  app/                 Next.js routes (thin: metadata + RouteView)
+    layout.tsx         <html>, fonts, header/footer, site-wide metadata
+    [area]/            city pages: /ac-repair-delhi, /ac-repair-noida, …
+    services/[slug]/   service pages
+    guides/[slug]/     guide articles
+    sitemap.ts         /sitemap.xml   (generated from the route table)
+    robots.ts          /robots.txt    (search + AI crawlers allowed)
+    llms.txt/route.ts  /llms.txt      (plain-text brief for AI answer engines)
+    not-found.tsx      real 404 page (noindex)
+  views/               page layouts (server components)
+  components/          UI; only Header, ContactForm, FAQList, Reveal, ClientEffects run in the browser
+  data/                ALL content — edit here
+    site.ts            business facts (NAP), prices, testimonials, team, brands
+    services.ts        8 service pages
+    areas.ts           6 city pages + city → guide links
+    guides/            17 guides in 5 topic clusters
+    faqs.ts            FAQ sets per page (also feeds FAQPage schema)
+  routes.ts            every URL with its title, description, breadcrumbs, sitemap priority
+  seo/
+    metadata.ts        per-page <head>: title, description, canonical, OG, Twitter, geo
+    schema.ts          JSON-LD @graph (HVACBusiness, WebSite, WebPage, Service, Article, FAQPage, BreadcrumbList)
+    files.ts           llms.txt and sitemap helpers
+public/                images (self-hosted WebP), icons, web manifest
 ```
 
-### Production Build
+## Editing content
 
-Build the project for production:
+All copy lives in `src/data/`. Change it there and every place that uses it — pages, structured data, sitemap, llms.txt — updates on the next build.
 
-```bash
-npm run build
-```
+- **Business facts** (phone, hours, address, rating, prices): `src/data/site.ts`. Update `SITE.updated` when content is reviewed; it drives "last reviewed" dates and sitemap `<lastmod>`.
+- **Official profiles**: add Google Business Profile, Facebook, Instagram, Justdial URLs to `SITE.sameAs`.
+- **New guide**: add it to the right cluster file in `src/data/guides/`, set `related` (services) and `relatedGuides`. It is picked up by the route table, sitemap, hub page and interlinking automatically.
+- Inline links in guide and city text: `[label](/path)`; bold: `**text**`.
 
-Preview the production build locally:
+## SEO architecture
 
-```bash
-npm run preview
-```
+- Static HTML for every URL; unique title, description and canonical per page
+- Connected JSON-LD graph on every page; FAQ markup always matches the visible FAQs
+- Topic clusters: guides ↔ services ↔ city pages are interlinked from data, so links never go stale
+- `robots.txt` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers
+- Lead tracking: clicks on call / WhatsApp links push `lead_click` to `dataLayer` (GTM) and `generate_lead` to GA4 when either is installed — no code changes needed
+
+## Deployment
+
+Deploy to Vercel (auto-detected as Next.js) or any Node host with `npm run build && npm run start`. Redirects, trailing-slash handling and security headers are in `next.config.ts`.

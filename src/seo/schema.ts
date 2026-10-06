@@ -25,7 +25,7 @@ function business(): Node {
     "@id": BUSINESS_ID,
     name: SITE.legal,
     alternateName: SITE.name,
-    url: `${SITE.url}/`,
+    url: abs("/"),
     description: SITE.description,
     slogan: SITE.tagline,
     telephone: SITE.phone,
@@ -95,7 +95,7 @@ function website(): Node {
   return {
     "@type": "WebSite",
     "@id": WEBSITE_ID,
-    url: `${SITE.url}/`,
+    url: abs("/"),
     name: SITE.legal,
     alternateName: SITE.name,
     inLanguage: "en-IN",

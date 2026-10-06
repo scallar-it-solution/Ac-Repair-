@@ -1,8 +1,10 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AREAS, areaPath } from "../data/areas";
-import { SERVICES, servicePath } from "../data/services";
+import type { IconName } from "../data/services";
 import { DEFAULT_WA, NAV, SITE, TEL } from "../data/site";
-import { Link, isActive, useRouter } from "../lib/router";
+import { Link, isActive } from "../lib/router";
 import { cn } from "../utils/cn";
 import {
   IconArrow,
@@ -18,8 +20,12 @@ import {
 
 type Menu = "services" | "areas" | null;
 
-export function Header() {
-  const { path } = useRouter();
+/** Lightweight menu data, passed from the server layout so full page content stays out of the client bundle. */
+export type MenuService = { href: string; name: string; short: string; price: string; icon: IconName };
+export type MenuArea = { href: string; city: string };
+
+export function Header({ services, areas }: { services: MenuService[]; areas: MenuArea[] }) {
+  const path = usePathname() ?? "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [menu, setMenu] = useState<Menu>(null);
@@ -125,7 +131,7 @@ export function Header() {
                       isOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
                     )}
                   >
-                    {item.menu === "services" ? <ServicesPanel /> : <AreasPanel />}
+                    {item.menu === "services" ? <ServicesPanel services={services} /> : <AreasPanel areas={areas} />}
                   </div>
                 </li>
               );
@@ -179,12 +185,12 @@ export function Header() {
         <nav className="px-5 pb-28 pt-6" aria-label="Mobile">
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Services</p>
           <ul className="mt-3 grid grid-cols-2 gap-2">
-            {SERVICES.map((s) => {
+            {services.map((s) => {
               const Icon = SERVICE_ICONS[s.icon];
               return (
-                <li key={s.slug}>
+                <li key={s.href}>
                   <Link
-                    to={servicePath(s.slug)}
+                    to={s.href}
                     className="flex h-full items-center gap-2.5 rounded-xl border border-line bg-paper px-3 py-3 text-sm font-medium"
                   >
                     <Icon size={18} className="shrink-0 text-sage" />
@@ -196,9 +202,9 @@ export function Header() {
           </ul>
           <p className="mt-7 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Areas</p>
           <ul className="mt-3 flex flex-wrap gap-2">
-            {AREAS.map((a) => (
-              <li key={a.slug}>
-                <Link to={areaPath(a.slug)} className="inline-block rounded-full border border-line px-3.5 py-2 text-sm">
+            {areas.map((a) => (
+              <li key={a.href}>
+                <Link to={a.href} className="inline-block rounded-full border border-line px-3.5 py-2 text-sm">
                   {a.city}
                 </Link>
               </li>
@@ -236,15 +242,15 @@ export function Header() {
   );
 }
 
-function ServicesPanel() {
+function ServicesPanel({ services }: { services: MenuService[] }) {
   return (
     <div className="w-[640px] rounded-2xl border border-line bg-cream p-3 shadow-2xl shadow-ink/10">
       <ul className="grid grid-cols-2 gap-1">
-        {SERVICES.map((s) => {
+        {services.map((s) => {
           const Icon = SERVICE_ICONS[s.icon];
           return (
-            <li key={s.slug}>
-              <Link to={servicePath(s.slug)} className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-paper">
+            <li key={s.href}>
+              <Link to={s.href} className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-paper">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
                   <Icon size={18} />
                 </span>
@@ -269,13 +275,13 @@ function ServicesPanel() {
   );
 }
 
-function AreasPanel() {
+function AreasPanel({ areas }: { areas: MenuArea[] }) {
   return (
     <div className="w-[300px] rounded-2xl border border-line bg-cream p-3 shadow-2xl shadow-ink/10">
       <ul>
-        {AREAS.map((a) => (
-          <li key={a.slug}>
-            <Link to={areaPath(a.slug)} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-paper">
+        {areas.map((a) => (
+          <li key={a.href}>
+            <Link to={a.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-paper">
               <IconPin size={16} className="text-brass" />
               <span className="font-medium">AC repair in {a.city}</span>
             </Link>

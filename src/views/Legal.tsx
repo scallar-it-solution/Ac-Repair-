@@ -32,8 +32,8 @@ const PRIVACY: Section[] = [
           browser; nothing is sent to us until you press send in WhatsApp. We do not use advertising or analytics cookies.
         </p>
         <p>
-          To display text, the site loads fonts from Google Fonts, which receives your IP address as part of that request.
-          Clicking a WhatsApp link opens WhatsApp (Meta), whose own privacy policy applies.
+          Fonts and images are served from this website itself, not from third-party services. Clicking a WhatsApp link
+          opens WhatsApp (Meta), whose own privacy policy applies.
         </p>
       </>
     ),

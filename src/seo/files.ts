@@ -1,74 +1,44 @@
 import { AREAS, areaPath } from "../data/areas";
-import { GUIDES, guidePath } from "../data/guides";
+import { CLUSTERS, GUIDES, guidePath, guidesInCluster } from "../data/guides";
 import { SERVICES, servicePath } from "../data/services";
 import { BRAND_DISCLAIMER, BRANDS, PRICE_GROUPS, SITE, abs } from "../data/site";
-import { allRoutes } from "../routes";
 
-const xmlEsc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-/** sitemap.xml with lastmod and image entries for pages that carry a photo. */
-export function sitemapXml() {
-  const photoFor = (path: string) => {
-    const s = SERVICES.find((x) => servicePath(x.slug) === path);
-    if (s) return s.photo;
-    const g = GUIDES.find((x) => guidePath(x.slug) === path);
-    return g?.photo;
-  };
-  const urls = allRoutes()
-    .filter((r) => !r.noindex)
-    .map((r) => {
-      const photo = photoFor(r.path);
-      return [
-        "  <url>",
-        `    <loc>${xmlEsc(abs(r.path === "/" ? "/" : r.path))}</loc>`,
-        `    <lastmod>${r.lastmod}</lastmod>`,
-        `    <priority>${(r.priority ?? 0.5).toFixed(1)}</priority>`,
-        photo ? `    <image:image><image:loc>${abs(`/images/photos/${photo}-1600.webp`)}</image:loc></image:image>` : "",
-        "  </url>",
-      ]
-        .filter(Boolean)
-        .join("\n");
-    });
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${urls.join("\n")}
-</urlset>
-`;
+/** Photo for a URL, if the page has one — used for image entries in sitemap.xml. */
+export function photoUrlFor(path: string) {
+  const photo =
+    SERVICES.find((x) => servicePath(x.slug) === path)?.photo ?? GUIDES.find((x) => guidePath(x.slug) === path)?.photo;
+  return photo ? abs(`/images/photos/${photo}-1600.webp`) : undefined;
 }
 
-/** Search and AI crawlers are explicitly welcome — AI answer engines can only cite what they can fetch. */
-export function robotsTxt() {
-  const aiBots = [
-    "GPTBot",
-    "OAI-SearchBot",
-    "ChatGPT-User",
-    "ClaudeBot",
-    "Claude-SearchBot",
-    "Claude-User",
-    "PerplexityBot",
-    "Perplexity-User",
-    "Google-Extended",
-    "Applebot-Extended",
-    "Bingbot",
-    "CCBot",
-  ];
-  return `# ${SITE.legal} — ${SITE.url}
-User-agent: *
-Allow: /
-
-# AI search and assistant crawlers (ChatGPT, Claude, Perplexity, Gemini, Apple, Bing/Copilot)
-${aiBots.map((b) => `User-agent: ${b}`).join("\n")}
-Allow: /
-
-Sitemap: ${SITE.url}/sitemap.xml
-`;
-}
+/** AI search and assistant crawlers, explicitly allowed — answer engines can only cite what they can fetch. */
+export const AI_BOTS = [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ChatGPT-User",
+  "ClaudeBot",
+  "Claude-SearchBot",
+  "Claude-User",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Google-Extended",
+  "Applebot-Extended",
+  "Bingbot",
+  "CCBot",
+];
 
 /** llms.txt (llmstxt.org): a plain-text brief for LLMs and AI answer engines. */
 export function llmsTxt() {
   const prices = PRICE_GROUPS.flatMap((g) => g.rows)
     .map((p) => `- ${p.job}: ${p.from}${p.from.startsWith("₹") ? " (starting price)" : ""} — ${p.note}`)
     .join("\n");
+  const guides = CLUSTERS.map(
+    (c) =>
+      `### ${c.name}\n` +
+      guidesInCluster(c.id)
+        .map((g) => `- [${g.title}](${abs(guidePath(g.slug))}): ${g.answer}`)
+        .join("\n")
+  ).join("\n\n");
+
   return `# ${SITE.legal}
 
 > ${SITE.description}
@@ -98,7 +68,7 @@ ${prices}
 ${AREAS.map((a) => `- [AC repair in ${a.city}](${abs(areaPath(a.slug))}): ${a.zones.flatMap((z) => z.places).join(", ")}`).join("\n")}
 
 ## Guides
-${GUIDES.map((g) => `- [${g.title}](${abs(guidePath(g.slug))}): ${g.answer}`).join("\n")}
+${guides}
 
 ## Company
 - [About Airkraft](${abs("/about")})

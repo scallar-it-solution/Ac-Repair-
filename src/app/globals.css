@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
-@theme {
-  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+/* Font families come from next/font (self-hosted at build time) via CSS variables set on <html>. */
+@theme inline {
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
 
+@theme {
   --color-ink: #0c1210;
   --color-forest: #14352c;
   --color-pine: #1c463a;
@@ -112,7 +115,8 @@ body {
 }
 
 /* ---------- Motion ---------- */
-.page-enter {
+/* Page-enter animation only after an in-app navigation (see ClientEffects), never on first load. */
+html[data-navigated] .page-shell {
   animation: pageIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -326,7 +330,7 @@ button {
   html {
     scroll-behavior: auto;
   }
-  .page-enter,
+  .page-shell,
   .rise,
   .rise-2,
   .rise-3,

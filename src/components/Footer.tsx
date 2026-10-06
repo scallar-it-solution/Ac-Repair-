@@ -1,8 +1,20 @@
 import { AREAS, areaPath } from "../data/areas";
+import { guideBySlug, guidePath, guideShortTitle, type Guide } from "../data/guides";
 import { SERVICES, servicePath } from "../data/services";
 import { BRAND_DISCLAIMER, DEFAULT_WA, SITE, TEL } from "../data/site";
 import { Link } from "../lib/router";
 import { IconClock, IconMail, IconPhone, IconPin, IconWhatsApp, LogoMark } from "./Icons";
+
+const FOOTER_GUIDES = [
+  "ac-not-cooling",
+  "ac-water-leakage",
+  "ac-error-codes",
+  "ac-gas-filling-cost",
+  "ac-service-schedule",
+  "ac-tonnage-guide",
+]
+  .map(guideBySlug)
+  .filter((g): g is Guide => !!g);
 
 const COMPANY = [
   { label: "About us", to: "/about" },
@@ -16,8 +28,8 @@ const COMPANY = [
 export function Footer() {
   return (
     <footer className="bg-ink text-cream">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-12 pt-16 md:grid-cols-12 md:px-8 md:pt-20">
-        <div className="md:col-span-4">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-12 pt-16 sm:grid-cols-2 md:px-8 md:pt-20 lg:grid-cols-12 lg:gap-8">
+        <div className="sm:col-span-2 lg:col-span-4">
           <Link to="/" className="inline-flex items-center gap-2.5" aria-label="Airkraft Cooling — home">
             <LogoMark className="h-10 w-10" />
             <span>
@@ -67,7 +79,7 @@ export function Footer() {
           </div>
         </div>
 
-        <FooterCol title="Services" className="md:col-span-3">
+        <FooterCol title="Services" className="lg:col-span-2">
           {SERVICES.map((s) => (
             <li key={s.slug}>
               <Link to={servicePath(s.slug)} className="hover:text-cream">
@@ -77,7 +89,7 @@ export function Footer() {
           ))}
         </FooterCol>
 
-        <FooterCol title="Service areas" className="md:col-span-2">
+        <FooterCol title="Service areas" className="lg:col-span-2">
           {AREAS.map((a) => (
             <li key={a.slug}>
               <Link to={areaPath(a.slug)} className="hover:text-cream">
@@ -92,7 +104,22 @@ export function Footer() {
           </li>
         </FooterCol>
 
-        <FooterCol title="Company" className="md:col-span-3">
+        <FooterCol title="Guides" className="lg:col-span-2">
+          {FOOTER_GUIDES.map((g) => (
+            <li key={g.slug}>
+              <Link to={guidePath(g.slug)} className="hover:text-cream">
+                {guideShortTitle(g)}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <Link to="/guides" className="text-brass hover:text-cream">
+              All guides →
+            </Link>
+          </li>
+        </FooterCol>
+
+        <FooterCol title="Company" className="lg:col-span-2">
           {COMPANY.map((c) => (
             <li key={c.to}>
               <Link to={c.to} className="hover:text-cream">

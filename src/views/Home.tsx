@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import { BrandMarquee } from "../components/BrandMarquee";
 import { CTA } from "../components/CTA";
 import { ContactForm } from "../components/ContactForm";
@@ -48,6 +49,9 @@ const VERSUS = [
 ];
 
 export function Home({ route }: { route: RouteDef }) {
+  // LCP image: hoisted into <head> as <link rel="preload"> during server rendering.
+  preload(HERO_IMAGE.src, { as: "image", imageSrcSet: HERO_IMAGE.srcSet, imageSizes: "100vw", fetchPriority: "high" });
+
   return (
     <>
       {/* ---------------- Hero ---------------- */}

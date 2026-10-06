@@ -45,7 +45,11 @@ export const SITE = {
   sameAs: [] as string[],
 } as const;
 
-export const abs = (path: string) => (path.startsWith("http") ? path : `${SITE.url}${path}`);
+/**
+ * Absolute URL for a site path. The homepage is "https://airkraft.in" (no trailing slash) — the form Next.js
+ * emits for canonical/og:url — so canonical, sitemap and structured data always agree exactly.
+ */
+export const abs = (path: string) => (path.startsWith("http") ? path : path === "/" ? SITE.url : `${SITE.url}${path}`);
 
 export const WHATSAPP_BASE = `https://wa.me/${SITE.whatsapp}`;
 

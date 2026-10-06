@@ -1,3 +1,5 @@
+"use client";
+
 import { useId, useRef, useState, type FormEvent } from "react";
 import { waLink } from "../data/site";
 import { trackLead } from "../lib/track";
