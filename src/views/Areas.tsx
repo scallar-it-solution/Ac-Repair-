@@ -6,7 +6,7 @@ import { Reveal } from "../components/Reveal";
 import { AnswerBox, Photo } from "../components/ui";
 import { AREAS, areaPath } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
-import { SITE, waLink } from "../data/site";
+import { SITE } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 
@@ -34,6 +34,9 @@ export function Areas({ route }: { route: RouteDef }) {
           <h2 className="font-display mt-16 max-w-2xl text-3xl font-bold md:text-4xl">
             AC repair near you — city by city
           </h2>
+          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-muted">
+            Open your city to see every neighbourhood we cover. Tap yours there and WhatsApp opens with the location already filled in.
+          </p>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {AREAS.map((a, i) => (
               <Reveal key={a.slug} delay={(i % 2) + 1}>
@@ -51,24 +54,13 @@ export function Areas({ route }: { route: RouteDef }) {
                     </div>
                     <IconPin className="shrink-0 text-sage" />
                   </div>
-                  <ul className="mt-6 flex flex-1 flex-wrap content-start gap-2">
-                    {a.zones
-                      .flatMap((z) => z.places)
-                      .map((p) => (
-                        <li key={p}>
-                          <a
-                            href={waLink(`Hi Frostwright, I need AC repair in ${p}, ${a.city}. Please share the next slot.`)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block rounded-full border border-line bg-cream px-3 py-1.5 text-sm transition hover:border-forest hover:text-forest"
-                          >
-                            {p}
-                          </a>
-                        </li>
-                      ))}
-                  </ul>
-                  <Link to={areaPath(a.slug)} className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-forest">
-                    {a.city} details, prices & FAQs <IconArrow size={16} />
+                  {/*
+                    Zones only: the full neighbourhood list (with tap-to-book) lives on each city page. Repeating every
+                    place name here would turn the hub into the "list of cities" block Google's spam policies describe.
+                  */}
+                  <p className="mt-6 flex-1 leading-relaxed text-ink/80">{a.zones.map((z) => z.name).join(" · ")}</p>
+                  <Link to={areaPath(a.slug)} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest">
+                    See {a.city} neighbourhoods <IconArrow size={16} />
                   </Link>
                 </article>
               </Reveal>

@@ -19,7 +19,8 @@ export function useReveal<T extends HTMLElement>() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      // threshold 0: any visible pixel reveals, so a section taller than the screen can never stay hidden.
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();

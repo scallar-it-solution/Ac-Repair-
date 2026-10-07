@@ -110,11 +110,11 @@ export function ServicePage({ route }: { route: RouteDef }) {
               <SectionHead
                 id="prices"
                 kicker="Prices"
-                title={`${s.name} prices in Delhi NCR`}
+                title="What it costs in Delhi NCR"
                 text="Starting prices. The final figure is quoted on WhatsApp after diagnosis, before any work starts."
               />
               <div className="mt-8">
-                <PriceTable rows={s.prices} caption={`${s.name} prices`} />
+                <PriceTable rows={s.prices} caption="Starting prices for this service" />
               </div>
               <p className="mt-4 text-sm text-muted">
                 See every rate on the <Link to="/pricing" className="font-medium text-forest underline underline-offset-4">price list</Link>.
@@ -126,7 +126,7 @@ export function ServicePage({ route }: { route: RouteDef }) {
                 <SectionHead
                   id="service-guides"
                   kicker="Before you book"
-                  title={`Guides on ${s.short.toLowerCase()}`}
+                  title="Worth reading first"
                   text="Written by our technicians — what causes the problem, what you can check yourself, and what the fix costs."
                 />
                 <div className="mt-8">
@@ -137,7 +137,7 @@ export function ServicePage({ route }: { route: RouteDef }) {
 
             <section aria-labelledby="coverage" className="rounded-2xl bg-forest p-7 text-cream md:p-9">
               <h2 id="coverage" className="font-display text-2xl font-bold">
-                {s.short.charAt(0).toUpperCase() + s.short.slice(1)} across Delhi NCR
+                Same-day across Delhi NCR
               </h2>
               <p className="mt-2 text-sm text-mist/80">
                 Same-day slots in every city below. All major brands: {BRANDS.slice(0, 8).join(", ")} and more.
@@ -197,9 +197,9 @@ export function ServicePage({ route }: { route: RouteDef }) {
         </section>
       )}
 
-      <FAQ items={routeFaqs(route)} title={`${s.name}: common questions`} />
+      <FAQ items={routeFaqs(route)} title="Common questions" />
       <CTA
-        title={`Book ${s.short} today.`}
+        title="Book a technician today."
         text="Send the brand, the fault and a photo. You get a slot, a name and a quote before anyone opens a panel."
         wa={waLink(waText)}
         emergencyLink={s.slug !== "emergency-ac-repair"}
