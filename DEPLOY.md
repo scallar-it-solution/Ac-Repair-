@@ -186,14 +186,13 @@ Then proxy `frostwright.in` to `http://127.0.0.1:3000` and redirect `www` to the
   frostwright.in, but delete that Vercel project once this server is live so only one copy of the site is public.
 - In Google Search Console, add `frostwright.in` as a Domain property and submit `https://frostwright.in/sitemap.xml`.
 
-## Current setup (7 October 2026)
+## Shared VPS configuration (7 October 2026)
 
 - Docker Hub `pateldeepesh/acrepair` is public; no pull token is needed.
-- GitHub has `DOCKERHUB_USERNAME`, `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY` and `VPS_KNOWN_HOSTS` configured. The VPS is
+- GitHub has `DOCKERHUB_USERNAME`, `DOCKERHUB_TOKEN`, `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY` and `VPS_KNOWN_HOSTS` configured. The VPS is
   `187.127.146.219`; the existing restricted `deploy` key is used, never the administrator's key.
 - Variables: `DEPLOY_ENABLED=true`, `DOCKERHUB_REPOSITORY=pateldeepesh/acrepair`, `VPS_DEPLOY_MODE=shared`,
   `DEPLOY_PATH=/srv/scallar/frostwright`. The root-owned shared deployment files and fixed sudo commands are installed.
-- `DOCKERHUB_TOKEN` still needs a Read & Write Docker Hub token. CI builds without publishing until this secret exists.
-- `frostwright.in` currently resolves to `2.57.91.91`, rather than this shared VPS. Point the apex A record at
-  `187.127.146.219` and `www` at the apex. The new Caddy site is staged under `conf/sites-available/frostwright.caddy`;
-  an administrator activates it after the first healthy image and DNS cutover, then sets `SITE_URL=https://frostwright.in`.
+- `frostwright.in` resolves to `187.127.146.219`, with `www` pointing to the apex.
+- First deployment: activate the staged `conf/sites-available/frostwright.caddy` site after the image is healthy,
+  validate and gracefully reload the shared proxy, then set `SITE_URL=https://frostwright.in` for future smoke tests.
