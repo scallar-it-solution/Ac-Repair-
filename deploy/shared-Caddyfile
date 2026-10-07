@@ -1,0 +1,12 @@
+# Installed by the VPS administrator into the existing proxy's sites directory after DNS is ready.
+frostwright.in {
+    import compression
+    import access_log
+    header -Server
+    reverse_proxy frostwright-edge:8080
+}
+
+www.frostwright.in {
+    header -Server
+    redir https://frostwright.in{uri} permanent
+}

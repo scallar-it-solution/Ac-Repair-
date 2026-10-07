@@ -69,4 +69,17 @@ All copy lives in `src/data/`. Change it there and every place that uses it — 
 
 ## Deployment
 
-Deploy to Vercel (auto-detected as Next.js) or any Node host with `npm run build && npm run start`. Redirects, trailing-slash handling and security headers are in `next.config.ts`.
+Production runs as a Docker container on a Hostinger VPS, behind Caddy (automatic HTTPS). GitHub Actions verifies the site and builds the Docker image on pushes and pull requests. Pushes to `main` publish `docker.io/pateldeepesh/acrepair` when Docker Hub credentials are set; the VPS receives the immutable `sha-<commit>` tag once `DEPLOY_ENABLED=true`. Server setup, secrets and rollback: [DEPLOY.md](DEPLOY.md).
+
+```
+.github/workflows/ci-cd.yml   verify (typecheck, build, spam-policy audit) → Docker image → deploy
+Dockerfile                    Next.js standalone server image
+deploy/                       docker-compose.yml, Caddyfile and the server-side deploy script
+```
+
+The existing Quorlytic VPS uses `VPS_DEPLOY_MODE=shared`: root-owned compose files, restricted deploy commands and
+its existing Caddy proxy. See the shared-server setup in [DEPLOY.md](DEPLOY.md) before enabling it.
+
+Redirects, trailing-slash handling and security headers are in `next.config.ts`.
+
+Run the production image locally: `docker build -t frostwright-ac-repair . && docker run --rm -p 3000:3000 frostwright-ac-repair`.

@@ -1,0 +1,11 @@
+# The apex domain serves the site; www redirects to it so every URL matches the canonical https://frostwright.in/...
+# Certificates are issued and renewed automatically once DNS points at this server.
+
+{$SITE_DOMAIN:frostwright.in} {
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+www.{$SITE_DOMAIN:frostwright.in} {
+	redir https://{$SITE_DOMAIN:frostwright.in}{uri} permanent
+}

@@ -1,0 +1,176 @@
+# Verify → build Docker image → deploy to the Hostinger VPS.
+#
+# - Every push and pull request: typecheck, production build, content & spam-policy audit (scripts/content-audit.mjs).
+# - Pushes to main: publish to Docker Hub as :sha-<commit> and :latest when credentials exist.
+# - Deploy runs only when the repository variable DEPLOY_ENABLED is "true" and the VPS secrets are set (see DEPLOY.md).
+
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-cd-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Typecheck, build & spam-policy audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Content & spam-policy audit
+        run: npm run audit
+
+  image:
+    name: Build Docker image (push when configured)
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      pushed: ${{ steps.name.outputs.push }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Configure Docker Hub image and push eligibility
+        id: name
+        env:
+          REPOSITORY: ${{ vars.DOCKERHUB_REPOSITORY || 'pateldeepesh/acrepair' }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          [[ "$REPOSITORY" =~ ^[a-z0-9][a-z0-9_-]*/[a-z0-9][a-z0-9._-]*$ ]] || { echo '::error::Invalid DOCKERHUB_REPOSITORY'; exit 1; }
+          echo "image=docker.io/$REPOSITORY" >> "$GITHUB_OUTPUT"
+          push=false
+          if [[ "$GITHUB_REF" == refs/heads/main && "$GITHUB_EVENT_NAME" != pull_request && -n "$DOCKERHUB_USERNAME" && -n "$DOCKERHUB_TOKEN" ]]; then
+            push=true
+          else
+            echo 'Docker Hub push disabled; validating the image with a build only.'
+          fi
+          echo "push=$push" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/login-action@v4
+        if: steps.name.outputs.push == 'true'
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ steps.name.outputs.image }}
+          tags: |
+            type=raw,value=sha-${{ github.sha }}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: ${{ steps.name.outputs.push == 'true' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    name: Deploy to Hostinger VPS
+    needs: image
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.image.outputs.pushed == 'true' && vars.DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: ${{ vars.SITE_URL || 'https://frostwright.in' }}
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    env:
+      HOST: ${{ secrets.VPS_HOST }}
+      PORT: ${{ secrets.VPS_PORT || '22' }}
+      SSH_USER: ${{ secrets.VPS_USER }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/opt/frostwright' }}
+      IMAGE: docker.io/${{ vars.DOCKERHUB_REPOSITORY || 'pateldeepesh/acrepair' }}:sha-${{ github.sha }}
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_PULL_TOKEN: ${{ secrets.DOCKERHUB_PULL_TOKEN }}
+      VPS_DEPLOY_MODE: ${{ vars.VPS_DEPLOY_MODE || 'standalone' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          [[ "$HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.:-]*$ && "$PORT" =~ ^[0-9]+$ && "$SSH_USER" =~ ^[a-z_][a-z0-9_-]*$ ]] || { echo '::error::Invalid or missing VPS connection settings'; exit 1; }
+          [[ "$DEPLOY_PATH" =~ ^/[a-zA-Z0-9._/-]+$ && -n "$SSH_KEY" && -n "$KNOWN_HOSTS" ]] || { echo '::error::DEPLOY_PATH, VPS_SSH_KEY and pinned VPS_KNOWN_HOSTS are required'; exit 1; }
+          [[ "$VPS_DEPLOY_MODE" == standalone || "$VPS_DEPLOY_MODE" == shared ]] || { echo '::error::VPS_DEPLOY_MODE must be standalone or shared'; exit 1; }
+          [[ "$IMAGE" =~ ^docker\.io/[a-z0-9][a-z0-9_-]*/[a-z0-9][a-z0-9._-]*:sha-[0-9a-f]{40}$ ]] || { echo '::error::Invalid immutable image reference'; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          printf 'Host vps\n  HostName %s\n  Port %s\n  User %s\n  IdentityFile ~/.ssh/deploy_key\n  IdentitiesOnly yes\n  StrictHostKeyChecking yes\n' \
+            "$HOST" "$PORT" "$SSH_USER" > ~/.ssh/config
+
+      - name: Upload compose files and deploy script
+        if: env.VPS_DEPLOY_MODE == 'standalone'
+        run: |
+          ssh vps "mkdir -p '$DEPLOY_PATH'"
+          scp deploy/docker-compose.yml deploy/Caddyfile deploy/remote-deploy.sh "vps:$DEPLOY_PATH/"
+
+      - name: Log the server in to Docker Hub for a private image
+        if: env.DOCKERHUB_PULL_TOKEN != ''
+        # Token goes over stdin, never on a command line.
+        run: |
+          [[ "$DOCKERHUB_USERNAME" =~ ^[a-zA-Z0-9_-]+$ ]] || { echo '::error::DOCKERHUB_USERNAME is required for private pulls'; exit 1; }
+          if [[ "$VPS_DEPLOY_MODE" == shared ]]; then
+            printf '%s' "$DOCKERHUB_PULL_TOKEN" | ssh vps 'sudo -n /srv/scallar/shared/bin/frostwright-deploy.sh login'
+          else
+            printf '%s' "$DOCKERHUB_PULL_TOKEN" | ssh vps "docker login docker.io -u '$DOCKERHUB_USERNAME' --password-stdin"
+          fi
+
+      - name: Pull and restart
+        run: |
+          if [[ "$VPS_DEPLOY_MODE" == shared ]]; then
+            printf '%s\n' "$IMAGE" | ssh vps 'cat > /srv/scallar/frostwright/inbox/requested-image'
+            ssh vps 'sudo -n /srv/scallar/shared/bin/frostwright-deploy.sh deploy'
+          else
+            ssh vps "IMAGE='$IMAGE' DEPLOY_PATH='$DEPLOY_PATH' bash -s" < deploy/remote-deploy.sh
+          fi
+
+      - name: Log the server out of Docker Hub
+        if: always() && env.DOCKERHUB_PULL_TOKEN != ''
+        run: |
+          if [[ "$VPS_DEPLOY_MODE" == shared ]]; then
+            ssh vps 'sudo -n /srv/scallar/shared/bin/frostwright-deploy.sh logout' || true
+          else
+            ssh vps 'docker logout docker.io' || true
+          fi
+
+      - name: Smoke test
+        if: vars.SITE_URL != ''
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          for path in / /robots.txt /sitemap.xml /services/ac-gas-filling; do
+            curl -fsS --retry 6 --retry-delay 10 --retry-all-errors -o /dev/null -w "%{http_code} $path\n" "$SITE_URL$path"
+          done

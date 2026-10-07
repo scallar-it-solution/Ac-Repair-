@@ -1,0 +1,41 @@
+# Runs on the Hostinger VPS in DEPLOY_PATH (default /opt/frostwright). The GitHub Actions deploy job copies this
+# file and the Caddyfile there and sets IMAGE in .env; everything else in .env is yours (see DEPLOY.md).
+name: frostwright
+
+services:
+  web:
+    image: ${IMAGE:-docker.io/pateldeepesh/acrepair:latest}
+    restart: unless-stopped
+    expose:
+      - "3000"
+    # Health check comes from the image (Dockerfile HEALTHCHECK).
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  # Reverse proxy with automatic HTTPS (Let's Encrypt). Needs ports 80 and 443 free on the server.
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      web:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:-frostwright.in}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  caddy_data:
+  caddy_config:

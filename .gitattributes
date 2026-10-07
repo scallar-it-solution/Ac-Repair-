@@ -1,0 +1,7 @@
+# Files that run on Linux (CI runner, Docker build, VPS) must keep LF line endings, even in a Windows checkout.
+*.sh            text eol=lf
+Dockerfile      text eol=lf
+.dockerignore   text eol=lf
+Caddyfile       text eol=lf
+*.yml           text eol=lf
+*.yaml          text eol=lf

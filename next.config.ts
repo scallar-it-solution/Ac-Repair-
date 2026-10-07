@@ -9,6 +9,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Self-contained server in .next/standalone for the Docker image (see Dockerfile).
+  output: "standalone",
   reactStrictMode: true,
   poweredByHeader: false,
   // Canonical URLs have no trailing slash; "/about/" 308-redirects to "/about".

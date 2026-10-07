@@ -1,0 +1,16 @@
+# Only what `npm ci` and `next build` need goes into the build context.
+.git
+.github
+.next
+.vercel
+node_modules
+assets
+deploy
+scripts
+*.md
+.env*
+npm-debug.log*
+Dockerfile
+.dockerignore
+.vercelignore
+vercel.json
