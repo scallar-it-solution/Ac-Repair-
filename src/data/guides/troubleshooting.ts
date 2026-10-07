@@ -53,7 +53,7 @@ export const TROUBLESHOOTING: Guide[] = [
       },
       {
         t: "p",
-        text: "Prices are Airkraft’s published starting rates. Every visit starts with a ₹199 inspection that is waived if you approve the repair. See the full [price list](/pricing). If the room is simply too big for the machine, our [tonnage guide](/guides/ac-tonnage-guide) explains how to size it.",
+        text: "Prices are Frostwright’s published starting rates. Every visit starts with a ₹199 inspection that is waived if you approve the repair. See the full [price list](/pricing). If the room is simply too big for the machine, our [tonnage guide](/guides/ac-tonnage-guide) explains how to size it.",
       },
       { t: "h2", id: "is-it-gas", text: "Is it really the gas?" },
       {
@@ -104,7 +104,7 @@ export const TROUBLESHOOTING: Guide[] = [
       },
       {
         q: "How much does it cost to fix an AC that is not cooling in Delhi?",
-        a: "At Airkraft, a wet service that fixes the most common cause costs ₹449 (window) to ₹499 (split). Gas filling after a leak test starts at ₹1,799 for R32/R410A, and PCB repair starts at ₹799. The ₹199 inspection is waived if you approve the repair.",
+        a: "At Frostwright, a wet service that fixes the most common cause costs ₹449 (window) to ₹499 (split). Gas filling after a leak test starts at ₹1,799 for R32/R410A, and PCB repair starts at ₹799. The ₹199 inspection is waived if you approve the repair.",
       },
       {
         q: "Does an AC need gas every year?",
@@ -118,7 +118,7 @@ export const TROUBLESHOOTING: Guide[] = [
     slug: "ac-water-leakage",
     cluster: "troubleshooting",
     title: "AC leaking water inside the room? 7 causes and how to fix them",
-    metaTitle: "AC Water Leakage From Indoor Unit — 7 Causes & Fixes | Airkraft",
+    metaTitle: "AC Water Leakage From Indoor Unit — 7 Causes & Fixes | Frostwright",
     metaDescription:
       "Water dripping from your AC indoors? The 7 usual causes — blocked drain, frozen coil, bad slope, torn insulation — what to check and what repair costs.",
     excerpt:
@@ -187,7 +187,7 @@ export const TROUBLESHOOTING: Guide[] = [
       },
       {
         q: "How much does AC water leakage repair cost in Delhi?",
-        a: "At Airkraft, drain and insulation repairs start at ₹499. A wet service that cleans the tray and drain line is ₹449–₹499.",
+        a: "At Frostwright, drain and insulation repairs start at ₹499. A wet service that cleans the tray and drain line is ₹449–₹499.",
       },
     ],
     related: ["ac-water-leakage-repair", "ac-service", "split-ac-repair", "window-ac-repair"],

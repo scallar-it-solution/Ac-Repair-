@@ -30,7 +30,7 @@ export const PRICING_FAQS: Faq[] = [
 
 export const AREA_HUB_FAQS: Faq[] = [
   {
-    q: "Which areas does Airkraft cover?",
+    q: "Which areas does Frostwright cover?",
     a: "All of Delhi NCR: Delhi, Noida, Greater Noida, Gurugram, Ghaziabad and Faridabad, including 50+ neighbourhoods. Fringe areas such as Sohna, Ballabhgarh and Bahadurgarh are covered with a small travel add-on.",
   },
   FAQS[1],
@@ -40,7 +40,7 @@ export const AREA_HUB_FAQS: Faq[] = [
 export const BRAND_FAQS: Faq[] = [
   {
     q: "Are you an authorised service centre for these brands?",
-    a: "No. Airkraft is an independent multi-brand service. If your AC is still under the manufacturer’s warranty, contact the brand first for free cover; we step in for out-of-warranty machines or when you need someone today.",
+    a: "No. Frostwright is an independent multi-brand service. If your AC is still under the manufacturer’s warranty, contact the brand first for free cover; we step in for out-of-warranty machines or when you need someone today.",
   },
   {
     q: "Do you use original spare parts?",

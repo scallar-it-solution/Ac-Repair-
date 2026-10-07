@@ -3,16 +3,16 @@
  * Everything — page copy, JSON-LD, llms.txt, footer — reads from here, so keep it accurate.
  */
 export const SITE = {
-  name: "Airkraft",
-  legal: "Airkraft Cooling",
-  url: "https://airkraft.in",
-  tagline: "Engineered comfort. Honest repair.",
+  name: "Frostwright",
+  legal: "Frostwright AC Repair",
+  url: "https://frostwright.in",
+  tagline: "Diagnosed, not guessed.",
   description:
-    "Airkraft Cooling is a Delhi NCR AC repair company offering same-day split, window, inverter, cassette and VRF AC repair, gas filling, installation and AMC plans, with a 90-day repair warranty and GST invoices.",
+    "Frostwright is a Delhi NCR AC repair company offering same-day split, window, inverter, cassette and VRF AC repair, gas filling, installation and AMC plans, with a 90-day repair warranty and GST invoices.",
   phone: "+919315515700",
   phoneDisplay: "+91 93155 15700",
   whatsapp: "919315515700",
-  email: "hello@airkraft.in",
+  email: "hello@frostwright.in",
   hours: "7:00 AM – 10:00 PM, all 7 days",
   opens: "07:00",
   closes: "22:00",
@@ -46,7 +46,7 @@ export const SITE = {
 } as const;
 
 /**
- * Absolute URL for a site path. The homepage is "https://airkraft.in" (no trailing slash) — the form Next.js
+ * Absolute URL for a site path. The homepage is "https://frostwright.in" (no trailing slash) — the form Next.js
  * emits for canonical/og:url — so canonical, sitemap and structured data always agree exactly.
  */
 export const abs = (path: string) => (path.startsWith("http") ? path : path === "/" ? SITE.url : `${SITE.url}${path}`);
@@ -58,7 +58,7 @@ export function waLink(text: string) {
 }
 
 export const DEFAULT_WA = waLink(
-  "Hi Airkraft, I need AC repair service in Delhi NCR. Please share the next available slot."
+  "Hi Frostwright, I need AC repair service in Delhi NCR. Please share the next available slot."
 );
 
 export const TEL = `tel:${SITE.phone}`;
@@ -97,10 +97,10 @@ export const HERO_IMAGE = {
 };
 
 export const OG_IMAGE = {
-  src: "/images/og-cover.jpg",
+  src: "/images/og-image.png",
   width: 1200,
   height: 630,
-  alt: "Airkraft AC technician servicing a split air conditioner in a Delhi NCR home",
+  alt: "Frostwright — same-day AC repair in Delhi NCR. Diagnosed, not guessed.",
 };
 
 /* ------------------------------------------------------------------------------------------- */
@@ -215,7 +215,7 @@ export const TESTIMONIALS = [
   {
     name: "Ritika Malhotra",
     area: "Greater Kailash II",
-    text: "Two other ‘technicians’ told me the coil was dead. Airkraft found a pinched drain and a dying capacitor. AC is quieter than it was in 2019.",
+    text: "Two other ‘technicians’ told me the coil was dead. They found a pinched drain and a dying capacitor. AC is quieter than it was in 2019.",
     rating: 5,
     machine: "Daikin 1.5T inverter",
   },
@@ -287,7 +287,7 @@ export const BRANDS = [
 ] as const;
 
 export const BRAND_DISCLAIMER =
-  "Airkraft is an independent multi-brand AC service provider. We are not affiliated with, or an authorised service centre of, any air-conditioner manufacturer. Brand names are used only to identify the equipment we service.";
+  "Frostwright is an independent multi-brand AC service provider. We are not affiliated with, or an authorised service centre of, any air-conditioner manufacturer. Brand names are used only to identify the equipment we service.";
 
 export const TEAM = [
   { name: "Arjun Mehta", role: "Lead diagnostic engineer", years: "14 yrs", focus: "Inverter PCB & VRF" },
@@ -300,5 +300,5 @@ export const TEAM = [
 export const AUTHOR = {
   name: TEAM[0].name,
   role: TEAM[0].role,
-  bio: "Arjun has diagnosed inverter boards, VRF communication faults and refrigerant circuits across Delhi NCR for 14 years. He leads Airkraft’s diagnostic bench and reviews every technical guide on this site.",
+  bio: "Arjun has diagnosed inverter boards, VRF communication faults and refrigerant circuits across Delhi NCR for 14 years. He leads Frostwright’s diagnostic bench and reviews every technical guide on this site.",
 };

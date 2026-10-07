@@ -4,7 +4,7 @@ import { BRAND_PAGES, brandPath } from "../data/brands";
 import { CORE_SERVICES, SPECIALIST_SERVICES, servicePath } from "../data/services";
 import { BRAND_DISCLAIMER, DEFAULT_WA, SITE, TEL } from "../data/site";
 import { Link } from "../lib/router";
-import { IconClock, IconMail, IconPhone, IconPin, IconWhatsApp, LogoMark } from "./Icons";
+import { IconClock, IconMail, IconPhone, IconPin, IconWhatsApp } from "./Icons";
 
 const FOOTER_GUIDES = [
   "ac-not-cooling",
@@ -32,12 +32,10 @@ export function Footer() {
     <footer className="bg-ink text-cream">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-12 pt-16 sm:grid-cols-2 md:px-8 md:pt-20 lg:grid-cols-12 lg:gap-8">
         <div className="sm:col-span-2 lg:col-span-4">
-          <Link to="/" className="inline-flex items-center gap-2.5" aria-label="Airkraft Cooling — home">
-            <LogoMark className="h-10 w-10" />
-            <span>
-              <span className="font-display block text-xl font-bold leading-none">Airkraft</span>
-              <span className="mt-1 block text-[10px] uppercase tracking-[0.22em] text-brass">Cooling · Delhi NCR</span>
-            </span>
+          <Link to="/" className="inline-block" aria-label="Frostwright AC Repair — home">
+            {/* Reversed wordmark from the brand kit (mint, gauge "O"). */}
+            <img src="/brand/wordmark-mint.svg" alt="" width={210} height={40} className="h-10 w-auto" loading="lazy" decoding="async" />
+            <span className="font-display mt-2 block text-[13px] font-medium tracking-[0.06em] text-mint/80">AC Repair · Delhi NCR</span>
           </Link>
           <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-mist/80">
             Same-day AC repair without the scare-sell. Split, window, inverter, cassette and VRF — diagnosed properly,
@@ -45,7 +43,7 @@ export function Footer() {
           </p>
           <address className="mt-6 space-y-2.5 text-sm not-italic text-mist/80">
             <p className="flex items-start gap-2.5">
-              <IconPin size={16} className="mt-0.5 shrink-0 text-brass" />
+              <IconPin size={16} className="mt-0.5 shrink-0 text-mint" />
               <span>
                 {SITE.legal}, dispatch desk {SITE.address.locality} {SITE.address.postalCode}
                 <br />
@@ -53,19 +51,19 @@ export function Footer() {
               </span>
             </p>
             <p className="flex items-center gap-2.5">
-              <IconPhone size={16} className="shrink-0 text-brass" />
+              <IconPhone size={16} className="shrink-0 text-mint" />
               <a href={TEL} className="tabular-nums hover:text-cream">
                 {SITE.phoneDisplay}
               </a>
             </p>
             <p className="flex items-center gap-2.5">
-              <IconMail size={16} className="shrink-0 text-brass" />
+              <IconMail size={16} className="shrink-0 text-mint" />
               <a href={`mailto:${SITE.email}`} className="hover:text-cream">
                 {SITE.email}
               </a>
             </p>
             <p className="flex items-center gap-2.5">
-              <IconClock size={16} className="shrink-0 text-brass" />
+              <IconClock size={16} className="shrink-0 text-mint" />
               <span>
                 {SITE.hours} · {SITE.emergency}
               </span>
@@ -117,7 +115,7 @@ export function Footer() {
             </li>
           ))}
           <li>
-            <Link to="/service-areas" className="text-brass hover:text-cream">
+            <Link to="/service-areas" className="text-mint hover:text-cream">
               All areas →
             </Link>
           </li>
@@ -132,7 +130,7 @@ export function Footer() {
             </li>
           ))}
           <li>
-            <Link to="/guides" className="text-brass hover:text-cream">
+            <Link to="/guides" className="text-mint hover:text-cream">
               All guides →
             </Link>
           </li>
@@ -173,7 +171,7 @@ export function Footer() {
 function FooterCol({ title, className, children }: { title: string; className?: string; children: React.ReactNode }) {
   return (
     <nav className={className} aria-label={title}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">{title}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mint">{title}</p>
       <ul className="mt-3 space-y-0.5 text-sm text-mist/80 [&_a]:inline-block [&_a]:py-1.5">{children}</ul>
     </nav>
   );

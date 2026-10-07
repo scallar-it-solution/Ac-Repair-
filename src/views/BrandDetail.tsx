@@ -18,7 +18,7 @@ import { NotFound } from "./NotFound";
 export function BrandDetail({ route }: { route: RouteDef }) {
   const b = brandBySlug(route.slug!);
   if (!b) return <NotFound route={route} />;
-  const waText = `Hi Airkraft, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`;
+  const waText = `Hi Frostwright, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`;
   const services = b.services.map(serviceBySlug).filter((s) => s !== undefined);
   const guides = b.guides.map(guideBySlug).filter((g): g is Guide => !!g);
   const others = BRAND_PAGES.filter((x) => x.slug !== b.slug);
@@ -33,16 +33,16 @@ export function BrandDetail({ route }: { route: RouteDef }) {
         waText={waText}
         aside={
           <div className="rounded-2xl border border-cream/10 bg-cream/5 p-6 backdrop-blur">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">{b.name} machines we work on</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mint">{b.name} machines we work on</p>
             <ul className="mt-4 space-y-2.5 text-sm text-mist/90">
               {b.lines.map((l) => (
                 <li key={l} className="flex gap-2.5">
-                  <IconCheck size={16} className="mt-0.5 shrink-0 text-brass" /> {l}
+                  <IconCheck size={16} className="mt-0.5 shrink-0 text-mint" /> {l}
                 </li>
               ))}
             </ul>
             <p className="mt-5 flex gap-2.5 border-t border-cream/10 pt-4 text-xs leading-relaxed text-mist/70">
-              <IconShield size={16} className="mt-0.5 shrink-0 text-brass" />
+              <IconShield size={16} className="mt-0.5 shrink-0 text-mint" />
               Not affiliated with {b.name}. Under warranty? Contact {b.name} first.
             </p>
           </div>
@@ -107,7 +107,7 @@ export function BrandDetail({ route }: { route: RouteDef }) {
             </div>
             <div className="lg:col-span-5">
               <div className="rounded-2xl bg-forest p-7 text-cream">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Owner’s notes</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mint">Owner’s notes</p>
                 <ul className="mt-5 space-y-5">
                   {b.tips.map((t) => (
                     <li key={t.title}>
@@ -152,7 +152,7 @@ export function BrandDetail({ route }: { route: RouteDef }) {
                       to={areaPath(a.slug)}
                       className="inline-flex items-center gap-1.5 rounded-full border border-line bg-cream px-3.5 py-2 text-sm transition hover:border-forest hover:text-forest"
                     >
-                      <IconPin size={13} className="text-brass" /> {a.city}
+                      <IconPin size={13} className="text-sage" /> {a.city}
                     </Link>
                   </li>
                 ))}

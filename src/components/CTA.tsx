@@ -21,8 +21,8 @@ export function CTA({
       <div className="glow absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 px-5 py-16 md:flex-row md:items-center md:px-8 md:py-24">
         <Reveal>
-          <Kicker tone="brass">Same-day slots · {SITE.hours}</Kicker>
-          <h2 className="font-display mt-4 max-w-xl text-3xl font-bold tracking-tight text-balance md:text-5xl">{title}</h2>
+          <Kicker tone="mint">Same-day slots · {SITE.hours}</Kicker>
+          <h2 className="font-display mt-4 max-w-xl text-3xl font-bold text-balance md:text-5xl">{title}</h2>
           <p className="mt-4 max-w-lg text-mist/80">{text}</p>
         </Reveal>
         <Reveal delay={2} className="w-full sm:w-auto">
@@ -37,7 +37,7 @@ export function CTA({
           {emergencyLink && (
           <p className="mt-4 text-sm text-mist/70">
             AC dead at night or someone vulnerable at home?{" "}
-            <Link to="/services/emergency-ac-repair" className="font-semibold text-sand underline underline-offset-4 hover:text-cream">
+            <Link to="/services/emergency-ac-repair" className="font-semibold text-mint underline underline-offset-4 hover:text-cream">
               Emergency AC repair
             </Link>
           </p>

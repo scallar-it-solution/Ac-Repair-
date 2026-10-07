@@ -219,7 +219,7 @@ export const BUYING: Guide[] = [
     slug: "repair-or-replace-ac",
     cluster: "buying",
     title: "Repair or replace your old AC? A cost-based decision guide",
-    metaTitle: "Repair or Replace an Old AC? Decision Guide With Costs | Airkraft",
+    metaTitle: "Repair or Replace an Old AC? Decision Guide With Costs | Frostwright",
     metaDescription:
       "When an old AC is worth repairing and when replacement is better: age, R22 gas, compressor failure, repeated leaks and running costs — with a simple rule of thumb.",
     excerpt:

@@ -29,10 +29,10 @@ export function Services({ route }: { route: RouteDef }) {
             <AnswerBox
               label="In short"
               updated={SITE.updated}
-              text={`Airkraft offers eight core AC services across Delhi NCR — wet servicing from ₹449, split and window AC repair from ₹449–₹499, inverter and PCB repair from ₹799, gas filling from ₹1,799, installation from ₹1,499, AMC plans from ₹2,499 per year, and cassette, ductable and VRF work on quote — plus specialist repairs: emergency call-outs, compressor and coil replacement, fan motors, water leakage and AC shifting. Every visit starts with a ${SITE.visitFee} inspection, waived when you approve the repair.`}
+              text={`Frostwright offers eight core AC services across Delhi NCR — wet servicing from ₹449, split and window AC repair from ₹449–₹499, inverter and PCB repair from ₹799, gas filling from ₹1,799, installation from ₹1,499, AMC plans from ₹2,499 per year, and cassette, ductable and VRF work on quote — plus specialist repairs: emergency call-outs, compressor and coil replacement, fan motors, water leakage and AC shifting. Every visit starts with a ${SITE.visitFee} inspection, waived when you approve the repair.`}
             />
           </div>
-          <h2 className="font-display mt-16 text-3xl font-bold tracking-tight">Core services</h2>
+          <h2 className="font-display mt-16 text-3xl font-bold">Core services</h2>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {CORE_SERVICES().map((s, i) => (
               <Reveal as="li" key={s.slug} delay={(i % 4) + 1}>
@@ -40,7 +40,7 @@ export function Services({ route }: { route: RouteDef }) {
               </Reveal>
             ))}
           </ul>
-          <h2 className="font-display mt-16 text-3xl font-bold tracking-tight">Specialist repairs</h2>
+          <h2 className="font-display mt-16 text-3xl font-bold">Specialist repairs</h2>
           <p className="mt-2 max-w-2xl text-muted">When the fault is already known — or it cannot wait.</p>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SPECIALIST_SERVICES().map((s, i) => (
@@ -55,12 +55,12 @@ export function Services({ route }: { route: RouteDef }) {
       <section className="bg-forest py-20 text-cream md:py-24">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <SectionHead tone="brass" kicker="Every service, same order" title="Diagnose. Quote. Approve. Fix." />
+            <SectionHead tone="mint" kicker="Every service, same order" title="Diagnose. Quote. Approve. Fix." />
           </Reveal>
           <ol className="mt-12 grid gap-6 md:grid-cols-4">
             {PROCESS.map((p, i) => (
               <Reveal as="li" key={p.step} delay={i + 1} className="rounded-2xl border border-cream/10 bg-pine/40 p-6">
-                <span className="font-display text-sm font-bold text-brass">{p.step}</span>
+                <span className="font-display text-sm font-bold text-mint">{p.step}</span>
                 <h3 className="font-display mt-3 text-xl font-semibold">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-mist/80">{p.text}</p>
               </Reveal>
@@ -82,7 +82,7 @@ export function Services({ route }: { route: RouteDef }) {
             </Link>
           </Reveal>
           <Reveal delay={2} className="md:col-span-7">
-            <PriceTable rows={PRICING} caption="Airkraft AC service starting prices" />
+            <PriceTable rows={PRICING} caption="Frostwright AC service starting prices" />
           </Reveal>
         </div>
       </section>

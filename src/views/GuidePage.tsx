@@ -22,7 +22,7 @@ function BlockView({ b }: { b: Block }) {
       );
     case "h2":
       return (
-        <h2 id={b.id} className="font-display scroll-mt-28 text-2xl font-bold tracking-tight md:text-3xl">
+        <h2 id={b.id} className="font-display scroll-mt-28 text-2xl font-bold md:text-3xl">
           {b.text}
         </h2>
       );
@@ -33,7 +33,7 @@ function BlockView({ b }: { b: Block }) {
         <ul className="space-y-3 text-[17px] leading-relaxed text-ink/85">
           {b.items.map((it) => (
             <li key={it} className="flex gap-3">
-              <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-brass" />
+              <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-sage" />
               <span>
                 <RichText text={it} />
               </span>
@@ -46,7 +46,7 @@ function BlockView({ b }: { b: Block }) {
         <ol className="space-y-4 text-[17px] leading-relaxed text-ink/85">
           {b.items.map((it, i) => (
             <li key={it} className="grid grid-cols-[auto_1fr] gap-4">
-              <span className="font-display flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-sand">
+              <span className="font-display flex h-7 w-7 items-center justify-center rounded-full bg-forest text-xs font-bold text-mint">
                 {i + 1}
               </span>
               <span>
@@ -92,7 +92,7 @@ function BlockView({ b }: { b: Block }) {
       );
     case "callout":
       return (
-        <aside className="flex gap-4 rounded-2xl border-l-4 border-brass bg-sand/30 p-5 md:p-6">
+        <aside className="flex gap-4 rounded-2xl border-l-4 border-copper bg-mint/25 p-5 md:p-6">
           <IconAlert size={22} className="mt-0.5 shrink-0 text-copper" />
           <div>
             <p className="font-display text-lg font-semibold">{b.title}</p>
@@ -163,9 +163,9 @@ export function GuidePage({ route }: { route: RouteDef }) {
               )}
               {pillar && (
                 <div className="rounded-2xl bg-forest p-5 text-cream">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brass">Need it fixed?</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mint">Need it fixed?</p>
                   <p className="font-display mt-2 text-lg font-semibold">{pillar.name}</p>
-                  <p className="mt-1 text-sm text-sand">{pillar.price}</p>
+                  <p className="mt-1 text-sm text-mint">{pillar.price}</p>
                   <Link to={servicePath(pillar.slug)} className="btn btn-light mt-4 w-full px-4 py-2.5 text-sm">
                     See service <IconArrow size={14} />
                   </Link>
@@ -200,7 +200,7 @@ export function GuidePage({ route }: { route: RouteDef }) {
             )}
 
             <div className="mt-14 flex gap-5 rounded-2xl border border-line bg-paper p-6">
-              <span className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-forest text-lg font-bold text-sand">
+              <span className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-forest text-lg font-bold text-mint">
                 {AUTHOR.name
                   .split(" ")
                   .map((w) => w[0])

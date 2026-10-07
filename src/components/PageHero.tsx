@@ -21,7 +21,7 @@ export function Breadcrumbs({ crumbs, tone = "light" }: { crumbs: Crumb[]; tone?
           return (
             <li key={c.path} className="flex items-center gap-2">
               {last ? (
-                <span aria-current="page" className={tone === "light" ? "text-sand" : "text-ink"}>
+                <span aria-current="page" className={tone === "light" ? "text-mint" : "text-ink"}>
                   {c.name}
                 </span>
               ) : (
@@ -71,8 +71,8 @@ export function PageHero({
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-28 md:grid-cols-12 md:px-8 md:pb-24 md:pt-36">
         <div className="rise md:col-span-7">
           <Breadcrumbs crumbs={crumbs} />
-          <Kicker tone="brass">{kicker}</Kicker>
-          <h1 className="font-display mt-4 max-w-2xl text-4xl font-extrabold leading-[1.04] tracking-tight text-balance md:text-6xl">
+          <Kicker tone="mint">{kicker}</Kicker>
+          <h1 className="font-display mt-4 max-w-2xl text-4xl font-bold leading-[1.04] text-balance md:text-6xl">
             {title}
           </h1>
           <div className="mt-6 max-w-xl text-base leading-relaxed text-mist/85 md:text-lg">{lede}</div>

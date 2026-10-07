@@ -1,12 +1,12 @@
-# Airkraft Cooling — AC Repair Delhi NCR
+# Frostwright — AC Repair Delhi NCR
 
-Website for Airkraft Cooling: same-day AC repair, servicing, gas filling, installation and AMC across Delhi, Noida, Greater Noida, Gurugram, Ghaziabad and Faridabad.
+Website for Frostwright AC Repair: same-day AC repair, servicing, gas filling, installation and AMC across Delhi, Noida, Greater Noida, Gurugram, Ghaziabad and Faridabad.
 
 ## Stack
 
 - **Next.js 16** (App Router) + **React 19** + **TypeScript**
 - **Tailwind CSS v4** (PostCSS plugin)
-- Fonts self-hosted with `next/font` (Bricolage Grotesque, Outfit)
+- Fonts self-hosted with `next/font` (Oswald — brand display face, Outfit — body)
 - Every page is statically generated at build time (SSG) — full HTML for search engines and AI crawlers
 
 ## Getting started

@@ -33,13 +33,13 @@ export const AREAS: Area[] = [
     pin: "1100xx",
     geo: { lat: 28.6139, lng: 77.209 },
     wiki: "https://en.wikipedia.org/wiki/Delhi",
-    metaTitle: "AC Repair in Delhi | Same-Day AC Service & Gas Filling | Airkraft",
+    metaTitle: "AC Repair in Delhi | Same-Day AC Service & Gas Filling | Frostwright",
     metaDescription:
       "Same-day AC repair and service across Delhi — South Extension, GK, Saket, Dwarka, Rohini, Janakpuri, Laxmi Nagar and more. Split, window, inverter. 90-day warranty.",
     h1: "AC repair & service in Delhi",
     lede: "Builder floors in South Delhi, DDA flats in Dwarka and Rohini, old window units in Karol Bagh, inverter splits in Vasant Kunj. Our dispatch desk is in New Delhi — this is home ground.",
     answer:
-      "Airkraft provides same-day AC repair, gas filling, installation and servicing across Delhi, dispatched from New Delhi. Technicians typically reach South, Central and East Delhi within 45–90 minutes during the day. Visits start with a ₹199 inspection, waived if you approve the repair, and every repair has a 90-day warranty.",
+      "Frostwright provides same-day AC repair, gas filling, installation and servicing across Delhi, dispatched from New Delhi. Technicians typically reach South, Central and East Delhi within 45–90 minutes during the day. Visits start with a ₹199 inspection, waived if you approve the repair, and every repair has a 90-day warranty.",
     eta: "45–90 min in South, Central & East Delhi",
     zones: [
       {
@@ -102,13 +102,13 @@ export const AREAS: Area[] = [
     pin: "2013xx",
     geo: { lat: 28.5355, lng: 77.391 },
     wiki: "https://en.wikipedia.org/wiki/Noida",
-    metaTitle: "AC Repair in Noida | Same-Day AC Service in All Sectors | Airkraft",
+    metaTitle: "AC Repair in Noida | Same-Day AC Service in All Sectors | Frostwright",
     metaDescription:
       "Same-day AC repair, gas filling and service across Noida — Sector 18, 50, 62, 76, 137, 150 and Noida Extension. Society-ready technicians. 90-day warranty.",
     h1: "AC repair & service in Noida",
     lede: "High-rise societies, service ledges on the 20th floor, gate approvals on an app, and a lot of inverter ACs. Noida jobs need different preparation from a Delhi builder floor — we plan for that.",
     answer:
-      "Airkraft provides same-day AC repair, servicing, gas filling and installation across Noida, from Sector 18 and Sector 62 to Sector 137, Sector 150 and Noida Extension. Daytime arrival is typically 45–90 minutes. Visits start with a ₹199 inspection, waived if you approve the repair, and repairs carry a 90-day warranty.",
+      "Frostwright provides same-day AC repair, servicing, gas filling and installation across Noida, from Sector 18 and Sector 62 to Sector 137, Sector 150 and Noida Extension. Daytime arrival is typically 45–90 minutes. Visits start with a ₹199 inspection, waived if you approve the repair, and repairs carry a 90-day warranty.",
     eta: "45–90 min across central Noida",
     zones: [
       { name: "Central Noida", places: ["Sector 18", "Sector 37", "Sector 50", "Sector 62", "Sector 76"] },
@@ -157,13 +157,13 @@ export const AREAS: Area[] = [
     pin: "2013xx",
     geo: { lat: 28.4744, lng: 77.504 },
     wiki: "https://en.wikipedia.org/wiki/Greater_Noida",
-    metaTitle: "AC Repair in Greater Noida | AC Service & Gas Filling | Airkraft",
+    metaTitle: "AC Repair in Greater Noida | AC Service & Gas Filling | Frostwright",
     metaDescription:
       "AC repair, service and gas filling in Greater Noida — Pari Chowk, Alpha, Beta, Gamma, Knowledge Park, Greater Noida West. Same-day slots, 90-day warranty.",
     h1: "AC repair & service in Greater Noida",
     lede: "Plotted houses in Alpha, Beta and Gamma, hostels and PGs around Knowledge Park, and the high-rise societies of the western sectors. Distances are longer here, so we confirm the slot honestly before anyone sets off.",
     answer:
-      "Airkraft provides AC repair, wet servicing, gas filling and installation across Greater Noida, including Pari Chowk, Alpha, Beta, Gamma, Knowledge Park and Greater Noida West. Same-day slots are available; outlying pockets may carry a small travel add-on, which we confirm on WhatsApp before the visit. Repairs carry a 90-day warranty.",
+      "Frostwright provides AC repair, wet servicing, gas filling and installation across Greater Noida, including Pari Chowk, Alpha, Beta, Gamma, Knowledge Park and Greater Noida West. Same-day slots are available; outlying pockets may carry a small travel add-on, which we confirm on WhatsApp before the visit. Repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
     zones: [
       { name: "Sectors", places: ["Alpha / Beta / Gamma", "Pari Chowk", "Knowledge Park"] },
@@ -203,13 +203,13 @@ export const AREAS: Area[] = [
     pin: "1220xx",
     geo: { lat: 28.4595, lng: 77.0266 },
     wiki: "https://en.wikipedia.org/wiki/Gurgaon",
-    metaTitle: "AC Repair in Gurugram (Gurgaon) | Same-Day AC Service | Airkraft",
+    metaTitle: "AC Repair in Gurugram (Gurgaon) | Same-Day AC Service | Frostwright",
     metaDescription:
       "Same-day AC repair and service in Gurugram — DLF Phase 1–5, Golf Course Road, Sohna Road, Sushant Lok, South City and Dwarka Expressway. Homes, offices and clinics.",
     h1: "AC repair & service in Gurugram",
     lede: "Golf Course Road towers, DLF phases, Sohna Road societies and a lot of offices. Gurugram means generator changeovers, cassette units in commercial floors and boom-barriers — we come prepared for all three.",
     answer:
-      "Airkraft provides same-day AC repair, servicing, gas filling and installation across Gurugram (Gurgaon), including DLF Phase 1–5, Golf Course Road, Sushant Lok, South City, Sohna Road and Dwarka Expressway. Daytime arrival is typically 45–90 minutes. Offices and clinics get night slots and GST invoices; repairs carry a 90-day warranty.",
+      "Frostwright provides same-day AC repair, servicing, gas filling and installation across Gurugram (Gurgaon), including DLF Phase 1–5, Golf Course Road, Sushant Lok, South City, Sohna Road and Dwarka Expressway. Daytime arrival is typically 45–90 minutes. Offices and clinics get night slots and GST invoices; repairs carry a 90-day warranty.",
     eta: "45–90 min across central Gurugram",
     zones: [
       { name: "DLF & Golf Course", places: ["DLF Phase 1–5", "Golf Course Road", "MG Road"] },
@@ -258,13 +258,13 @@ export const AREAS: Area[] = [
     pin: "2010xx",
     geo: { lat: 28.6692, lng: 77.4538 },
     wiki: "https://en.wikipedia.org/wiki/Ghaziabad",
-    metaTitle: "AC Repair in Ghaziabad & Indirapuram | Same-Day | Airkraft",
+    metaTitle: "AC Repair in Ghaziabad & Indirapuram | Same-Day | Frostwright",
     metaDescription:
       "Same-day AC repair, service and gas filling in Ghaziabad — Indirapuram, Vaishali, Vasundhara, Kaushambi, Raj Nagar Extension and Crossings Republik. 90-day warranty.",
     h1: "AC repair & service in Ghaziabad",
     lede: "Older flats in Vaishali and Vasundhara, busy societies in Indirapuram, new towers in Raj Nagar Extension and Crossings Republik. Mixed housing means mixed machines — window, split and inverter.",
     answer:
-      "Airkraft provides same-day AC repair, wet servicing, gas filling and installation across Ghaziabad, including Indirapuram, Vaishali, Vasundhara, Kaushambi, Raj Nagar Extension and Crossings Republik. The exact arrival window is confirmed on WhatsApp at booking. Visits start with a ₹199 inspection, waived if you approve the repair; repairs carry a 90-day warranty.",
+      "Frostwright provides same-day AC repair, wet servicing, gas filling and installation across Ghaziabad, including Indirapuram, Vaishali, Vasundhara, Kaushambi, Raj Nagar Extension and Crossings Republik. The exact arrival window is confirmed on WhatsApp at booking. Visits start with a ₹199 inspection, waived if you approve the repair; repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
     zones: [
       { name: "Trans-Hindon", places: ["Indirapuram", "Vaishali", "Vasundhara", "Kaushambi"] },
@@ -304,13 +304,13 @@ export const AREAS: Area[] = [
     pin: "1210xx",
     geo: { lat: 28.4089, lng: 77.3178 },
     wiki: "https://en.wikipedia.org/wiki/Faridabad",
-    metaTitle: "AC Repair in Faridabad | Same-Day AC Service | Airkraft",
+    metaTitle: "AC Repair in Faridabad | Same-Day AC Service | Frostwright",
     metaDescription:
       "AC repair, service, gas filling and installation in Faridabad — NIT, Sector 15–21, Greater Faridabad and Ballabhgarh. Same-day slots, GST invoice, 90-day warranty.",
     h1: "AC repair & service in Faridabad",
     lede: "Independent houses in NIT and the older sectors, new towers in Greater Faridabad, shops and small workshops along the main roads. We cover all of it, and we tell you the timing before you wait.",
     answer:
-      "Airkraft provides AC repair, wet servicing, gas filling and installation across Faridabad, including NIT, Sector 15–21, Greater Faridabad and Ballabhgarh. Same-day slots are available, with the arrival window confirmed on WhatsApp; outlying areas such as Ballabhgarh may carry a small travel add-on. Repairs carry a 90-day warranty.",
+      "Frostwright provides AC repair, wet servicing, gas filling and installation across Faridabad, including NIT, Sector 15–21, Greater Faridabad and Ballabhgarh. Same-day slots are available, with the arrival window confirmed on WhatsApp; outlying areas such as Ballabhgarh may carry a small travel add-on. Repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
     zones: [
       { name: "Old Faridabad", places: ["NIT Faridabad", "Sector 15–21"] },

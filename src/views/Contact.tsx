@@ -41,7 +41,7 @@ export function Contact({ route }: { route: RouteDef }) {
               <ul className="mt-8 space-y-6">
                 {channels.map((c) => (
                   <li key={c.label} className="flex gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest text-mint">
                       <c.Icon size={18} />
                     </span>
                     <div>

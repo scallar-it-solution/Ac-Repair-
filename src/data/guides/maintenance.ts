@@ -99,7 +99,7 @@ export const MAINTENANCE: Guide[] = [
     excerpt:
       "An AMC is not always the cheaper option. Here is when it pays off, when it does not, and what to look for in the contract.",
     answer:
-      "For a single, lightly used AC, paying per visit is usually cheaper: two wet services cost about ₹998 a year at Airkraft’s split-AC rate, against ₹2,499 for a one-AC AMC. An AMC pays off when you have several ACs, run them for long hours, need guaranteed priority slots in May–June, or manage a home, rental or clinic where downtime and follow-ups cost more than the fee.",
+      "For a single, lightly used AC, paying per visit is usually cheaper: two wet services cost about ₹998 a year at Frostwright’s split-AC rate, against ₹2,499 for a one-AC AMC. An AMC pays off when you have several ACs, run them for long hours, need guaranteed priority slots in May–June, or manage a home, rental or clinic where downtime and follow-ups cost more than the fee.",
     published: D,
     updated: D,
     photo: "living",
@@ -107,7 +107,7 @@ export const MAINTENANCE: Guide[] = [
       { t: "h2", id: "maths", text: "The basic maths" },
       {
         t: "table",
-        caption: "Pay-per-visit vs AMC for one split AC, Airkraft prices",
+        caption: "Pay-per-visit vs AMC for one split AC, Frostwright prices",
         head: ["", "Pay per visit", "AMC (1 AC)"],
         rows: [
           ["Wet services", "2 × ₹499 = ₹998", "2 included"],
@@ -156,7 +156,7 @@ export const MAINTENANCE: Guide[] = [
       },
       {
         t: "p",
-        text: "Airkraft’s AMC is non-comprehensive: two wet and one dry service per AC, priority slots, AMC-rate parts and a WhatsApp log. Details on the [AMC page](/services/ac-amc); commercial sites see [cassette & VRF service](/services/commercial-ac-repair).",
+        text: "Frostwright’s AMC is non-comprehensive: two wet and one dry service per AC, priority slots, AMC-rate parts and a WhatsApp log. Details on the [AMC page](/services/ac-amc); commercial sites see [cassette & VRF service](/services/commercial-ac-repair).",
       },
     ],
     faqs: [

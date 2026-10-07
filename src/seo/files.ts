@@ -71,7 +71,7 @@ ${AREAS.map((a) => `- [AC repair in ${a.city}](${abs(areaPath(a.slug))}): ${a.zo
 ${guides}
 
 ## Company
-- [About Airkraft](${abs("/about")})
+- [About Frostwright](${abs("/about")})
 - [Contact and booking](${abs("/contact")})
 - [Frequently asked questions](${abs("/faq")})
 - [Brands we service](${abs("/brands")})

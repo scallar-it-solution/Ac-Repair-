@@ -3,7 +3,7 @@ import type { Faq } from "./site";
 /**
  * Brand repair pages. Each is written around what is genuinely different about that brand — its error
  * codes, product mix and ownership advice — so no page is a template with the name swapped.
- * Every page states clearly that Airkraft is independent and not an authorised service centre.
+ * Every page states clearly that Frostwright is independent and not an authorised service centre.
  */
 export type BrandPage = {
   slug: string;
@@ -26,20 +26,20 @@ export type BrandPage = {
 
 const authorised = (brand: string): Faq => ({
   q: `Are you an authorised ${brand} service centre?`,
-  a: `No. Airkraft is an independent multi-brand AC service and is not affiliated with ${brand}. If your ${brand} AC is still under the manufacturer’s warranty, contact ${brand} first for free cover; we help with out-of-warranty machines, expired AMCs, or when you need someone today.`,
+  a: `No. Frostwright is an independent multi-brand AC service and is not affiliated with ${brand}. If your ${brand} AC is still under the manufacturer’s warranty, contact ${brand} first for free cover; we help with out-of-warranty machines, expired AMCs, or when you need someone today.`,
 });
 
 export const BRAND_PAGES: BrandPage[] = [
   {
     slug: "daikin-ac-repair",
     name: "Daikin",
-    metaTitle: "Daikin AC Repair & Service in Delhi NCR | Independent | Airkraft",
+    metaTitle: "Daikin AC Repair & Service in Delhi NCR | Independent | Frostwright",
     metaDescription:
       "Independent Daikin AC repair in Delhi NCR: inverter splits, U4, A5 and E7 errors, PCB, gas and VRV faults. Same-day slots. Not an authorised Daikin centre.",
     h1: "Daikin AC repair & service in Delhi NCR",
     lede: "Daikin inverter splits are common in NCR homes and offices, and their two-character error codes make diagnosis faster — when they are read properly.",
     answer:
-      "Airkraft repairs and services Daikin split, inverter, cassette and small VRV air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Daikin service centre. Common Daikin jobs are communication errors (U4), freeze-up protection from dirty coils (A5), outdoor fan faults (E7), sensor faults (C4, C9) and refrigerant shortage (U0). If your Daikin AC is still under warranty, contact Daikin first.",
+      "Frostwright repairs and services Daikin split, inverter, cassette and small VRV air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Daikin service centre. Common Daikin jobs are communication errors (U4), freeze-up protection from dirty coils (A5), outdoor fan faults (E7), sensor faults (C4, C9) and refrigerant shortage (U0). If your Daikin AC is still under warranty, contact Daikin first.",
     lines: ["Inverter split ACs, 1–2 ton", "Older fixed-speed splits", "Cassette units in shops and clinics", "Small VRV systems in offices"],
     faults: [
       { title: "U4 — communication error", text: "Indoor and outdoor units have lost contact: the cable, power at the outdoor unit, or a board.", to: "/services/inverter-ac-pcb-repair" },
@@ -82,13 +82,13 @@ export const BRAND_PAGES: BrandPage[] = [
   {
     slug: "lg-ac-repair",
     name: "LG",
-    metaTitle: "LG AC Repair & Service in Delhi NCR | CH Error Codes | Airkraft",
+    metaTitle: "LG AC Repair & Service in Delhi NCR | CH Error Codes | Frostwright",
     metaDescription:
       "Independent LG AC repair in Delhi NCR: dual inverter splits, CH05, CH38 and CH67 errors, outdoor boards, fan motors and gas leaks. Same-day slots.",
     h1: "LG AC repair & service in Delhi NCR",
     lede: "LG split ACs report faults as CH codes on the indoor display. Read correctly, they cut diagnosis time; read loosely, they lead to the wrong board being replaced.",
     answer:
-      "Airkraft repairs and services LG split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised LG service centre. Common LG jobs include CH05 communication errors, CH38 low-refrigerant warnings, indoor and outdoor fan-motor locks (CH10, CH67), sensor errors (CH01, CH02) and outdoor board faults after power cuts. If your LG AC is still under warranty, contact LG first.",
+      "Frostwright repairs and services LG split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised LG service centre. Common LG jobs include CH05 communication errors, CH38 low-refrigerant warnings, indoor and outdoor fan-motor locks (CH10, CH67), sensor errors (CH01, CH02) and outdoor board faults after power cuts. If your LG AC is still under warranty, contact LG first.",
     lines: ["Dual inverter split ACs", "Fixed-speed splits", "Older window ACs"],
     faults: [
       { title: "CH05 — communication error", text: "Cable, outdoor power or a board — tested in that order.", to: "/services/inverter-ac-pcb-repair" },
@@ -131,13 +131,13 @@ export const BRAND_PAGES: BrandPage[] = [
   {
     slug: "samsung-ac-repair",
     name: "Samsung",
-    metaTitle: "Samsung AC Repair & Service in Delhi NCR | E101, E554 | Airkraft",
+    metaTitle: "Samsung AC Repair & Service in Delhi NCR | E101, E554 | Frostwright",
     metaDescription:
       "Independent Samsung AC repair in Delhi NCR: inverter splits, E101 communication, E121/E122 sensor, E154 fan and E554 gas-leak errors. Same-day slots.",
     h1: "Samsung AC repair & service in Delhi NCR",
     lede: "Samsung inverter splits use three-digit E codes that point to a specific circuit — communication, a sensor, the indoor fan or a refrigerant leak. That is where we start.",
     answer:
-      "Airkraft repairs and services Samsung split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Samsung service centre. Common Samsung jobs include E101 communication errors, E121 and E122 sensor errors, E154 indoor fan errors and E554 refrigerant-leak detection. If your Samsung AC is still under warranty, contact Samsung first.",
+      "Frostwright repairs and services Samsung split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Samsung service centre. Common Samsung jobs include E101 communication errors, E121 and E122 sensor errors, E154 indoor fan errors and E554 refrigerant-leak detection. If your Samsung AC is still under warranty, contact Samsung first.",
     lines: ["Inverter split ACs, 1–2 ton", "Older fixed-speed splits", "Small commercial units"],
     faults: [
       { title: "E101 — communication error", text: "Cable, outdoor power or a board fault between the units.", to: "/services/inverter-ac-pcb-repair" },
@@ -177,13 +177,13 @@ export const BRAND_PAGES: BrandPage[] = [
   {
     slug: "voltas-ac-repair",
     name: "Voltas",
-    metaTitle: "Voltas AC Repair & Service in Delhi NCR | Window & Split | Airkraft",
+    metaTitle: "Voltas AC Repair & Service in Delhi NCR | Window & Split | Frostwright",
     metaDescription:
       "Independent Voltas AC repair in Delhi NCR: window and split, inverter and fixed-speed — capacitors, fan motors, gas, PCBs and error codes. Same-day slots.",
     h1: "Voltas AC repair & service in Delhi NCR",
     lede: "From decade-old window units in DDA flats to new inverter splits in Noida towers, Voltas machines span every age and price band in NCR. Diagnosis starts with knowing which one you have.",
     answer:
-      "Airkraft repairs and services Voltas window, split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Voltas service centre. Common Voltas jobs are capacitor and fan-motor failures on fixed-speed and window units, gas leaks, drain leaks, and PCB or sensor faults on inverter models. Voltas error codes vary between series, so we read them against your exact model.",
+      "Frostwright repairs and services Voltas window, split and inverter air conditioners across Delhi NCR as an independent multi-brand service, not an authorised Voltas service centre. Common Voltas jobs are capacitor and fan-motor failures on fixed-speed and window units, gas leaks, drain leaks, and PCB or sensor faults on inverter models. Voltas error codes vary between series, so we read them against your exact model.",
     lines: ["Window ACs, including older R22 units", "Fixed-speed split ACs", "Inverter split ACs"],
     faults: [
       { title: "Compressor hums, no cooling", text: "A failed run capacitor on fixed-speed and window units — usually a same-visit fix.", to: "/guides/ac-outdoor-unit-not-working" },

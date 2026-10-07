@@ -1,8 +1,8 @@
 {
-  "name": "airkraft-services",
+  "name": "frostwright-ac-repair",
   "private": true,
   "version": "3.0.0",
-  "description": "Airkraft Cooling - AC Repair and Maintenance Services in Delhi NCR",
+  "description": "Frostwright AC Repair - AC Repair and Maintenance Services in Delhi NCR",
   "type": "module",
   "scripts": {
     "dev": "next dev",

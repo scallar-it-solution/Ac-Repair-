@@ -50,7 +50,7 @@ export function RichText({ text }: { text: string }) {
     if (m.index > last) parts.push(text.slice(last, m.index));
     if (m[1]) {
       parts.push(
-        <Link key={i++} to={m[2]} className="font-medium text-forest underline decoration-brass/60 underline-offset-4 hover:decoration-forest">
+        <Link key={i++} to={m[2]} className="font-medium text-forest underline decoration-sage/50 underline-offset-4 hover:decoration-forest">
           {m[1]}
         </Link>
       );
@@ -67,16 +67,16 @@ export function RichText({ text }: { text: string }) {
   return <>{parts.map((p, k) => (typeof p === "string" ? <Fragment key={`t${k}`}>{p}</Fragment> : p))}</>;
 }
 
-export function Kicker({ children, tone = "sage", className }: { children: ReactNode; tone?: "sage" | "brass"; className?: string }) {
+export function Kicker({ children, tone = "sage", className }: { children: ReactNode; tone?: "sage" | "mint"; className?: string }) {
   return (
     <p
       className={cn(
         "flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em]",
-        tone === "brass" ? "text-brass" : "text-sage",
+        tone === "mint" ? "text-mint" : "text-sage",
         className
       )}
     >
-      <span aria-hidden="true" className={cn("h-px w-6", tone === "brass" ? "bg-brass/70" : "bg-sage/60")} />
+      <span aria-hidden="true" className={cn("h-px w-6", tone === "mint" ? "bg-mint/70" : "bg-sage/60")} />
       {children}
     </p>
   );
@@ -94,16 +94,16 @@ export function SectionHead({
   title: ReactNode;
   text?: ReactNode;
   id?: string;
-  tone?: "sage" | "brass";
+  tone?: "sage" | "mint";
   className?: string;
 }) {
   return (
     <div className={className}>
       <Kicker tone={tone}>{kicker}</Kicker>
-      <h2 id={id} className="font-display mt-4 max-w-2xl text-3xl font-bold tracking-tight text-balance md:text-[2.75rem] md:leading-[1.08]">
+      <h2 id={id} className="font-display mt-4 max-w-2xl text-3xl font-bold text-balance md:text-[2.75rem] md:leading-[1.08]">
         {title}
       </h2>
-      {text && <p className={cn("mt-4 max-w-2xl text-[17px] leading-relaxed", tone === "brass" ? "text-mist/80" : "text-muted")}>{text}</p>}
+      {text && <p className={cn("mt-4 max-w-2xl text-[17px] leading-relaxed", tone === "mint" ? "text-mist/80" : "text-muted")}>{text}</p>}
     </div>
   );
 }
@@ -111,8 +111,8 @@ export function SectionHead({
 /** Answer-first summary block — the passage search and AI engines are most likely to quote. */
 export function AnswerBox({ label = "Quick answer", text, updated }: { label?: string; text: string; updated?: string }) {
   return (
-    <aside className="rounded-2xl border border-brass/40 bg-sand/30 p-6 md:p-7" aria-label={label}>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-copper">{label}</p>
+    <aside className="rounded-2xl border border-sage/20 bg-mint/30 p-6 md:p-7" aria-label={label}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">{label}</p>
       <p className="mt-3 text-[17px] leading-relaxed text-ink">{text}</p>
       {updated && (
         <p className="mt-4 text-xs text-muted">

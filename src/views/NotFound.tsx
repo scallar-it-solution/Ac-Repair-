@@ -25,7 +25,7 @@ export function NotFound({ route }: { route: RouteDef }) {
           <li key={p.to}>
             <Link
               to={p.to}
-              className="flex items-center justify-between rounded-xl border border-cream/15 bg-cream/5 px-4 py-3 text-sm font-medium transition hover:border-brass hover:text-sand"
+              className="flex items-center justify-between rounded-xl border border-cream/15 bg-cream/5 px-4 py-3 text-sm font-medium transition hover:border-mint hover:text-mint"
             >
               {p.label} <IconArrow size={16} />
             </Link>

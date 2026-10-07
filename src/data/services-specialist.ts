@@ -25,13 +25,13 @@ export const SPECIALIST: Service[] = [
     priceValue: 199,
     blurb:
       "AC died on a 45 °C afternoon or in the middle of the night? Same-day slots 7 AM–10 PM and night call-outs for dead machines in occupied rooms.",
-    metaTitle: "Emergency AC Repair Delhi NCR — Same-Day & Night | Airkraft",
+    metaTitle: "Emergency AC Repair Delhi NCR — Same-Day & Night | Frostwright",
     metaDescription:
       "AC stopped in peak heat or at night? Same-day repair across Delhi NCR from 7 AM to 10 PM, plus night emergency call-outs. ₹199 visit, waived on repair.",
     h1: "Emergency & same-day AC repair in Delhi NCR",
     lede: "When the AC dies in a Delhi summer, a closed room becomes unbearable within the hour. Send a photo and your landmark — we confirm a same-day slot, and run night call-outs for occupied rooms, the elderly, infants and clinics.",
     answer:
-      "Airkraft offers same-day AC repair across Delhi NCR between 7 AM and 10 PM, with typical daytime arrival of 45–90 minutes in South, Central and East Delhi, Noida and Gurugram, and a 24×7 emergency call-out for dead machines at night. The ₹199 inspection is waived if you approve the repair; night call-outs carry a surcharge that we tell you before booking.",
+      "Frostwright offers same-day AC repair across Delhi NCR between 7 AM and 10 PM, with typical daytime arrival of 45–90 minutes in South, Central and East Delhi, Noida and Gurugram, and a 24×7 emergency call-out for dead machines at night. The ₹199 inspection is waived if you approve the repair; night call-outs carry a surcharge that we tell you before booking.",
     photo: "outdoor",
     symptomsTitle: "Treat it as an emergency when",
     symptoms: [
@@ -95,13 +95,13 @@ export const SPECIALIST: Service[] = [
     price: "On quote",
     blurb:
       "Many ‘dead compressors’ are really a failed capacitor, contactor or overload. We test before anyone says ‘replace’ — and replace properly when it is needed.",
-    metaTitle: "AC Compressor Replacement in Delhi NCR | Tested First | Airkraft",
+    metaTitle: "AC Compressor Replacement in Delhi NCR | Tested First | Frostwright",
     metaDescription:
       "AC compressor not starting? We test windings, capacitor and overload before quoting a replacement — then braze, flush, vacuum and weigh in the gas. Delhi NCR.",
     h1: "AC compressor repair & replacement in Delhi NCR",
     lede: "The compressor is the most expensive part of an AC, which makes it the part most often ‘diagnosed’ carelessly. We prove it has failed before quoting — and when it has, we replace it the way the maker intended.",
     answer:
-      "Before replacing an AC compressor, Airkraft tests the start capacitor, contactor, overload protector, winding resistance and current draw, because many compressors written off as dead are stopped by one of these cheaper parts. If the compressor has genuinely failed, replacement includes brazing under nitrogen, a pressure test, vacuum and a weighed refrigerant charge. It is quoted after diagnosis, and the compressor carries its manufacturer’s warranty.",
+      "Before replacing an AC compressor, Frostwright tests the start capacitor, contactor, overload protector, winding resistance and current draw, because many compressors written off as dead are stopped by one of these cheaper parts. If the compressor has genuinely failed, replacement includes brazing under nitrogen, a pressure test, vacuum and a weighed refrigerant charge. It is quoted after diagnosis, and the compressor carries its manufacturer’s warranty.",
     photo: "workshop",
     symptomsTitle: "Signs the compressor needs testing",
     symptoms: [
@@ -165,13 +165,13 @@ export const SPECIALIST: Service[] = [
     priceValue: 499,
     blurb:
       "Dripping indoor unit, wet wall, puddle under the AC. Drain, tray, slope and insulation fixed — usually in one visit.",
-    metaTitle: "AC Water Leakage Repair in Delhi NCR from ₹499 | Airkraft",
+    metaTitle: "AC Water Leakage Repair in Delhi NCR from ₹499 | Frostwright",
     metaDescription:
       "Water dripping from your AC indoor unit? Drain flush, tray clean, slope correction and pipe insulation from ₹499. Same-day across Delhi, Noida and Gurugram.",
     h1: "AC water leakage repair in Delhi NCR",
     lede: "Water dripping from the indoor unit is almost never a gas problem. It is a blocked drain, a tilted unit, torn insulation or a coil freezing over — and most are fixed in one visit.",
     answer:
-      "AC water leakage repair at Airkraft starts at ₹499 in Delhi NCR. The technician finds where the water escapes — a blocked drain line, dirty tray, wrong drain slope, an indoor unit that is not level, torn pipe insulation or a coil freezing from low airflow — and fixes it on the same visit in most cases. If a frozen coil points to low refrigerant, the leak test and gas work are quoted separately.",
+      "AC water leakage repair at Frostwright starts at ₹499 in Delhi NCR. The technician finds where the water escapes — a blocked drain line, dirty tray, wrong drain slope, an indoor unit that is not level, torn pipe insulation or a coil freezing from low airflow — and fixes it on the same visit in most cases. If a frozen coil points to low refrigerant, the leak test and gas work are quoted separately.",
     photo: "living",
     symptomsTitle: "Where the water is coming from",
     symptoms: [
@@ -209,7 +209,7 @@ export const SPECIALIST: Service[] = [
     faqs: [
       {
         q: "How much does AC water leakage repair cost?",
-        a: "At Airkraft, drain and insulation repairs start at ₹499. If the tray and coil need a full clean, a wet service is ₹499 for a split AC and ₹449 for a window AC.",
+        a: "At Frostwright, drain and insulation repairs start at ₹499. If the tray and coil need a full clean, a wet service is ₹499 for a split AC and ₹449 for a window AC.",
       },
       {
         q: "Can I keep using the AC while it leaks?",
@@ -231,13 +231,13 @@ export const SPECIALIST: Service[] = [
     price: "On quote",
     blurb:
       "Moving house or rooms? Gas pumped down into the outdoor unit, lines capped, then a fresh install with new flares, vacuum and a leak test.",
-    metaTitle: "AC Shifting Service in Delhi NCR | Uninstall & Reinstall | Airkraft",
+    metaTitle: "AC Shifting Service in Delhi NCR | Uninstall & Reinstall | Frostwright",
     metaDescription:
       "Moving house? AC shifting across Delhi NCR: gas pumped down, lines capped, units handed over safely and reinstalled with new flares, vacuum and a leak test.",
     h1: "AC shifting & reinstallation in Delhi NCR",
     lede: "Most AC problems after a house move come from the move itself: gas lost on removal, kinked pipes, old flares reused, no vacuum. We shift ACs the way they should be shifted.",
     answer:
-      "AC shifting at Airkraft means pumping the refrigerant down into the outdoor unit before removal, capping the lines, handing the units over upright and padded for your movers, then reinstalling with fresh flares, a vacuum, a leak test and a run test. Uninstallation, reinstallation and any extra copper are quoted on WhatsApp before the visit; standard split installation at the new place starts at ₹1,499.",
+      "AC shifting at Frostwright means pumping the refrigerant down into the outdoor unit before removal, capping the lines, handing the units over upright and padded for your movers, then reinstalling with fresh flares, a vacuum, a leak test and a run test. Uninstallation, reinstallation and any extra copper are quoted on WhatsApp before the visit; standard split installation at the new place starts at ₹1,499.",
     photo: "outdoor",
     symptomsTitle: "Book AC shifting when",
     symptoms: [
@@ -298,13 +298,13 @@ export const SPECIALIST: Service[] = [
     price: "On quote",
     blurb:
       "Outdoor fan not spinning, weak airflow indoors, grinding or squealing. Capacitor, motor, bearings or blower wheel — tested, then fixed.",
-    metaTitle: "AC Fan Motor Repair & Replacement in Delhi NCR | Airkraft",
+    metaTitle: "AC Fan Motor Repair & Replacement in Delhi NCR | Frostwright",
     metaDescription:
       "Outdoor fan not spinning or weak airflow indoors? We test the capacitor, motor and blower wheel, then repair or replace with OEM-grade parts. Same-day in Delhi NCR.",
     h1: "AC fan motor & blower repair in Delhi NCR",
     lede: "A stopped outdoor fan is an emergency for the compressor; a slow indoor blower kills cooling quietly. Both are usually quick fixes once someone tests the right part.",
     answer:
-      "When an AC’s outdoor fan stops or the indoor airflow drops, Airkraft tests the fan capacitor, the motor windings or DC fan driver, the bearings and the blower wheel before replacing anything. Fixed-speed ACs often need only a capacitor; inverter ACs use DC fan motors driven by the board, so the board is tested too. Repairs are quoted after testing, with a 90-day warranty on the part fitted.",
+      "When an AC’s outdoor fan stops or the indoor airflow drops, Frostwright tests the fan capacitor, the motor windings or DC fan driver, the bearings and the blower wheel before replacing anything. Fixed-speed ACs often need only a capacitor; inverter ACs use DC fan motors driven by the board, so the board is tested too. Repairs are quoted after testing, with a 90-day warranty on the part fitted.",
     photo: "acUnit",
     symptomsTitle: "Fan problems we fix",
     symptoms: [
@@ -360,13 +360,13 @@ export const SPECIALIST: Service[] = [
     price: "On quote",
     blurb:
       "Gas keeps leaking out? Pinholes in the indoor or outdoor coil are found under nitrogen pressure, then brazed — or the coil is replaced.",
-    metaTitle: "AC Coil Leak Repair & Replacement in Delhi NCR | Airkraft",
+    metaTitle: "AC Coil Leak Repair & Replacement in Delhi NCR | Frostwright",
     metaDescription:
       "AC losing gas every few months? We find coil pinholes with a nitrogen pressure test, then braze or replace the indoor or outdoor coil and recharge by weight.",
     h1: "AC coil leak repair & replacement in Delhi NCR",
     lede: "If your AC needs gas every summer, the leak is often in a coil. Another top-up does not fix it — finding the pinhole does.",
     answer:
-      "When an AC keeps losing refrigerant, Airkraft pressurises the system with nitrogen to locate the leak in the indoor (evaporator) or outdoor (condenser) coil. Accessible pinholes and bends can be brazed; a coil with several or hidden leaks is replaced. The system is then vacuumed and recharged by weight. Coil work is quoted after the leak is found; gas filling starts at ₹1,799 for R32 or R410A.",
+      "When an AC keeps losing refrigerant, Frostwright pressurises the system with nitrogen to locate the leak in the indoor (evaporator) or outdoor (condenser) coil. Accessible pinholes and bends can be brazed; a coil with several or hidden leaks is replaced. The system is then vacuumed and recharged by weight. Coil work is quoted after the leak is found; gas filling starts at ₹1,799 for R32 or R410A.",
     photo: "leakTest",
     symptomsTitle: "Signs of a coil leak",
     symptoms: [

@@ -14,7 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const ROOT = path.resolve(".next/server/app");
-const SITE = "https://airkraft.in";
+const SITE = "https://frostwright.in";
 if (!fs.existsSync(ROOT)) {
   console.error("No build found. Run `npm run build` first.");
   process.exit(1);
@@ -37,7 +37,8 @@ const meta = (h, attr, key) => {
   return tag ? dec((tag.match(/content="([^"]*)"/) || [])[1] || "") : null;
 };
 
-const files = walk(ROOT).filter((f) => f.endsWith(".html") && !f.includes("_global-error") && !f.includes(`${path.sep}_`));
+// Next-internal pages start with "_"; keep _not-found so the 404 noindex check runs.
+const files = walk(ROOT).filter((f) => f.endsWith(".html") && (!f.includes(`${path.sep}_`) || f.endsWith(`${path.sep}_not-found.html`)));
 const pages = files.map((f) => {
   const html = fs.readFileSync(f, "utf8");
   const url = toUrl(f);

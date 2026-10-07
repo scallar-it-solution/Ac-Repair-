@@ -14,7 +14,7 @@ export function BrandMarquee() {
           {[0, 1].map((copy) => (
             <ul key={copy} className="flex shrink-0 gap-12 pr-12" aria-hidden={copy === 1 ? true : undefined}>
               {BRANDS.map((b) => (
-                <li key={b} className="font-display text-xl font-semibold tracking-tight text-forest/70 md:text-2xl">
+                <li key={b} className="font-display text-xl font-semibold text-forest/70 md:text-2xl">
                   {b}
                 </li>
               ))}

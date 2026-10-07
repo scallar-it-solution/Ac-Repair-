@@ -3,7 +3,7 @@ import { brandBySlug, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES, clusterOf, guideBySlug, guidePath, readingMinutes } from "../data/guides";
 import { SERVICES, serviceBySlug, servicePath } from "../data/services";
-import { AUTHOR, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, abs } from "../data/site";
+import { AUTHOR, HERO_IMAGE, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, abs } from "../data/site";
 import type { RouteDef } from "../routes";
 
 type Node = Record<string, unknown>;
@@ -31,8 +31,8 @@ function business(): Node {
     slogan: SITE.tagline,
     telephone: SITE.phone,
     email: SITE.email,
-    logo: { "@type": "ImageObject", "@id": LOGO_ID, url: abs("/images/logo.png"), width: 512, height: 512 },
-    image: abs(OG_IMAGE.src),
+    logo: { "@type": "ImageObject", "@id": LOGO_ID, url: abs("/brand/logo-720.png"), width: 720, height: 720 },
+    image: [abs(HERO_IMAGE.src), abs(OG_IMAGE.src)],
     priceRange: "₹199–₹2,499",
     currenciesAccepted: "INR",
     paymentAccepted: SITE.payment.join(", "),
@@ -299,7 +299,7 @@ export function buildGraph(route: RouteDef): Node {
       graph.push({
         "@type": "OfferCatalog",
         "@id": `${url}#prices`,
-        name: "Airkraft AC service price list",
+        name: "Frostwright AC service price list",
         itemListElement: PRICE_GROUPS.flatMap((g) => g.rows).map((p) => ({
           "@type": "Offer",
           name: p.job,

@@ -53,7 +53,7 @@ export function ContactForm({ compact = false, defaultIssue }: { compact?: boole
     if (e.area) return areaRef.current?.focus();
 
     const msg = [
-      "Hi Airkraft, I want to book an AC technician.",
+      "Hi Frostwright, I want to book an AC technician.",
       name.trim() && `Name: ${name.trim()}`,
       `Phone: ${phone.trim()}`,
       `Area: ${area.trim()}`,

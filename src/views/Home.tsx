@@ -80,9 +80,9 @@ export function Home({ route }: { route: RouteDef }) {
               <span className="live-dot h-2 w-2 rounded-full bg-wa" aria-hidden="true" />
               Same-day slots · {SITE.hours}
             </p>
-            <h1 className="rise font-display mt-6 max-w-3xl text-[2.6rem] font-extrabold leading-[1] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="rise font-display mt-6 max-w-3xl text-[2.6rem] font-bold leading-[1] sm:text-6xl lg:text-7xl">
               Same-day AC repair in Delhi NCR.
-              <span className="mt-2 block text-sand">Diagnosed, not guessed.</span>
+              <span className="mt-2 block text-mint">Diagnosed, not guessed.</span>
             </h1>
             <p className="rise-2 mt-6 max-w-xl text-base leading-relaxed text-mist/90 md:text-lg">
               Split, window, inverter and cassette ACs across Delhi, Noida, Gurugram, Ghaziabad and Faridabad. Pressures
@@ -97,7 +97,7 @@ export function Home({ route }: { route: RouteDef }) {
               </a>
             </div>
             <div className="rise-3 mt-7 flex items-center gap-3 text-sm text-mist/80">
-              <span className="flex text-brass" aria-hidden="true">
+              <span className="flex text-mint" aria-hidden="true">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <IconStar key={i} size={15} />
                 ))}
@@ -182,7 +182,7 @@ export function Home({ route }: { route: RouteDef }) {
                   to={s.to}
                   className="group flex h-full items-start gap-4 rounded-2xl border border-line bg-cream p-6 transition hover:border-forest/40 hover:shadow-lg hover:shadow-forest/5"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-mist text-forest transition-colors group-hover:bg-forest group-hover:text-sand">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-mist text-forest transition-colors group-hover:bg-forest group-hover:text-mint">
                     <s.icon size={20} />
                   </span>
                   <span className="flex-1">
@@ -206,12 +206,12 @@ export function Home({ route }: { route: RouteDef }) {
           </div>
           <div className="px-5 py-16 md:px-14 md:py-24">
             <Reveal>
-              <SectionHead tone="brass" kicker="How we work" title="Four steps. No theatre." />
+              <SectionHead tone="mint" kicker="How we work" title="Four steps. No theatre." />
             </Reveal>
             <ol className="mt-10 space-y-8">
               {PROCESS.map((p, i) => (
                 <Reveal as="li" key={p.step} delay={i + 1} className="grid grid-cols-[auto_1fr] gap-5">
-                  <span className="font-display flex h-10 w-10 items-center justify-center rounded-full border border-brass/50 text-sm font-bold text-brass">
+                  <span className="font-display flex h-10 w-10 items-center justify-center rounded-full border border-mint/50 text-sm font-bold text-mint">
                     {p.step}
                   </span>
                   <div>
@@ -229,7 +229,7 @@ export function Home({ route }: { route: RouteDef }) {
       <section className="bg-cream py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <SectionHead kicker="Why Airkraft" title="Built by people who still carry a manifold gauge, not a sales script." />
+            <SectionHead kicker="Why Frostwright" title="Built by people who still carry a manifold gauge, not a sales script." />
           </Reveal>
           <div className="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
             {REASONS.map((r, i) => {
@@ -249,14 +249,14 @@ export function Home({ route }: { route: RouteDef }) {
           <Reveal className="mt-16">
             <div className="overflow-hidden rounded-2xl border border-line">
               <table className="w-full text-left text-sm md:text-[15px]">
-                <caption className="sr-only">How Airkraft compares with a typical AC repair visit</caption>
+                <caption className="sr-only">How Frostwright compares with a typical AC repair visit</caption>
                 <thead>
                   <tr>
                     <th scope="col" className="w-1/2 bg-paper px-5 py-4 font-semibold text-muted">
                       The usual visit
                     </th>
                     <th scope="col" className="w-1/2 bg-forest px-5 py-4 font-semibold text-cream">
-                      An Airkraft visit
+                      A Frostwright visit
                     </th>
                   </tr>
                 </thead>
@@ -297,7 +297,7 @@ export function Home({ route }: { route: RouteDef }) {
             </Link>
           </Reveal>
           <Reveal delay={2} className="md:col-span-7">
-            <PriceTable rows={PRICING} caption="Airkraft AC service starting prices in Delhi NCR" />
+            <PriceTable rows={PRICING} caption="Frostwright AC service starting prices in Delhi NCR" />
           </Reveal>
         </div>
       </section>
@@ -308,7 +308,7 @@ export function Home({ route }: { route: RouteDef }) {
           <Reveal>
             <SectionHead
               id="reviews-heading"
-              tone="brass"
+              tone="mint"
               kicker="Field notes"
               title="What people say after the room actually cools."
             />
@@ -317,7 +317,7 @@ export function Home({ route }: { route: RouteDef }) {
             {TESTIMONIALS.map((t, i) => (
               <Reveal as="li" key={t.name} delay={(i % 2) + 1}>
                 <figure className="flex h-full flex-col rounded-2xl border border-cream/10 bg-pine/40 p-7">
-                  <div className="flex gap-1 text-brass" role="img" aria-label={`Rated ${t.rating} out of 5`}>
+                  <div className="flex gap-1 text-mint" role="img" aria-label={`Rated ${t.rating} out of 5`}>
                     {Array.from({ length: t.rating }).map((_, s) => (
                       <IconStar key={s} size={14} />
                     ))}
@@ -328,7 +328,7 @@ export function Home({ route }: { route: RouteDef }) {
                       <span className="block font-semibold text-cream">{t.name}</span>
                       <span className="text-mist/60">{t.area}</span>
                     </span>
-                    <span className="text-right text-xs text-brass">{t.machine}</span>
+                    <span className="text-right text-xs text-mint">{t.machine}</span>
                   </figcaption>
                 </figure>
               </Reveal>
@@ -345,7 +345,7 @@ export function Home({ route }: { route: RouteDef }) {
           <Reveal className="flex flex-col justify-between gap-6 text-cream md:flex-row md:items-end">
             <SectionHead
               id="areas-heading"
-              tone="brass"
+              tone="mint"
               kicker="Coverage"
               title="Delhi, Noida, Gurugram, Ghaziabad, Faridabad."
               text="Fifty-plus neighbourhoods. Same WhatsApp number. Same warranty."

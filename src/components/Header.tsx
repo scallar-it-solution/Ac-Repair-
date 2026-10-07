@@ -77,14 +77,20 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
       )}
     >
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-4 px-5 md:h-20 md:px-8">
-        <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Airkraft Cooling — home">
-          <LogoMark className="h-9 w-9" />
-          <span className="leading-none">
-            <span className={cn("font-display block text-[17px] font-extrabold tracking-tight", solid ? "text-ink" : "text-cream")}>
-              Airkraft
+        {/* Horizontal lockup (icon + FROSTWRIGHT + "AC Repair · Delhi NCR"), set in live Oswald so the tagline stays legible at header size. */}
+        <Link to="/" className="flex shrink-0 items-center gap-2.5" aria-label="Frostwright AC Repair — home">
+          <LogoMark tone={solid ? "pine" : "mint"} className="h-11 w-11 md:h-12 md:w-12" />
+          <span className="font-display leading-none">
+            <span
+              className={cn(
+                "block text-[22px] font-bold uppercase leading-none tracking-[0.01em] md:text-[24px]",
+                solid ? "text-forest" : "text-mint"
+              )}
+            >
+              Frostwright
             </span>
-            <span className={cn("block text-[10px] font-medium uppercase tracking-[0.22em]", solid ? "text-sage" : "text-sand/80")}>
-              Cooling
+            <span className={cn("mt-1 block text-[11px] font-medium tracking-[0.06em]", solid ? "text-muted" : "text-mint/75")}>
+              AC Repair · Delhi NCR
             </span>
           </span>
         </Link>
@@ -158,7 +164,7 @@ export function Header({ services, areas }: { services: MenuService[]; areas: Me
             rel="noopener noreferrer"
             className={cn(
               "hidden items-center gap-2 rounded-full px-4 py-2.5 text-[13px] font-semibold transition sm:inline-flex",
-              solid ? "bg-forest text-cream hover:bg-pine" : "bg-cream text-forest hover:bg-sand"
+              solid ? "bg-forest text-cream hover:bg-pine" : "bg-cream text-forest hover:bg-mint"
             )}
           >
             <IconWhatsApp size={16} />
@@ -277,12 +283,12 @@ function ServicesPanel({ services }: { services: MenuService[] }) {
           return (
             <li key={s.href}>
               <Link to={s.href} className="group flex gap-3 rounded-xl p-3 transition-colors hover:bg-paper">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-mint">
                   <Icon size={18} />
                 </span>
                 <span>
                   <span className="block text-sm font-semibold text-ink group-hover:text-forest">{s.name}</span>
-                  <span className="mt-0.5 block text-xs text-copper">{s.price}</span>
+                  <span className="mt-0.5 block text-xs text-sage">{s.price}</span>
                 </span>
               </Link>
             </li>
@@ -322,7 +328,7 @@ function AreasPanel({ areas }: { areas: MenuArea[] }) {
         {areas.map((a) => (
           <li key={a.href}>
             <Link to={a.href} className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors hover:bg-paper">
-              <IconPin size={16} className="text-brass" />
+              <IconPin size={16} className="text-sage" />
               <span className="font-medium">{a.city}</span>
             </Link>
           </li>

@@ -18,7 +18,7 @@ const PRIVACY: Section[] = [
     h: "Who we are",
     body: (
       <p>
-        {SITE.legal} (“Airkraft”, “we”) provides AC repair and maintenance services in Delhi NCR from a dispatch desk in{" "}
+        {SITE.legal} (“Frostwright”, “we”) provides AC repair and maintenance services in Delhi NCR from a dispatch desk in{" "}
         {SITE.address.locality}. For any privacy question, write to {mail}.
       </p>
     ),

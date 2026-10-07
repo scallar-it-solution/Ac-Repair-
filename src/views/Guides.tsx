@@ -27,7 +27,7 @@ export function Guides({ route }: { route: RouteDef }) {
               <li key={c.id}>
                 <a
                   href={`#${c.id}`}
-                  className="inline-block rounded-full border border-cream/20 px-4 py-2 text-sm transition hover:border-brass hover:text-sand"
+                  className="inline-block rounded-full border border-cream/20 px-4 py-2 text-sm transition hover:border-mint hover:text-mint"
                 >
                   {c.name} <span className="text-mist/60">({guidesInCluster(c.id).length})</span>
                 </a>
@@ -43,7 +43,7 @@ export function Guides({ route }: { route: RouteDef }) {
             <AnswerBox
               label="About these guides"
               updated={SITE.updated}
-              text={`${GUIDES.length} guides written and reviewed by Airkraft’s technicians for Delhi NCR’s climate: why ACs stop cooling, leak, smell or show error codes; what gas filling and repairs really cost; how often to service; how to size, buy, protect and install an AC; and a glossary of the terms on your quote.`}
+              text={`${GUIDES.length} guides written and reviewed by Frostwright’s technicians for Delhi NCR’s climate: why ACs stop cooling, leak, smell or show error codes; what gas filling and repairs really cost; how often to service; how to size, buy, protect and install an AC; and a glossary of the terms on your quote.`}
             />
           </div>
 
@@ -55,7 +55,7 @@ export function Guides({ route }: { route: RouteDef }) {
                 <section key={c.id} id={c.id} aria-labelledby={`${c.id}-h`} className="scroll-mt-28">
                   <div className="flex flex-col justify-between gap-4 border-b border-line pb-6 md:flex-row md:items-end">
                     <div>
-                      <h2 id={`${c.id}-h`} className="font-display text-3xl font-bold tracking-tight">
+                      <h2 id={`${c.id}-h`} className="font-display text-3xl font-bold">
                         {c.name}
                       </h2>
                       <p className="mt-2 max-w-2xl text-muted">{c.intro}</p>

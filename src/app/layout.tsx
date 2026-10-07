@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Outfit } from "next/font/google";
+import { Oswald, Outfit } from "next/font/google";
 import type { ReactNode } from "react";
 import { ClientEffects } from "@/components/ClientEffects";
 import { Footer } from "@/components/Footer";
@@ -10,11 +10,11 @@ import { SERVICES, servicePath } from "@/data/services";
 import { SITE } from "@/data/site";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
+// Oswald is the Frostwright brand face (headings, lockup); Outfit stays for body copy.
+const display = Oswald({
   subsets: ["latin"],
-  axes: ["opsz"],
   display: "swap",
-  variable: "--font-bricolage",
+  variable: "--font-oswald",
 });
 
 const sans = Outfit({

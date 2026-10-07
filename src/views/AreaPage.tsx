@@ -19,7 +19,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
   const a = areaBySlug(route.slug!);
   if (!a) return <NotFound route={route} />;
   const places = a.zones.flatMap((z) => z.places);
-  const waText = `Hi Airkraft, I need AC repair in ${a.city}. Please share the next slot.`;
+  const waText = `Hi Frostwright, I need AC repair in ${a.city}. Please share the next slot.`;
   const review = TESTIMONIALS.find((t) => t.area.includes(a.city) || places.some((p) => t.area.includes(p)));
   const others = AREAS.filter((x) => x.slug !== a.slug);
   const guides = (AREA_GUIDES[a.slug] ?? []).map(guideBySlug).filter((g): g is Guide => !!g);
@@ -41,7 +41,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
               { Icon: IconShield, k: "Warranty", v: `${SITE.warranty} on repairs, GST invoice` },
             ].map(({ Icon, k, v }) => (
               <div key={k} className="flex items-start gap-4 bg-forest/95 p-5">
-                <Icon size={20} className="mt-0.5 shrink-0 text-brass" />
+                <Icon size={20} className="mt-0.5 shrink-0 text-mint" />
                 <div>
                   <dt className="text-xs uppercase tracking-[0.16em] text-mist/60">{k}</dt>
                   <dd className="mt-1 font-medium text-cream">{v}</dd>
@@ -72,12 +72,12 @@ export function AreaPage({ route }: { route: RouteDef }) {
                     {z.places.map((p) => (
                       <li key={p}>
                         <a
-                          href={waLink(`Hi Airkraft, I need AC repair in ${p}, ${a.city}. Please share the next slot.`)}
+                          href={waLink(`Hi Frostwright, I need AC repair in ${p}, ${a.city}. Please share the next slot.`)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 rounded-full border border-line bg-cream px-3 py-1.5 text-sm transition hover:border-forest hover:text-forest"
                         >
-                          <IconPin size={13} className="text-brass" /> {p}
+                          <IconPin size={13} className="text-sage" /> {p}
                         </a>
                       </li>
                     ))}
@@ -110,7 +110,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
           {review && (
             <Reveal className="mt-12">
               <figure className="rounded-2xl bg-forest p-8 text-cream md:p-10">
-                <div className="flex gap-1 text-brass" role="img" aria-label={`Rated ${review.rating} out of 5`}>
+                <div className="flex gap-1 text-mint" role="img" aria-label={`Rated ${review.rating} out of 5`}>
                   {Array.from({ length: review.rating }).map((_, s) => (
                     <IconStar key={s} size={15} />
                   ))}

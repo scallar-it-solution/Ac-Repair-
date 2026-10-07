@@ -19,9 +19,9 @@ export function About({ route }: { route: RouteDef }) {
     <>
       <PageHero
         crumbs={route.crumbs}
-        kicker="About Airkraft"
+        kicker="About Frostwright"
         title="A workshop that learned to show up on time."
-        lede={`Airkraft started in ${SITE.founded} as two technicians with a van and a rule: do not invent a dead compressor to close a sale. That rule paid better than the sale.`}
+        lede={`Frostwright started in ${SITE.founded} as two technicians with a van and a rule: do not invent a dead compressor to close a sale. That rule paid better than the sale.`}
         photo="training"
         actions={false}
       />
@@ -35,7 +35,7 @@ export function About({ route }: { route: RouteDef }) {
             <Reveal>
               <p>
                 Delhi NCR summers punish machines and people equally. The market responded with visiting charges, mystery
-                “gas khatam” quotes, and a new contractor every April. We built Airkraft as the opposite of that — a small
+                “gas khatam” quotes, and a new contractor every April. We built Frostwright as the opposite of that — a small
                 bench, logged jobs, and technicians who can read an inverter error without calling a friend.
               </p>
             </Reveal>
@@ -81,7 +81,7 @@ export function About({ route }: { route: RouteDef }) {
             {TEAM.map((t, i) => (
               <Reveal as="li" key={t.name} delay={i + 1}>
                 <article className="h-full rounded-2xl border border-line bg-cream p-6">
-                  <span className="font-display flex h-12 w-12 items-center justify-center rounded-full bg-forest text-sand">
+                  <span className="font-display flex h-12 w-12 items-center justify-center rounded-full bg-forest text-mint">
                     {t.name
                       .split(" ")
                       .map((w) => w[0])
@@ -91,7 +91,7 @@ export function About({ route }: { route: RouteDef }) {
                   <p className="mt-1 text-sm text-muted">{t.role}</p>
                   <p className="mt-4 flex items-center justify-between border-t border-line pt-4 text-sm">
                     <span className="text-forest">{t.focus}</span>
-                    <span className="font-semibold text-copper">{t.years}</span>
+                    <span className="font-semibold text-sage">{t.years}</span>
                   </p>
                 </article>
               </Reveal>

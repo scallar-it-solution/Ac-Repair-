@@ -47,7 +47,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/",
     kind: "home",
-    title: "AC Repair & Service in Delhi NCR — Same Day | Airkraft",
+    title: "AC Repair & Service in Delhi NCR — Same Day | Frostwright",
     description:
       "Same-day AC repair in Delhi, Noida, Gurugram, Ghaziabad & Faridabad. Split, window & inverter ACs. Diagnosis first, GST invoice, 90-day warranty.",
     crumbs: [HOME],
@@ -56,7 +56,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/services",
     kind: "services",
-    title: "AC Services in Delhi NCR: Repair, Gas, Install & AMC | Airkraft",
+    title: "AC Services in Delhi NCR: Repair, Gas, Install & AMC | Frostwright",
     description:
       "Every AC service we offer in Delhi NCR — servicing, split, window and inverter repair, gas filling, installation, AMC and VRF — with published prices.",
     crumbs: [HOME, SERVICES_CRUMB],
@@ -65,7 +65,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/pricing",
     kind: "pricing",
-    title: "AC Repair & Service Price List in Delhi NCR (2026) | Airkraft",
+    title: "AC Repair & Service Price List in Delhi NCR (2026) | Frostwright",
     description:
       "AC service from ₹449, repair ₹499, PCB ₹799, installation ₹1,499, gas filling ₹1,799, AMC ₹2,499. ₹199 visit charge, waived when you approve the repair.",
     crumbs: [HOME, { name: "Pricing", path: "/pricing" }],
@@ -74,16 +74,16 @@ const STATIC: RouteDef[] = [
   {
     path: "/service-areas",
     kind: "areas",
-    title: "AC Repair Near Me in Delhi NCR — All Areas Covered | Airkraft",
+    title: "AC Repair Near Me in Delhi NCR — All Areas Covered | Frostwright",
     description:
-      "Airkraft covers all of Delhi NCR: South Delhi, Dwarka, Rohini, Noida, Greater Noida, Gurugram, Ghaziabad, Faridabad and 50+ neighbourhoods. Same-day slots.",
+      "Frostwright covers all of Delhi NCR: South Delhi, Dwarka, Rohini, Noida, Greater Noida, Gurugram, Ghaziabad, Faridabad and 50+ neighbourhoods. Same-day slots.",
     crumbs: [HOME, AREAS_CRUMB],
     priority: 0.8,
   },
   {
     path: "/guides",
     kind: "guides",
-    title: "AC Repair & Maintenance Guides for Delhi NCR | Airkraft",
+    title: "AC Repair & Maintenance Guides for Delhi NCR | Frostwright",
     description:
       "Practical guides from working AC technicians: why your AC is not cooling, gas filling costs, service schedules for Delhi’s climate and error codes explained.",
     crumbs: [HOME, GUIDES_CRUMB],
@@ -92,16 +92,16 @@ const STATIC: RouteDef[] = [
   {
     path: "/about",
     kind: "about",
-    title: "About Airkraft | AC Technicians in Delhi NCR Since 2014",
+    title: "About Frostwright | AC Technicians in Delhi NCR Since 2014",
     description:
-      "Airkraft is a Delhi NCR AC repair company run by working technicians. 18,400+ jobs, 90-day parts & labour warranty, GST invoices, no scare-selling.",
+      "Frostwright is a Delhi NCR AC repair company run by working technicians. 18,400+ jobs, 90-day parts & labour warranty, GST invoices, no scare-selling.",
     crumbs: [HOME, { name: "About", path: "/about" }],
     priority: 0.5,
   },
   {
     path: "/contact",
     kind: "contact",
-    title: "Contact Airkraft — Book AC Repair on WhatsApp | +91 93155 15700",
+    title: "Contact Frostwright — Book AC Repair on WhatsApp | +91 93155 15700",
     description:
       "Book a same-day AC technician on WhatsApp or call +91 93155 15700. 7 AM–10 PM daily, emergency night call-outs. Delhi, Noida, Gurugram, Ghaziabad, Faridabad.",
     crumbs: [HOME, { name: "Contact", path: "/contact" }],
@@ -110,7 +110,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/faq",
     kind: "faq",
-    title: "AC Repair FAQs — Prices, Warranty, Gas & Booking | Airkraft",
+    title: "AC Repair FAQs — Prices, Warranty, Gas & Booking | Frostwright",
     description:
       "Answers to the questions Delhi NCR customers ask most: visit charges, arrival times, gas filling, warranty, brands, AMC, installation and payments.",
     crumbs: [HOME, { name: "FAQ", path: "/faq" }],
@@ -119,7 +119,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/brands",
     kind: "brands",
-    title: "Daikin, Voltas, LG & All-Brand AC Repair in Delhi NCR | Airkraft",
+    title: "Daikin, Voltas, LG & All-Brand AC Repair in Delhi NCR | Frostwright",
     description:
       "Independent repair and service for Daikin, Voltas, LG, Samsung, Blue Star, Lloyd, Hitachi, Carrier, Panasonic and more across Delhi NCR. Same-day slots.",
     crumbs: [HOME, BRANDS_CRUMB],
@@ -128,17 +128,17 @@ const STATIC: RouteDef[] = [
   {
     path: "/privacy-policy",
     kind: "privacy",
-    title: "Privacy Policy | Airkraft Cooling",
-    description: "How Airkraft Cooling handles the information you share when you book an AC service.",
+    title: "Privacy Policy | Frostwright AC Repair",
+    description: "How Frostwright AC Repair handles the information you share when you book an AC service.",
     crumbs: [HOME, { name: "Privacy Policy", path: "/privacy-policy" }],
     priority: 0.2,
   },
   {
     path: "/terms",
     kind: "terms",
-    title: "Terms of Service & Warranty | Airkraft Cooling",
+    title: "Terms of Service & Warranty | Frostwright AC Repair",
     description:
-      "Terms for Airkraft AC service visits: inspection charge, quotes, payment, cancellations and the 90-day repair warranty.",
+      "Terms for Frostwright AC service visits: inspection charge, quotes, payment, cancellations and the 90-day repair warranty.",
     crumbs: [HOME, { name: "Terms & Warranty", path: "/terms" }],
     priority: 0.2,
   },
@@ -147,7 +147,7 @@ const STATIC: RouteDef[] = [
 const NOT_FOUND: RouteDef = {
   path: "/404",
   kind: "notfound",
-  title: "Page not found | Airkraft",
+  title: "Page not found | Frostwright",
   description: "This page does not exist. Find AC repair services, prices and service areas across Delhi NCR.",
   crumbs: [HOME],
   noindex: true,

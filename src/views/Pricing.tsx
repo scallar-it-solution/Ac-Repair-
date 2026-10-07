@@ -51,7 +51,7 @@ export function Pricing({ route }: { route: RouteDef }) {
             ].map(([k, v]) => (
               <div key={k} className="rounded-2xl border border-cream/10 bg-cream/5 p-5 backdrop-blur">
                 <dt className="text-xs uppercase tracking-[0.16em] text-mist/70">{k}</dt>
-                <dd className="font-display mt-2 text-3xl font-bold text-sand">
+                <dd className="font-display mt-2 text-3xl font-bold text-mint">
                   <span className="text-base font-medium text-mist/70">from </span>
                   {v}
                 </dd>
@@ -67,7 +67,7 @@ export function Pricing({ route }: { route: RouteDef }) {
             <AnswerBox
               label="Quick answer"
               updated={SITE.updated}
-              text={`In Delhi NCR, Airkraft charges from ₹449 for a window AC wet service and ₹499 for a split AC wet service, from ₹799 for PCB repair, ₹1,499 for split AC installation, ₹1,799 for R32/R410A gas filling (₹2,499 for R22) and ₹2,499 per year for a single-AC AMC. The ${SITE.visitFee} inspection is waived when you approve the repair.`}
+              text={`In Delhi NCR, Frostwright charges from ₹449 for a window AC wet service and ₹499 for a split AC wet service, from ₹799 for PCB repair, ₹1,499 for split AC installation, ₹1,799 for R32/R410A gas filling (₹2,499 for R22) and ₹2,499 per year for a single-AC AMC. The ${SITE.visitFee} inspection is waived when you approve the repair.`}
             />
           </div>
 

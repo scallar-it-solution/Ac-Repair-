@@ -65,13 +65,13 @@ export const SERVICES: Service[] = [
     priceValue: 449,
     blurb:
       "Foam and pressure-jet wet service for split and window ACs. Coil, blower, drain and outdoor condenser — with a before/after cooling check.",
-    metaTitle: "AC Service in Delhi NCR from ₹449 | Jet Wet Service | Airkraft",
+    metaTitle: "AC Service in Delhi NCR from ₹449 | Jet Wet Service | Frostwright",
     metaDescription:
       "Split AC wet service ₹499, window AC ₹449. Foam + pressure-jet cleaning of coil, blower and drain, outdoor wash and a cooling test. Same-day slots across Delhi NCR.",
     h1: "AC service & deep cleaning in Delhi NCR",
     lede: "Foam and pressure-jet wet service for split and window ACs — indoor coil, blower wheel, drain tray and the outdoor condenser. We test cooling before and after, so you can see what the clean actually did.",
     answer:
-      "A wet AC service from Airkraft costs ₹499 for a split AC and ₹449 for a window AC in Delhi NCR. It covers foam and pressure-jet cleaning of the indoor coil, blower and drain, a wash of the outdoor condenser, and a cooling and current-draw test. Gas is never topped up without a leak test.",
+      "A wet AC service from Frostwright costs ₹499 for a split AC and ₹449 for a window AC in Delhi NCR. It covers foam and pressure-jet cleaning of the indoor coil, blower and drain, a wash of the outdoor condenser, and a cooling and current-draw test. Gas is never topped up without a leak test.",
     photo: "acUnit",
     symptomsTitle: "Book a service when you notice",
     symptoms: [
@@ -135,13 +135,13 @@ export const SERVICES: Service[] = [
     priceValue: 499,
     blurb:
       "Cooling drop, water leak, noise, remote faults, sensor errors — diagnosed on site, not guessed from the gate.",
-    metaTitle: "Split AC Repair in Delhi NCR | Same-Day, 90-Day Warranty | Airkraft",
+    metaTitle: "Split AC Repair in Delhi NCR | Same-Day, 90-Day Warranty | Frostwright",
     metaDescription:
       "Split AC not cooling, leaking or noisy? Same-day diagnosis across Delhi, Noida and Gurugram. Inverter and fixed-speed, all major brands. Repairs from ₹499.",
     h1: "Split AC repair in Delhi NCR",
     lede: "We open the indoor unit, test the PCB, check the blower, measure suction and discharge pressures — and only then quote. Most split AC jobs in Delhi NCR finish on the first visit.",
     answer:
-      "Airkraft repairs split ACs of every major brand across Delhi NCR, usually on the first visit. Common fixes — capacitor, fan motor, drain blockage, sensor or PCB — start at ₹499, after a ₹199 inspection that is waived if you approve the repair. Every repair carries a 90-day warranty on the part fitted and its labour.",
+      "Frostwright repairs split ACs of every major brand across Delhi NCR, usually on the first visit. Common fixes — capacitor, fan motor, drain blockage, sensor or PCB — start at ₹499, after a ₹199 inspection that is waived if you approve the repair. Every repair carries a 90-day warranty on the part fitted and its labour.",
     photo: "workshop",
     symptomsTitle: "Split AC faults we fix every day",
     symptoms: [
@@ -205,13 +205,13 @@ export const SERVICES: Service[] = [
     priceValue: 449,
     blurb:
       "The unloved workhorse of older Delhi flats. We still stock parts, still fix them, still stand behind the job.",
-    metaTitle: "Window AC Repair & Service in Delhi NCR from ₹449 | Airkraft",
+    metaTitle: "Window AC Repair & Service in Delhi NCR from ₹449 | Frostwright",
     metaDescription:
       "Window AC not cooling, noisy or leaking? Capacitor, fan motor, thermostat and gas repairs for every brand and age. Wet service ₹449. Same-day in Delhi NCR.",
     h1: "Window AC repair & service in Delhi NCR",
     lede: "Capacitor, fan motor, thermostat, gas top-up and full wet service for window units of every vintage — Voltas, LG, Carrier, Hitachi, Videocon and the rest.",
     answer:
-      "Airkraft still repairs window ACs of every age and brand across Delhi NCR. A full pull-out wet service costs ₹449. Common repairs — capacitor, fan motor, thermostat, relay and gas leaks — are diagnosed on site and quoted on WhatsApp before work starts, with a 90-day warranty on the part fitted.",
+      "Frostwright still repairs window ACs of every age and brand across Delhi NCR. A full pull-out wet service costs ₹449. Common repairs — capacitor, fan motor, thermostat, relay and gas leaks — are diagnosed on site and quoted on WhatsApp before work starts, with a 90-day warranty on the part fitted.",
     photo: "apartments",
     symptomsTitle: "Window AC problems we see most",
     symptoms: [
@@ -266,13 +266,13 @@ export const SERVICES: Service[] = [
     priceValue: 799,
     blurb:
       "Error codes, dead outdoor units, communication faults. We read the code, test the board and repair at component level where that is safe.",
-    metaTitle: "Inverter AC & PCB Repair in Delhi NCR from ₹799 | Airkraft",
+    metaTitle: "Inverter AC & PCB Repair in Delhi NCR from ₹799 | Frostwright",
     metaDescription:
       "Inverter AC error code or outdoor unit not starting? Board-level PCB diagnosis and repair for Daikin, LG, Samsung, Voltas and more. From ₹799 in Delhi NCR.",
     h1: "Inverter AC & PCB repair in Delhi NCR",
     lede: "Inverter faults usually announce themselves as a blinking code. We read it, test sensors, both boards and the compressor drive, and repair at component level where it is safe — instead of swapping a ₹9,000 board by reflex.",
     answer:
-      "Inverter AC faults usually appear as a blinking error code. Airkraft reads the code, tests sensors, the indoor and outdoor PCBs and the compressor drive, and repairs the board at component level where that is safe. PCB inspection and repair starts at ₹799 across Delhi NCR; board-level parts are quoted after testing.",
+      "Inverter AC faults usually appear as a blinking error code. Frostwright reads the code, tests sensors, the indoor and outdoor PCBs and the compressor drive, and repairs the board at component level where that is safe. PCB inspection and repair starts at ₹799 across Delhi NCR; board-level parts are quoted after testing.",
     photo: "pcb",
     symptomsTitle: "Signs of an inverter or PCB fault",
     symptoms: [
@@ -333,13 +333,13 @@ export const SERVICES: Service[] = [
     priceValue: 1799,
     blurb:
       "We find the leak first. Filling gas into a leaking coil is how you get called again in three weeks.",
-    metaTitle: "AC Gas Filling in Delhi NCR from ₹1,799 | Leak Test First | Airkraft",
+    metaTitle: "AC Gas Filling in Delhi NCR from ₹1,799 | Leak-Tested | Frostwright",
     metaDescription:
       "AC gas refill from ₹1,799 (R32/R410A) and ₹2,499 (R22). Nitrogen leak test, vacuum and weighed charge — grams on the invoice. Same-day in Delhi NCR.",
     h1: "AC gas filling in Delhi NCR — leak test first",
     lede: "Nitrogen pressure test, leak detection, vacuum, then a weighed charge of R32, R410A or R22. Your invoice lists the gas type and grams charged.",
     answer:
-      "AC gas filling at Airkraft starts at ₹1,799 for R32 or R410A and ₹2,499 for R22 (subject to stock) in Delhi NCR. It includes a nitrogen pressure test, leak detection, vacuum and a weighed charge, and the invoice lists the gas and grams used. We never refill without finding the leak, because a healthy AC does not consume refrigerant.",
+      "AC gas filling at Frostwright starts at ₹1,799 for R32 or R410A and ₹2,499 for R22 (subject to stock) in Delhi NCR. It includes a nitrogen pressure test, leak detection, vacuum and a weighed charge, and the invoice lists the gas and grams used. We never refill without finding the leak, because a healthy AC does not consume refrigerant.",
     photo: "gauges",
     symptomsTitle: "Signs your AC may actually be low on gas",
     symptoms: [
@@ -403,13 +403,13 @@ export const SERVICES: Service[] = [
     priceValue: 1499,
     blurb:
       "Core cutting, copper running, vacuuming, drainage fall — done like a fit-out, not a jugaad on the balcony.",
-    metaTitle: "AC Installation in Delhi NCR from ₹1,499 | Split AC Fitting | Airkraft",
+    metaTitle: "Split AC Installation in Delhi NCR from ₹1,499 | Frostwright",
     metaDescription:
       "Split AC installation from ₹1,499 with 3 m copper kit, core cutting, proper drain fall and vacuum. Uninstallation and house shifting too. Same-day across Delhi NCR.",
     h1: "AC installation & uninstallation in Delhi NCR",
     lede: "Standard 1–2 ton split installs, high-wall mounts, heavy outdoor stands, copper extension and shifting between rooms or houses. Vacuumed every time — never ‘purged’ with the machine’s own gas.",
     answer:
-      "Split AC installation at Airkraft starts at ₹1,499 for a standard 1–1.5 ton unit in Delhi NCR. It includes core cutting, indoor and outdoor mounting, the standard 3-metre copper kit, drain routing with proper fall, vacuuming and a run test. Uninstallation, shifting and extra copper are quoted on WhatsApp before the visit.",
+      "Split AC installation at Frostwright starts at ₹1,499 for a standard 1–1.5 ton unit in Delhi NCR. It includes core cutting, indoor and outdoor mounting, the standard 3-metre copper kit, drain routing with proper fall, vacuuming and a run test. Uninstallation, shifting and extra copper are quoted on WhatsApp before the visit.",
     photo: "outdoor",
     symptomsTitle: "When to call us",
     symptoms: [
@@ -473,13 +473,13 @@ export const SERVICES: Service[] = [
     priceValue: 2499,
     blurb:
       "Two wet services, a dry service, priority call-outs and AMC-rate parts. Built for people done chasing a new number every May.",
-    metaTitle: "AC AMC in Delhi NCR from ₹2,499/yr | Annual Maintenance | Airkraft",
+    metaTitle: "AC AMC in Delhi NCR from ₹2,499/yr | Annual Maintenance | Frostwright",
     metaDescription:
       "Annual AC maintenance from ₹2,499 per AC: 2 wet + 1 dry service, priority summer slots, AMC-rate parts and a WhatsApp log for every machine.",
     h1: "AC AMC plans in Delhi NCR",
     lede: "Residential and small-office AMC. We log every machine — brand, tonnage, gas, last service — so the next technician never starts from zero.",
     answer:
-      "An Airkraft residential AC AMC starts at ₹2,499 per AC per year in Delhi NCR. It includes two wet services and one dry service, priority slots in peak summer, parts at AMC rates and a WhatsApp service log for each machine. Multi-AC home plans and AMCs for offices with five or more machines are quoted after a survey.",
+      "A Frostwright residential AC AMC starts at ₹2,499 per AC per year in Delhi NCR. It includes two wet services and one dry service, priority slots in peak summer, parts at AMC rates and a WhatsApp service log for each machine. Multi-AC home plans and AMCs for offices with five or more machines are quoted after a survey.",
     photo: "living",
     symptomsTitle: "Who an AMC is for",
     symptoms: [
@@ -511,7 +511,7 @@ export const SERVICES: Service[] = [
     ],
     faqs: [
       {
-        q: "What does an Airkraft AMC include?",
+        q: "What does a Frostwright AMC include?",
         a: "Two wet services and one dry service per AC per year, priority slots during peak summer, parts at AMC rates, WhatsApp reminders and a service log for every machine, and a GST invoice.",
       },
       {
@@ -537,13 +537,13 @@ export const SERVICES: Service[] = [
     price: "On-site quote",
     blurb:
       "Cassette, ductable and small VRF for shops, clinics, restaurants and offices. Night work if you cannot shut the floor.",
-    metaTitle: "Cassette & VRF AC Repair in Delhi NCR | Commercial AC | Airkraft",
+    metaTitle: "Cassette & VRF AC Repair in Delhi NCR | Commercial AC | Frostwright",
     metaDescription:
       "Cassette, ductable and VRF/VRV AC service and repair for offices, clinics, restaurants and shops in Delhi NCR. Night work, GST invoices and AMC for 5+ machines.",
     h1: "Cassette, ductable & VRF AC service in Delhi NCR",
     lede: "Drain-pump failures, indoor PCBs, outdoor inverter boards, communication errors and gas circuits. We coordinate with facility managers and keep a paper trail.",
     answer:
-      "Airkraft services cassette, ductable and small VRF/VRV systems for shops, clinics, restaurants and offices across Delhi NCR. Typical work covers drain-pump failures, indoor and outdoor PCB faults, communication errors and refrigerant circuits. Night and weekend work is available so the floor stays open, and every job comes with a GST invoice.",
+      "Frostwright services cassette, ductable and small VRF/VRV systems for shops, clinics, restaurants and offices across Delhi NCR. Typical work covers drain-pump failures, indoor and outdoor PCB faults, communication errors and refrigerant circuits. Night and weekend work is available so the floor stays open, and every job comes with a GST invoice.",
     photo: "delhiStreet",
     photoAlt: "Commercial and office towers along a Delhi NCR road",
     symptomsTitle: "Commercial faults we handle",

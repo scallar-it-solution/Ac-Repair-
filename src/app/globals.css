@@ -2,25 +2,24 @@
 
 /* Font families come from next/font (self-hosted at build time) via CSS variables set on <html>. */
 @theme inline {
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-oswald), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Frostwright palette: deep pine + ice mint, copper reserved for the gauge needle and focus/caution accents. */
 @theme {
   --color-ink: #0c1210;
   --color-forest: #14352c;
   --color-pine: #1c463a;
   --color-sage: #3d6b5a;
   --color-moss: #6f8f7e;
-  --color-brass: #c9a36a;
-  /* Darkened from #c4783a so small price text passes WCAG AA (≈5:1 on cream). */
-  --color-copper: #9f5a22;
-  --color-sand: #e8d5b5;
-  --color-paper: #f4efe6;
-  --color-cream: #fbfaf7;
+  --color-mint: #bfe8dc;
+  --color-copper: #c27a4a;
+  --color-paper: #ebf2ee;
+  --color-cream: #f6faf8;
   --color-mist: #dce8e3;
-  --color-line: #d7cfc2;
-  --color-muted: #5c6b64;
+  --color-line: #d2dfd8;
+  --color-muted: #5b6b65;
   --color-wa: #25d366;
 }
 
@@ -41,11 +40,11 @@ body {
 
 ::selection {
   background: var(--color-forest);
-  color: var(--color-sand);
+  color: var(--color-mint);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-brass);
+  outline: 2px solid var(--color-copper);
   outline-offset: 3px;
 }
 
@@ -96,7 +95,7 @@ body {
   color: var(--color-forest);
 }
 .btn-light:hover {
-  background: var(--color-sand);
+  background: var(--color-mint);
 }
 .btn-outline {
   border: 1px solid var(--color-forest);
@@ -240,7 +239,7 @@ html[data-navigated] .page-shell {
 
 .glow {
   background:
-    radial-gradient(60% 80% at 85% 0%, color-mix(in srgb, var(--color-brass) 22%, transparent), transparent 70%),
+    radial-gradient(60% 80% at 85% 0%, color-mix(in srgb, var(--color-mint) 16%, transparent), transparent 70%),
     radial-gradient(50% 60% at 0% 100%, color-mix(in srgb, var(--color-sage) 35%, transparent), transparent 70%);
 }
 

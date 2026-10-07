@@ -13,7 +13,7 @@ export const GAS: Guide[] = [
     excerpt:
       "Prices for R32, R410A and R22, what a proper gas charge should include, and why the cheapest top-up usually costs the most.",
     answer:
-      "In Delhi NCR, Airkraft’s AC gas filling starts at ₹1,799 for R32 or R410A and ₹2,499 for R22 (subject to stock), including a nitrogen leak test, vacuum and a weighed charge. The final price depends on where the leak is and whether a coil or joint needs repair. A healthy AC never needs routine gas top-ups.",
+      "In Delhi NCR, Frostwright’s AC gas filling starts at ₹1,799 for R32 or R410A and ₹2,499 for R22 (subject to stock), including a nitrogen leak test, vacuum and a weighed charge. The final price depends on where the leak is and whether a coil or joint needs repair. A healthy AC never needs routine gas top-ups.",
     published: D,
     updated: D,
     photo: "leakTest",
@@ -31,7 +31,7 @@ export const GAS: Guide[] = [
       },
       {
         t: "p",
-        text: "These are Airkraft’s published starting prices, including the leak test, vacuum and charge. Leak repairs beyond re-making a flare joint — brazing, coil repair — are quoted once the leak is found. All rates are on the [price list](/pricing).",
+        text: "These are Frostwright’s published starting prices, including the leak test, vacuum and charge. Leak repairs beyond re-making a flare joint — brazing, coil repair — are quoted once the leak is found. All rates are on the [price list](/pricing).",
       },
       { t: "h2", id: "do-you-need-it", text: "First: do you actually need gas?" },
       {
@@ -89,7 +89,7 @@ export const GAS: Guide[] = [
     faqs: [
       {
         q: "What is the cost of AC gas filling in Delhi?",
-        a: "At Airkraft, gas filling starts at ₹1,799 for R32 or R410A and ₹2,499 for R22, including a leak test, vacuum and weighed charge. Leak repairs beyond re-making a flare joint are quoted after the leak is found.",
+        a: "At Frostwright, gas filling starts at ₹1,799 for R32 or R410A and ₹2,499 for R22, including a leak test, vacuum and weighed charge. Leak repairs beyond re-making a flare joint are quoted after the leak is found.",
       },
       {
         q: "How often does an AC need gas filling?",
@@ -108,7 +108,7 @@ export const GAS: Guide[] = [
     slug: "ac-gas-leak-signs",
     cluster: "gas",
     title: "How to tell if your AC is low on gas — and why it always means a leak",
-    metaTitle: "Signs Your AC Is Low on Gas (Refrigerant Leak) | Airkraft Delhi NCR",
+    metaTitle: "Signs Your AC Is Low on Gas (Refrigerant Leak) | Frostwright Delhi NCR",
     metaDescription:
       "The real signs of low AC refrigerant — fading cooling, frost on the thin pipe, hissing, oily joints, leak error codes — and why a top-up without a leak test fails.",
     excerpt:

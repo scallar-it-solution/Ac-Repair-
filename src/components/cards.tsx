@@ -19,10 +19,10 @@ export function ServiceCard({ s, tone = "paper" }: { s: Service; tone?: "paper" 
       )}
     >
       <span className="flex items-start justify-between">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-sand transition-colors group-hover:bg-sage">
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-mint transition-colors group-hover:bg-sage">
           <Icon size={22} />
         </span>
-        <span className="rounded-full bg-sand/50 px-3 py-1 text-xs font-semibold text-copper">{s.price}</span>
+        <span className="rounded-full bg-mint/45 px-3 py-1 text-xs font-semibold text-forest">{s.price}</span>
       </span>
       <span className="font-display mt-6 block text-2xl font-semibold leading-tight">{s.name}</span>
       <span className="mt-3 block flex-1 text-sm leading-relaxed text-muted">{s.blurb}</span>
@@ -39,18 +39,18 @@ export function AreaCard({ a }: { a: Area }) {
   return (
     <Link
       to={areaPath(a.slug)}
-      className="group flex h-full flex-col rounded-2xl border border-cream/15 bg-cream/5 p-6 backdrop-blur-sm transition hover:border-brass/60 hover:bg-cream/10"
+      className="group flex h-full flex-col rounded-2xl border border-cream/15 bg-cream/5 p-6 backdrop-blur-sm transition hover:border-mint/60 hover:bg-cream/10"
     >
       <span className="flex items-center justify-between">
         <span className="font-display text-2xl font-bold text-cream">{a.city}</span>
-        <IconPin size={20} className="text-brass" />
+        <IconPin size={20} className="text-mint" />
       </span>
       <span className="mt-2 block text-xs uppercase tracking-[0.18em] text-mist/60">{a.state}</span>
       <span className="mt-4 block flex-1 text-sm leading-relaxed text-mist/80">
         {places.slice(0, 5).join(" · ")}
         {places.length > 5 ? ` + ${places.length - 5} more` : ""}
       </span>
-      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-sand">
+      <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint">
         AC repair in {a.city}
         <IconArrow size={16} className="transition-transform group-hover:translate-x-1" />
       </span>
@@ -97,12 +97,12 @@ export function ServiceLinkGrid({ services, tone = "paper" }: { services: Servic
                 tone === "paper" ? "bg-paper" : "bg-cream"
               )}
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-sand">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-mint">
                 <Icon size={18} />
               </span>
               <span className="flex-1">
                 <span className="block text-sm font-semibold">{s.name}</span>
-                <span className="block text-xs text-copper">{s.price}</span>
+                <span className="block text-xs text-sage">{s.price}</span>
               </span>
               <IconArrow size={16} className="text-moss transition-transform group-hover:translate-x-0.5" />
             </Link>

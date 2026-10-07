@@ -18,7 +18,7 @@ import { NotFound } from "./NotFound";
 export function ServicePage({ route }: { route: RouteDef }) {
   const s = serviceBySlug(route.slug!);
   if (!s) return <NotFound route={route} />;
-  const waText = `Hi Airkraft, I need ${s.name} in Delhi NCR. Please share a slot.`;
+  const waText = `Hi Frostwright, I need ${s.name} in Delhi NCR. Please share a slot.`;
   const related = s.related.map(serviceBySlug).filter((x) => x !== undefined);
   const guides = guidesForService(s.slug);
 
@@ -67,7 +67,7 @@ export function ServicePage({ route }: { route: RouteDef }) {
                     {i < s.process.length - 1 && (
                       <span aria-hidden="true" className="absolute left-5 top-10 h-[calc(100%-2.5rem)] w-px bg-line" />
                     )}
-                    <span className="font-display relative flex h-10 w-10 items-center justify-center rounded-full bg-forest text-sm font-bold text-sand">
+                    <span className="font-display relative flex h-10 w-10 items-center justify-center rounded-full bg-forest text-sm font-bold text-mint">
                       {i + 1}
                     </span>
                     <div className="pt-1.5">
@@ -147,9 +147,9 @@ export function ServicePage({ route }: { route: RouteDef }) {
                   <li key={a.slug}>
                     <Link
                       to={areaPath(a.slug)}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-cream/20 px-3.5 py-2 text-sm transition hover:border-brass hover:text-sand"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-cream/20 px-3.5 py-2 text-sm transition hover:border-mint hover:text-mint"
                     >
-                      <IconPin size={14} className="text-brass" /> {a.city}
+                      <IconPin size={14} className="text-mint" /> {a.city}
                     </Link>
                   </li>
                 ))}

@@ -43,7 +43,7 @@ export function Brands({ route }: { route: RouteDef }) {
             <AnswerBox
               label="In short"
               updated={SITE.updated}
-              text={`Airkraft repairs and services Daikin, Voltas, LG, Samsung, Lloyd, Blue Star, Hitachi, Carrier, Mitsubishi, O General, Panasonic, Godrej, Haier, Whirlpool and most other ACs sold in India, across Delhi NCR. We are an independent service, not an authorised brand service centre — if your AC is still under manufacturer warranty, call the brand first.`}
+              text={`Frostwright repairs and services Daikin, Voltas, LG, Samsung, Lloyd, Blue Star, Hitachi, Carrier, Mitsubishi, O General, Panasonic, Godrej, Haier, Whirlpool and most other ACs sold in India, across Delhi NCR. We are an independent service, not an authorised brand service centre — if your AC is still under manufacturer warranty, call the brand first.`}
             />
           </div>
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -69,7 +69,7 @@ export function Brands({ route }: { route: RouteDef }) {
                         </Link>
                       )}
                       <a
-                        href={waLink(`Hi Airkraft, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`)}
+                        href={waLink(`Hi Frostwright, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className={page ? "text-muted hover:text-forest" : "inline-flex items-center gap-2 text-forest"}

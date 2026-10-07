@@ -27,11 +27,11 @@ export function Areas({ route }: { route: RouteDef }) {
           <div className="max-w-3xl">
             <AnswerBox
               label="Coverage in short"
-              text={`Airkraft covers six cities and ${count}+ neighbourhoods across Delhi NCR from a dispatch desk in ${SITE.address.locality}. Typical daytime arrival is ${SITE.eta} in South, Central and East Delhi, Noida and Gurugram; Greater Noida, Ghaziabad and Faridabad get same-day slots with the exact window confirmed on WhatsApp.`}
+              text={`Frostwright covers six cities and ${count}+ neighbourhoods across Delhi NCR from a dispatch desk in ${SITE.address.locality}. Typical daytime arrival is ${SITE.eta} in South, Central and East Delhi, Noida and Gurugram; Greater Noida, Ghaziabad and Faridabad get same-day slots with the exact window confirmed on WhatsApp.`}
             />
           </div>
 
-          <h2 className="font-display mt-16 max-w-2xl text-3xl font-bold tracking-tight md:text-4xl">
+          <h2 className="font-display mt-16 max-w-2xl text-3xl font-bold md:text-4xl">
             AC repair near you — city by city
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -49,7 +49,7 @@ export function Areas({ route }: { route: RouteDef }) {
                         <IconClock size={13} /> {a.eta}
                       </p>
                     </div>
-                    <IconPin className="shrink-0 text-brass" />
+                    <IconPin className="shrink-0 text-sage" />
                   </div>
                   <ul className="mt-6 flex flex-1 flex-wrap content-start gap-2">
                     {a.zones
@@ -57,7 +57,7 @@ export function Areas({ route }: { route: RouteDef }) {
                       .map((p) => (
                         <li key={p}>
                           <a
-                            href={waLink(`Hi Airkraft, I need AC repair in ${p}, ${a.city}. Please share the next slot.`)}
+                            href={waLink(`Hi Frostwright, I need AC repair in ${p}, ${a.city}. Please share the next slot.`)}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block rounded-full border border-line bg-cream px-3 py-1.5 text-sm transition hover:border-forest hover:text-forest"

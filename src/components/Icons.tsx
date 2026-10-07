@@ -331,12 +331,33 @@ export const SERVICE_ICONS = {
   coil: IconCoil,
 } as const;
 
-export function LogoMark({ className = "h-9 w-9" }: { className?: string }) {
+const SNOWFLAKE =
+  "M256 263.68V221.44M256 241.92l13.58-13.58M256 241.92l-13.58-13.58M240.48 272.64l-36.58-21.12M221.64 261.76l-4.97-18.55M221.64 261.76l-18.55 4.97M240.48 290.56l-36.58 21.12M221.64 301.44l-18.55-4.97M221.64 301.44l-4.97 18.55M256 299.52v42.24M256 321.28l-13.58 13.58M256 321.28l13.58 13.58M271.52 290.56l36.58 21.12M290.36 301.44l4.97 18.55M290.36 301.44l18.55-4.97M271.52 272.64l36.58-21.12M290.36 261.76l18.55 4.97M290.36 261.76l4.97-18.55";
+const TICKS: [number, number, number, number][] = [
+  [97.23, 223.81, 120.08, 232.13],
+  [159.09, 143.2, 173.04, 163.12],
+  [256, 112.64, 256, 136.96],
+  [352.91, 143.2, 338.96, 163.12],
+  [414.77, 223.81, 391.92, 232.13],
+];
+
+/**
+ * Frostwright master icon (gauge + snowflake), as in the brand kit's horizontal lockup.
+ * "pine" is the standard mark for light backgrounds; "mint" is the reversed mark for dark ones.
+ */
+export function LogoMark({ className = "h-11 w-11", tone = "pine" }: { className?: string; tone?: "pine" | "mint" }) {
+  const [disc, gauge] = tone === "pine" ? ["#14352c", "#bfe8dc"] : ["#bfe8dc", "#14352c"];
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true" focusable="false">
-      <circle cx="20" cy="20" r="19" fill="#14352c" />
-      <circle cx="20" cy="20" r="16.2" fill="none" stroke="#c9a36a" strokeWidth="1" />
-      <path d="M20 8.5 10.5 28h3.6l1.7-3.5h8.4L25.9 28h3.6L20 8.5zm0 6.4 2.6 5.4h-5.2L20 14.9z" fill="#c9a36a" />
+    <svg viewBox="0 0 512 512" className={className} aria-hidden="true" focusable="false">
+      <circle cx="256" cy="256" r="256" fill={disc} />
+      <path d="M97.23 339.39A168.96 168.96 0 1 1 414.77 339.39" fill="none" stroke={gauge} strokeWidth="16.9" strokeLinecap="round" />
+      {TICKS.map(([x1, y1, x2, y2]) => (
+        <line key={x1} x1={x1} y1={y1} x2={x2} y2={y2} stroke={gauge} strokeWidth="14.08" strokeLinecap="round" />
+      ))}
+      <path d={SNOWFLAKE} fill="none" stroke={gauge} strokeWidth="11.26" strokeLinecap="round" />
+      <polygon points="256,153.6 267.78,281.6 244.22,281.6" fill={gauge} />
+      <polygon points="256,153.6 260.71,204.8 251.29,204.8" fill="#c27a4a" />
+      <circle cx="256" cy="281.6" r="14.08" fill={disc} stroke={gauge} strokeWidth="7.68" />
     </svg>
   );
 }
