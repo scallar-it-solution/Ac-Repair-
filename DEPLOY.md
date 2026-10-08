@@ -190,9 +190,13 @@ Then proxy `frostwright.in` to `http://127.0.0.1:3000` and redirect `www` to the
   "14 years" bio, testimonials, team/author names and all prices. Also confirm `hello@frostwright.in`, the dispatch desk
   address `New Delhi 110019` and phone `+91 93155 15700`. Deployment does not establish that these claims are accurate.
 
-- The earlier Vercel copy (`airkraft-ac-repair.vercel.app`) still exists. Its canonical tags already point to
-  frostwright.in, but delete that Vercel project once this server is live so only one copy of the site is public.
-- In Google Search Console, add `frostwright.in` as a Domain property and submit `https://frostwright.in/sitemap.xml`.
+- Search indexing is temporarily disabled site-wide by `src/data/indexing.json` (`enabled: false`): pages emit
+  `noindex, follow`, responses carry `X-Robots-Tag: noindex, follow`, and the sitemap has no URLs. Crawling stays
+  allowed so search engines can see the directives. Removal of existing results requires recrawling.
+- The existing Vercel copy (`airkraft-ac-repair.vercel.app`) was also updated with these directives at the owner's
+  request. It is not Git-connected; future indexing changes must be deployed there separately, or the project removed.
+- When the owner decides to restore indexing, set `enabled` to `true` and deploy. In Google Search Console, add
+  `frostwright.in` as a Domain property and submit `https://frostwright.in/sitemap.xml` after it contains URLs again.
 
 ## Shared VPS configuration (7 October 2026)
 

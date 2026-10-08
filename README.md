@@ -73,6 +73,8 @@ Search indexing is temporarily disabled for the entire site through `src/data/in
 All pages emit `noindex, follow`, responses also carry `X-Robots-Tag: noindex, follow`, and the sitemap has no URLs.
 `robots.txt` allows crawling so search engines can read the noindex directives. Existing search results disappear only
 after recrawling. After the owner decides to restore indexing, set `enabled` to `true` and deploy again; the 404 remains noindex.
+The existing `airkraft-ac-repair.vercel.app` copy also has noindex enabled. It is not Git-connected, so it needs a separate
+manual deployment for future indexing changes, or removal if the owner no longer wants that copy.
 
 Production runs as a Docker container on a Hostinger VPS, behind Caddy (automatic HTTPS). GitHub Actions verifies the site and builds the Docker image on pushes and pull requests. Pushes to `main` publish `docker.io/pateldeepesh/acrepair` when Docker Hub credentials are set; the VPS receives the immutable `sha-<commit>` tag once `DEPLOY_ENABLED=true`. Server setup, secrets and rollback: [DEPLOY.md](DEPLOY.md).
 
