@@ -22,7 +22,7 @@ import {
   IconX,
 } from "../components/Icons";
 import { Reveal } from "../components/Reveal";
-import { Photo, SectionHead, formatCount } from "../components/ui";
+import { Photo, SectionHead } from "../components/ui";
 import { AREAS } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES } from "../data/guides";
@@ -96,24 +96,10 @@ export function Home({ route }: { route: RouteDef }) {
                 <IconPhone size={18} /> {SITE.phoneDisplay}
               </a>
             </div>
-            <div className="rise-3 mt-7 flex items-center gap-3 text-sm text-mist/80">
-              <span className="flex text-mint" aria-hidden="true">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <IconStar key={i} size={15} />
-                ))}
-              </span>
-              <span>
-                <strong className="font-semibold text-cream">{SITE.rating}/5</strong> from {formatCount(SITE.reviewCount)}+
-                customers
-              </span>
-            </div>
-
-            <dl className="rise-3 mt-12 grid max-w-2xl grid-cols-2 gap-6 border-t border-cream/15 pt-8 sm:grid-cols-4">
+            <dl className="rise-3 mt-12 grid max-w-md grid-cols-2 gap-6 border-t border-cream/15 pt-8">
               {[
-                [SITE.jobs, "Jobs done"],
                 [SITE.eta, "Typical arrival"],
                 [SITE.warranty, "Repair warranty"],
-                [`Since ${SITE.founded}`, "In Delhi NCR"],
               ].map(([k, v]) => (
                 <div key={v}>
                   <dt className="text-[11px] uppercase tracking-[0.18em] text-mist/60">{v}</dt>

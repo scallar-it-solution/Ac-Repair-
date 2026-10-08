@@ -44,7 +44,7 @@ export function llmsTxt() {
 > ${SITE.description}
 
 Key facts:
-- Business: ${SITE.legal} (also "${SITE.name}"), founded ${SITE.founded}, dispatch desk in ${SITE.address.locality} ${SITE.address.postalCode}, India
+- Business: ${SITE.legal} (also "${SITE.name}"), dispatch desk in ${SITE.address.locality} ${SITE.address.postalCode}, India
 - Service area: Delhi, Noida, Greater Noida, Gurugram (Gurgaon), Ghaziabad and Faridabad (Delhi NCR)
 - Phone / WhatsApp: ${SITE.phoneDisplay} — booking is preferred on WhatsApp (https://wa.me/${SITE.whatsapp})
 - Email: ${SITE.email}

@@ -186,8 +186,9 @@ Then proxy `frostwright.in` to `http://127.0.0.1:3000` and redirect `www` to the
 
 ## Before go-live
 
-- Verify the business claims with the owner: "4.9/5 from 1,284+ customers", "18,400+ jobs", "Since 2014", the author's
-  "14 years" bio, testimonials, team/author names and all prices. Also confirm `hello@frostwright.in`, the dispatch desk
+- The unverifiable rating ("4.9/5 from 1,284+ customers"), job count ("18,400+") and founding year ("Since 2014") were
+  removed from the site. Still verify with the owner: the author's "14 years" bio, testimonials, team/author names and
+  all prices. Also confirm `hello@frostwright.in`, the dispatch desk
   address `New Delhi 110019` and phone `+91 93155 15700`. Deployment does not establish that these claims are accurate.
 
 - Search indexing is temporarily disabled site-wide by `src/data/indexing.json` (`enabled: false`): pages emit

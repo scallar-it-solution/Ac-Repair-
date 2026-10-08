@@ -143,7 +143,7 @@ export function Footer() {
           <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <p suppressHydrationWarning>
               © {new Date().getFullYear()} {SITE.legal}. All rights reserved. GST invoices · 90-day repair warranty ·
-              Serving Delhi NCR since {SITE.founded}.
+              Serving Delhi NCR.
             </p>
             <nav aria-label="Company">
               <ul className="flex flex-wrap gap-x-3 gap-y-1 [&_a]:inline-block [&_a]:px-1.5 [&_a]:py-1.5">

@@ -123,11 +123,6 @@ export function AnswerBox({ label = "Quick answer", text, updated }: { label?: s
   );
 }
 
-/** Thousands separators without Intl, so server and browser output always match. */
-export function formatCount(n: number) {
-  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
 export function formatDate(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

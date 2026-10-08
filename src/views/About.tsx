@@ -3,7 +3,7 @@ import { IconArrow, IconShield } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Kicker, Photo, SectionHead } from "../components/ui";
-import { SITE, TEAM } from "../data/site";
+import { TEAM } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 
@@ -21,7 +21,7 @@ export function About({ route }: { route: RouteDef }) {
         crumbs={route.crumbs}
         kicker="About Frostwright"
         title="A workshop that learned to show up on time."
-        lede={`Frostwright started in ${SITE.founded} as two technicians with a van and a rule: do not invent a dead compressor to close a sale. That rule paid better than the sale.`}
+        lede="Frostwright started as two technicians with a van and a rule: do not invent a dead compressor to close a sale. That rule paid better than the sale."
         photo="training"
         actions={false}
       />
@@ -42,8 +42,8 @@ export function About({ route }: { route: RouteDef }) {
             <Reveal delay={2}>
               <p>
                 Today we run a dispatch desk in New Delhi, a parts shelf that actually has R32 gauges, and an AMC book for
-                homes and clinics that do not want to re-explain their cassette every May. {SITE.jobs} jobs later, the rule
-                is the same: diagnosis first.
+                homes and clinics that do not want to re-explain their cassette every May. The rule has not changed:
+                diagnosis first.
               </p>
             </Reveal>
             <Reveal delay={3}>
@@ -54,22 +54,6 @@ export function About({ route }: { route: RouteDef }) {
             </Reveal>
           </div>
         </div>
-      </section>
-
-      <section className="bg-forest py-16 text-cream">
-        <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-5 md:grid-cols-4 md:px-8">
-          {[
-            [String(SITE.founded), "Year we started"],
-            [SITE.jobs, "Documented jobs"],
-            [SITE.warranty, "Workmanship cover"],
-            [`${SITE.rating} / 5`, "Customer rating"],
-          ].map(([n, l]) => (
-            <div key={l} className="flex flex-col-reverse">
-              <dt className="mt-2 text-xs uppercase tracking-[0.18em] text-mist/60">{l}</dt>
-              <dd className="font-display stat-number text-3xl font-bold md:text-5xl">{n}</dd>
-            </div>
-          ))}
-        </dl>
       </section>
 
       <section className="bg-paper py-20 md:py-28" aria-labelledby="team">

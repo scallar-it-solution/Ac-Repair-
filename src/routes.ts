@@ -92,9 +92,9 @@ const STATIC: RouteDef[] = [
   {
     path: "/about",
     kind: "about",
-    title: "About Frostwright | AC Technicians in Delhi NCR Since 2014",
+    title: "About Frostwright | Independent AC Technicians in Delhi NCR",
     description:
-      "Frostwright is a Delhi NCR AC repair company run by working technicians. 18,400+ jobs, 90-day parts & labour warranty, GST invoices, no scare-selling.",
+      "Frostwright is a Delhi NCR AC repair company run by working technicians: diagnosis first, 90-day parts & labour warranty, GST invoices, no scare-selling.",
     crumbs: [HOME, { name: "About", path: "/about" }],
     priority: 0.5,
   },

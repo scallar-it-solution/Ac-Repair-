@@ -36,7 +36,6 @@ function business(): Node {
     priceRange: "₹199–₹2,499",
     currenciesAccepted: "INR",
     paymentAccepted: SITE.payment.join(", "),
-    foundingDate: String(SITE.founded),
     address: {
       "@type": "PostalAddress",
       addressLocality: SITE.address.locality,
