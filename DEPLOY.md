@@ -137,20 +137,26 @@ deploy key. This mode sends only a validated immutable image request; CI cannot 
 
 An administrator installs these files once (and repeats installation when shared deployment configuration changes):
 
-- `deploy/docker-compose.shared.yml` and `deploy/shared-nginx.conf` into `/srv/scallar/frostwright/compose/`, root-owned
-  and not writable by `deploy`.
+- `deploy/docker-compose.shared.yml` into `/srv/scallar/frostwright/compose/`, root-owned and not writable by `deploy`.
+  Install `deploy/shared-nginx.conf` there as `shared-nginx.template.conf`; the driver writes the selected slot into
+  the live `shared-nginx.conf`. On a new installation, also copy the template to the live filename initially.
 - `deploy/shared-vps-deploy.sh` as `/srv/scallar/shared/bin/frostwright-deploy.sh`, `root:root`, mode `0755`.
 - A root-owned `/srv/scallar/frostwright/env/deploy.env` (mode `0600`) with `IMAGE=` initially empty, and a
   `/srv/scallar/frostwright/inbox/` directory owned by `deploy`; only the inbox is writable by that account.
 - A sudoers file allowing `deploy` exactly the wrapper's `login`, `logout`, `deploy` and `status` commands, without
   wildcards. Validate it with `visudo -cf` before enabling it.
 
-The Next.js container has a read-only filesystem and an internal network; a small nginx edge connects it to the
-existing proxy. Neither publishes host ports. Docker Hub login, when needed, uses an isolated root-only Docker
-configuration for Frostwright. This driver restores the previous image if health checks fail and never prunes other
-applications' images.
+The Next.js slots have read-only filesystems and an internal network; a small nginx edge connects them to the existing
+proxy. Neither publishes host ports. Each release starts the inactive blue or green slot, checks its health and routes,
+then gracefully reloads nginx. The driver verifies HTTPS and the new `X-Frostwright-Slot` header before removing the
+old slot. A failed check switches back to the previous slot.
 
-After the first healthy deployment and DNS pointing to the VPS, install `deploy/shared-Caddyfile` into the existing
+After a successful switch, the old container and every obsolete `pateldeepesh/acrepair` image are deleted; only the
+active image stays on the VPS. Between releases, only one app slot runs. Rollback therefore pulls the old immutable
+image from Docker Hub again rather than relying on a local copy. Cleanup is limited to this application's repository.
+Docker Hub login, when needed, uses an isolated root-only Docker configuration for Frostwright.
+
+Once DNS points to the VPS, install `deploy/shared-Caddyfile` into the existing
 proxy's `/srv/scallar/shared/proxy/conf/sites/` directory as `frostwright.caddy`, then validate and gracefully reload:
 
 ```bash
@@ -159,6 +165,8 @@ sudo docker exec caddy caddy reload --config /etc/caddy/Caddyfile
 ```
 
 Set `SITE_URL=https://frostwright.in` after this public HTTPS route is ready, so subsequent deployments also check it.
+For a new shared installation, activate this proxy route before the first blue/green workflow: the driver verifies
+the candidate through that HTTPS route before accepting the release.
 For an admin rollback, write `docker.io/pateldeepesh/acrepair:sha-<full commit SHA>` into the requested-image file and
 run `sudo /srv/scallar/shared/bin/frostwright-deploy.sh deploy`. As `deploy`, use the enumerated sudo command. Check
 status with `sudo -n /srv/scallar/shared/bin/frostwright-deploy.sh status`.
@@ -194,5 +202,5 @@ Then proxy `frostwright.in` to `http://127.0.0.1:3000` and redirect `www` to the
 - Variables: `DEPLOY_ENABLED=true`, `DOCKERHUB_REPOSITORY=pateldeepesh/acrepair`, `VPS_DEPLOY_MODE=shared`,
   `DEPLOY_PATH=/srv/scallar/frostwright`. The root-owned shared deployment files and fixed sudo commands are installed.
 - `frostwright.in` resolves to `187.127.146.219`, with `www` pointing to the apex.
-- First deployment: activate the staged `conf/sites-available/frostwright.caddy` site after the image is healthy,
-  validate and gracefully reload the shared proxy, then set `SITE_URL=https://frostwright.in` for future smoke tests.
+- The shared Caddy site is active, TLS is configured, and `SITE_URL=https://frostwright.in` enables public smoke tests.
+  Releases use blue/green slots and remove the retired container and obsolete Frostwright images after a healthy switch.

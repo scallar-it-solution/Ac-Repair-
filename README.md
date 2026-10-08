@@ -77,8 +77,9 @@ Dockerfile                    Next.js standalone server image
 deploy/                       docker-compose.yml, Caddyfile and the server-side deploy script
 ```
 
-The existing Quorlytic VPS uses `VPS_DEPLOY_MODE=shared`: root-owned compose files, restricted deploy commands and
-its existing Caddy proxy. See the shared-server setup in [DEPLOY.md](DEPLOY.md) before enabling it.
+The existing Quorlytic VPS uses `VPS_DEPLOY_MODE=shared`: restricted blue/green deployment behind its existing Caddy
+proxy. A healthy new slot replaces the old one, then the old container and obsolete Frostwright images are deleted.
+See the shared-server setup in [DEPLOY.md](DEPLOY.md).
 
 Redirects, trailing-slash handling and security headers are in `next.config.ts`.
 
