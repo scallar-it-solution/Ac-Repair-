@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import indexing from "./src/data/indexing.json";
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -33,7 +34,13 @@ const nextConfig: NextConfig = {
 
   async headers() {
     return [
-      { source: "/:path*", headers: securityHeaders },
+      {
+        source: "/:path*",
+        headers: [
+          ...securityHeaders,
+          ...(!indexing.enabled ? [{ key: "X-Robots-Tag", value: "noindex, follow" }] : []),
+        ],
+      },
       {
         source: "/images/:path*",
         headers: [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }],

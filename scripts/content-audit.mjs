@@ -12,6 +12,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import indexing from "../src/data/indexing.json" with { type: "json" };
 
 const ROOT = path.resolve(".next/server/app");
 const SITE = "https://frostwright.in";
@@ -83,7 +84,11 @@ for (const p of pages) {
   descs.set(p.description, p.url);
   const expected = SITE + (p.url === "/" ? "" : p.url);
   if (p.canonical !== expected) fails.push(`${p.url}: canonical "${p.canonical}" ≠ "${expected}"`);
-  if (!p.robots.includes("index") || p.robots.includes("noindex")) fails.push(`${p.url}: robots "${p.robots}"`);
+  const directives = p.robots.split(",").map((s) => s.trim());
+  const expectedDirective = indexing.enabled ? "index" : "noindex";
+  const forbiddenDirective = indexing.enabled ? "noindex" : "index";
+  if (!directives.includes(expectedDirective) || directives.includes(forbiddenDirective) || !directives.includes("follow"))
+    fails.push(`${p.url}: robots "${p.robots}"; expected ${expectedDirective}, follow`);
   if (p.h1Count !== 1) fails.push(`${p.url}: ${p.h1Count} <h1> in main`);
   for (const img of p.imgs) if (!/ alt="/.test(img)) fails.push(`${p.url}: <img> without alt`);
 
@@ -124,8 +129,15 @@ for (const p of pages) {
     else if (l !== p.url) inbound.get(l).add(p.url);
   }
 }
-const indexable = pages.filter((p) => !isNotFound(p));
-for (const p of indexable) {
+const contentPages = pages.filter((p) => !isNotFound(p));
+const indexable = indexing.enabled ? contentPages : [];
+const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml.body"), "utf8");
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => dec(m[1]));
+const expectedUrls = new Set(indexable.map((p) => SITE + (p.url === "/" ? "" : p.url)));
+for (const url of sitemapUrls) if (!expectedUrls.has(url)) fails.push(`sitemap: unexpected URL ${url}`);
+for (const url of expectedUrls) if (!sitemapUrls.includes(url)) fails.push(`sitemap: missing URL ${url}`);
+if (new Set(sitemapUrls).size !== sitemapUrls.length) fails.push("sitemap: duplicate URLs");
+for (const p of contentPages) {
   const n = inbound.get(p.url).size;
   if (n === 0) fails.push(`${p.url}: orphan page (no internal links point to it)`);
   else if (n < 3) warns.push(`${p.url}: only ${n} internal pages link to it`);
@@ -138,7 +150,7 @@ const shingles = (t, k = 5) => {
   for (let i = 0; i + k <= w.length; i++) s.add(w.slice(i, i + k).join(" "));
   return s;
 };
-const sh = indexable.map((p) => [p.url, shingles(p.mainText)]);
+const sh = contentPages.map((p) => [p.url, shingles(p.mainText)]);
 const pairs = [];
 for (let i = 0; i < sh.length; i++) {
   for (let j = i + 1; j < sh.length; j++) {
@@ -161,8 +173,9 @@ const outDomains = new Map();
 for (const p of pages) for (const e of p.externals) outDomains.set(new URL(e).hostname, (outDomains.get(new URL(e).hostname) || 0) + 1);
 
 // ---- report
-const inboundCounts = indexable.map((p) => inbound.get(p.url).size).sort((a, b) => a - b);
-console.log(`Pages audited: ${indexable.length} indexable + ${pages.length - indexable.length} not-found`);
+const inboundCounts = contentPages.map((p) => inbound.get(p.url).size).sort((a, b) => a - b);
+console.log(`Pages audited: ${indexable.length} indexable + ${contentPages.length - indexable.length} temporarily noindex + ${pages.length - contentPages.length} not-found`);
+console.log(`Sitemap URLs: ${sitemapUrls.length}`);
 console.log(`Inbound internal links per page: min ${inboundCounts[0]}, median ${inboundCounts[Math.floor(inboundCounts.length / 2)]}, max ${inboundCounts.at(-1)}`);
 console.log(`Highest content similarity: ${(pairs[0][0] * 100).toFixed(0)}% (${pairs[0][1]} ↔ ${pairs[0][2]})`);
 console.log(`Outbound domains: ${[...outDomains.entries()].map(([d, n]) => `${d} (${n})`).join(", ")}`);

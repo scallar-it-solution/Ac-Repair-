@@ -3,6 +3,7 @@ import { areaBySlug } from "../data/areas";
 import { clusterOf, guideBySlug } from "../data/guides";
 import { AUTHOR, OG_IMAGE, SITE, abs } from "../data/site";
 import type { RouteDef } from "../routes";
+import { isIndexable } from "./indexing";
 
 /** Per-route metadata: title, description, canonical, robots, Open Graph, Twitter and geo tags. */
 export function buildMetadata(route: RouteDef): Metadata {
@@ -27,7 +28,7 @@ export function buildMetadata(route: RouteDef): Metadata {
     title: { absolute: route.title },
     description: route.description,
     ...(route.noindex ? {} : { alternates: { canonical: url } }),
-    robots: route.noindex
+    robots: !isIndexable(route)
       ? { index: false, follow: true }
       : { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
     openGraph: guide
