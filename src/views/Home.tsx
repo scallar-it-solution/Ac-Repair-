@@ -25,7 +25,7 @@ import { Reveal } from "../components/Reveal";
 import { AnswerBox, Photo, SectionHead } from "../components/ui";
 import { AREAS } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
-import { GUIDES } from "../data/guides";
+import { guideBySlug, type Guide } from "../data/guides";
 import { CORE_SERVICES, SPECIALIST_SERVICES } from "../data/services";
 import { DEFAULT_WA, HERO_IMAGE, PRICING, PROCESS, REASONS, SITE, TEL, TESTIMONIALS } from "../data/site";
 import { Link } from "../lib/router";
@@ -39,6 +39,11 @@ const SYMPTOMS = [
   { icon: IconWave, title: "Noisy or vibrating", text: "What rattling, buzzing and hissing mean.", to: "/guides/ac-making-noise" },
   { icon: IconSparkle, title: "Due for a service", text: "Foam + jet wet service from ₹449.", to: "/services/ac-service" },
 ];
+
+/** Guides featured on the homepage: highest search demand, and not already linked from the symptom finder above. */
+const HOME_GUIDES = ["ac-gas-filling-cost", "ac-service-schedule", "ac-outdoor-unit-not-working"]
+  .map(guideBySlug)
+  .filter((g): g is Guide => !!g);
 
 const VERSUS = [
   ["“Gas khatam” from the gate", "Pressures and current measured first"],
@@ -177,19 +182,18 @@ export function Home({ route }: { route: RouteDef }) {
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SYMPTOMS.map((s, i) => (
               <Reveal as="li" key={s.title} delay={(i % 3) + 1}>
-                <Link
-                  to={s.to}
-                  className="group flex h-full items-start gap-4 rounded-2xl border border-line bg-cream p-6 transition hover:border-forest/40 hover:shadow-lg hover:shadow-forest/5"
-                >
+                <div className="group relative flex h-full items-start gap-4 rounded-2xl border border-line bg-cream p-6 transition hover:border-forest/40 hover:shadow-lg hover:shadow-forest/5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-mist text-forest transition-colors group-hover:bg-forest group-hover:text-mint">
                     <s.icon size={20} />
                   </span>
                   <span className="flex-1">
-                    <span className="font-display block text-lg font-semibold">{s.title}</span>
+                    <Link to={s.to} className="stretched-link font-display block text-lg font-semibold">
+                      {s.title}
+                    </Link>
                     <span className="mt-1 block text-sm text-muted">{s.text}</span>
                   </span>
                   <IconArrow size={18} className="mt-1 shrink-0 text-moss transition-transform group-hover:translate-x-1 group-hover:text-forest" />
-                </Link>
+                </div>
               </Reveal>
             ))}
           </ul>
@@ -377,7 +381,7 @@ export function Home({ route }: { route: RouteDef }) {
             </Link>
           </Reveal>
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {GUIDES.slice(0, 3).map((g, i) => (
+            {HOME_GUIDES.map((g, i) => (
               <Reveal as="li" key={g.slug} delay={i + 1}>
                 <GuideCard g={g} />
               </Reveal>

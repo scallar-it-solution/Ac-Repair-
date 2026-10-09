@@ -166,7 +166,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
           )}
 
           <div className="mt-14 border-t border-line pt-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Also covering</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Other NCR cities we cover</p>
             <ul className="mt-4 flex flex-wrap gap-2">
               {others.map((o) => (
                 <li key={o.slug}>
@@ -178,6 +178,11 @@ export function AreaPage({ route }: { route: RouteDef }) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/service-areas" className="inline-block rounded-full px-4 py-2 text-sm font-semibold text-forest">
+                  All service areas →
+                </Link>
+              </li>
             </ul>
             <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.24em] text-sage">Brands we fix</p>
             <ul className="mt-4 flex flex-wrap gap-2">

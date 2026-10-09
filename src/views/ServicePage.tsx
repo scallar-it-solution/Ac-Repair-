@@ -9,7 +9,7 @@ import { AnswerBox, SectionHead } from "../components/ui";
 import { AREAS, areaPath } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
 import { guideBySlug, guidePath, guideShortTitle, guidesForService } from "../data/guides";
-import { serviceBySlug } from "../data/services";
+import { serviceBySlug, servicePath } from "../data/services";
 import { BRANDS, SITE, TEL, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
@@ -160,7 +160,7 @@ export function ServicePage({ route }: { route: RouteDef }) {
                 text="Starting prices. The final figure is quoted on WhatsApp after diagnosis, before any work starts."
               />
               <div className="mt-8">
-                <PriceTable rows={s.prices} caption="Starting prices for this service" />
+                <PriceTable rows={s.prices} caption="Starting prices for this service" current={servicePath(s.slug)} />
               </div>
               <p className="mt-4 text-sm text-muted">
                 See every rate on the <Link to="/pricing" className="font-medium text-forest underline underline-offset-4">price list</Link>.
@@ -204,6 +204,12 @@ export function ServicePage({ route }: { route: RouteDef }) {
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 text-sm text-mist/80">
+                Neighbourhoods, arrival times and travel charges for every city:{" "}
+                <Link to="/service-areas" className="font-semibold text-mint underline underline-offset-4 hover:text-cream">
+                  Delhi NCR service areas
+                </Link>
+              </p>
             </section>
           </div>
 

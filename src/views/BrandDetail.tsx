@@ -60,16 +60,15 @@ export function BrandDetail({ route }: { route: RouteDef }) {
             <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {b.faults.map((f, i) => (
                 <Reveal as="li" key={f.title} delay={(i % 3) + 1}>
-                  <Link
-                    to={f.to}
-                    className="group flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition hover:border-forest/40 hover:bg-white"
-                  >
-                    <span className="font-display text-lg font-semibold">{f.title}</span>
+                  <div className="group relative flex h-full flex-col rounded-2xl border border-line bg-paper p-6 transition hover:border-forest/40 hover:bg-white">
+                    <Link to={f.to} className="stretched-link font-display text-lg font-semibold">
+                      {f.title}
+                    </Link>
                     <span className="mt-1.5 flex-1 text-sm leading-relaxed text-muted">{f.text}</span>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-forest">
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-forest" aria-hidden="true">
                       How we fix it <IconArrow size={14} className="transition-transform group-hover:translate-x-0.5" />
                     </span>
-                  </Link>
+                  </div>
                 </Reveal>
               ))}
             </ul>

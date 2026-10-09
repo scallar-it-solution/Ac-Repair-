@@ -543,7 +543,7 @@ export const SERVICES: Service[] = [
         a: "Core cutting is. Plaster and paint patching around the pipes is quoted separately.",
       },
     ],
-    related: ["ac-gas-filling", "ac-amc", "split-ac-repair"],
+    related: ["ac-shifting", "ac-gas-filling", "split-ac-repair"],
   },
   {
     slug: "ac-amc",

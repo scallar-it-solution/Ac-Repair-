@@ -68,7 +68,7 @@ export function Brands({ route }: { route: RouteDef }) {
                     <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold">
                       {page && (
                         <Link to={page} className="inline-flex items-center gap-2 text-forest">
-                          Faults, codes & service <IconArrow size={16} />
+                          {b.name} faults & error codes <IconArrow size={16} />
                         </Link>
                       )}
                       {!page && service && (
@@ -94,6 +94,11 @@ export function Brands({ route }: { route: RouteDef }) {
           <p className="mt-6 text-sm text-muted">
             Installing a new AC? <Link to="/services/ac-installation" className="font-medium text-forest underline underline-offset-4">AC installation</Link>{" "}
             is the same for every brand — Daikin, Voltas, LG, Samsung, Carrier, Hitachi or any other — from ₹1,499 for a standard split.
+            Before the installer leaves, run through the{" "}
+            <Link to="/guides/ac-installation-checklist" className="font-medium text-forest underline underline-offset-4">
+              AC installation checklist
+            </Link>
+            .
           </p>
           <p className="mt-3 text-sm text-muted">
             Seeing an error code? Read <Link to="/guides/ac-error-codes" className="font-medium text-forest underline underline-offset-4">AC error codes explained</Link>.

@@ -6,7 +6,7 @@
  *   - scaled / near-duplicate content and doorway patterns (pairwise main-content similarity)
  *   - thin pages, keyword stuffing, missing or duplicate titles / descriptions
  *   - canonical, robots, one H1, image alt text
- *   - broken internal links and orphan pages (inbound link counts)
+ *   - broken internal links and orphan pages (inbound link counts); generic or overlong anchor text
  *   - structured data: valid JSON-LD, no self-serving review markup, FAQ markup matches visible text and appears on
  *     one page per question, no @id reference to a node missing from the page, no empty BreadcrumbList
  * Exits with code 1 if any hard failure is found.
@@ -56,6 +56,11 @@ const pages = files.map((f) => {
     h1Count: (main.match(/<h1[\s>]/g) || []).length,
     mainText: textOf(main),
     links: [...html.matchAll(/<a[^>]*href="(\/[^"#?]*)/g)].map((m) => dec(m[1]).replace(/\/$/, "") || "/"),
+    // Internal links inside <main> with their visible anchor text (header/footer navigation excluded).
+    anchors: [...main.matchAll(/<a[^>]*href="(\/[^"#?]*)"[^>]*>([\s\S]*?)<\/a>/g)].map((m) => ({
+      to: dec(m[1]),
+      text: dec(m[2].replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim(),
+    })),
     externals: [...html.matchAll(/<a[^>]*href="(https?:\/\/[^"]+)"/g)].map((m) => m[1]),
     imgs: [...html.matchAll(/<img [^>]*>/g)].map((m) => m[0]),
     ld: (html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/) || [])[1],
@@ -138,6 +143,16 @@ for (const p of pages) {
     }
   } catch (e) {
     fails.push(`${p.url}: invalid JSON-LD (${e.message})`);
+  }
+}
+
+// ---- anchor text (Google link best practices: descriptive and concise, never "click here")
+const GENERIC = /^(click here|here|read more|learn more|more|see more|see service|details|this page|link)\W*$/i;
+for (const p of pages) {
+  if (isNotFound(p)) continue;
+  for (const a of p.anchors) {
+    if (!a.text || GENERIC.test(a.text)) fails.push(`${p.url}: generic anchor text "${a.text}" → ${a.to}`);
+    else if (a.text.length > 90) warns.push(`${p.url}: long anchor text (${a.text.length} chars) → ${a.to}`);
   }
 }
 

@@ -48,6 +48,24 @@ body {
   outline-offset: 3px;
 }
 
+/*
+  Card links: the <a> wraps only the card title, so its anchor text stays short and descriptive (Google's link
+  guidance), while ::after stretches the click target over the whole card. The card itself needs `relative`.
+*/
+.stretched-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+}
+.stretched-link:focus-visible {
+  outline: none;
+}
+.stretched-link:focus-visible::after {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+}
+
 .font-display {
   font-family: var(--font-display);
 }

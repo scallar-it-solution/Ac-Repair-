@@ -214,6 +214,36 @@ export const PRICING: PriceRow[] = PRICE_GROUPS.flatMap((g) => g.rows).filter(
   (r) => r.value && r.job !== "Inspection visit"
 );
 
+/**
+ * Price-table job → the service page that does that job. Price tables appear on the homepage, /pricing, and every
+ * city, brand and service page, so these links pass authority to the service pages with descriptive anchor text.
+ * Rows without an entry (inspection visit) stay plain text. Broken paths fail the content audit.
+ */
+export const PRICE_LINKS: Record<string, string> = {
+  "Split AC wet service": "/services/ac-service",
+  "Window AC wet service": "/services/window-ac-repair",
+  "Water leak repair": "/services/ac-water-leakage-repair",
+  "PCB inspection & repair": "/services/inverter-ac-pcb-repair",
+  "Fan motor / capacitor replacement": "/services/ac-fan-motor-repair",
+  "Motor or capacitor replacement": "/services/ac-fan-motor-repair",
+  "Compressor replacement": "/services/ac-compressor-replacement",
+  "Coil leak repair or replacement": "/services/ac-coil-repair",
+  "Coil brazing or replacement": "/services/ac-coil-repair",
+  "Gas filling (R32 / R410A)": "/services/ac-gas-filling",
+  "Gas filling (R22)": "/services/ac-gas-filling",
+  "Split AC installation": "/services/ac-installation",
+  "Extra copper run": "/services/ac-installation",
+  "Uninstallation / shifting": "/services/ac-shifting",
+  "Residential AMC (1 AC)": "/services/ac-amc",
+  "Multi-AC home plan": "/services/ac-amc",
+  "Night emergency call-out": "/services/emergency-ac-repair",
+  "Cassette / ductable / VRF": "/services/commercial-ac-repair",
+  "Cassette AC service": "/services/commercial-ac-repair",
+  "VRF / VRV fault diagnosis": "/services/commercial-ac-repair",
+  "Office / clinic AMC (5+ ACs)": "/services/commercial-ac-repair",
+  "Commercial AMC (5+ machines)": "/services/commercial-ac-repair",
+};
+
 /** The jobs city and brand searches ask about most (city and brand pages); the full list stays on /pricing. */
 const KEY_JOBS = ["Split AC wet service", "Window AC wet service", "Water leak repair", "PCB inspection & repair", "Gas filling (R32 / R410A)", "Split AC installation"];
 export const KEY_PRICES: PriceRow[] = PRICING.filter((p) => KEY_JOBS.includes(p.job));

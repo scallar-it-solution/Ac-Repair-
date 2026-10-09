@@ -1,3 +1,4 @@
+import { brandPathByName } from "../data/brands";
 import { BRANDS } from "../data/site";
 import { Link } from "../lib/router";
 
@@ -13,11 +14,21 @@ export function BrandMarquee() {
         <div className="marquee-track flex w-max">
           {[0, 1].map((copy) => (
             <ul key={copy} className="flex shrink-0 gap-12 pr-12" aria-hidden={copy === 1 ? true : undefined}>
-              {BRANDS.map((b) => (
-                <li key={b} className="font-display text-xl font-semibold text-forest/70 md:text-2xl">
-                  {b}
-                </li>
-              ))}
+              {BRANDS.map((b) => {
+                // Brands with their own page link to it; the duplicate copy (for the loop) stays out of the tab order.
+                const page = brandPathByName(b);
+                return (
+                  <li key={b} className="font-display text-xl font-semibold text-forest/70 md:text-2xl">
+                    {page ? (
+                      <Link to={page} tabIndex={copy === 1 ? -1 : undefined} className="hover:text-forest" aria-label={`${b} AC repair`}>
+                        {b}
+                      </Link>
+                    ) : (
+                      b
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           ))}
         </div>

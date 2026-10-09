@@ -1,11 +1,12 @@
 import { CTA } from "../components/CTA";
 import { FAQ } from "../components/FAQ";
-import { PriceTable, ServiceLinkGrid } from "../components/cards";
+import { GuideList, PriceTable, ServiceLinkGrid } from "../components/cards";
 import { IconCheck, IconFile, IconRupee, IconShield, IconWhatsApp } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { AnswerBox, SectionHead, formatDate } from "../components/ui";
 import { routeFaqs } from "../data/faqs";
+import { guideBySlug, type Guide } from "../data/guides";
 import { SERVICES } from "../data/services";
 import { PRICE_GROUPS, SITE } from "../data/site";
 import type { RouteDef } from "../routes";
@@ -32,6 +33,10 @@ const BILLING = [
     text: "On the part we fitted and its labour, printed on the invoice.",
   },
 ];
+
+const COST_GUIDES = ["ac-gas-filling-cost", "ac-amc-worth-it", "repair-or-replace-ac", "reduce-ac-electricity-bill"]
+  .map(guideBySlug)
+  .filter((g): g is Guide => !!g);
 
 /** Worked examples from the published rates only — what a visit typically ends up costing. */
 const SCENARIOS: [situation: string, pay: string][] = [
@@ -119,6 +124,14 @@ export function Pricing({ route }: { route: RouteDef }) {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <h2 className="font-display mt-16 text-2xl font-bold md:text-3xl">Costs explained</h2>
+          <p className="mt-3 max-w-2xl text-muted">
+            What drives the bill for gas, AMCs, old machines and electricity — written by our technicians.
+          </p>
+          <div className="mt-6">
+            <GuideList guides={COST_GUIDES} tone="paper" />
           </div>
         </div>
       </section>

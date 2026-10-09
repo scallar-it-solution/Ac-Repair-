@@ -137,7 +137,7 @@ export const AREAS: Area[] = [
       },
       {
         title: "Move-in season installations",
-        text: "New possession societies in Noida Extension see a steady stream of installations and shifts. We [vacuum every install and check drain fall](/guides/ac-installation-checklist) — new flats often have pre-drilled holes at the wrong slope.",
+        text: "New possession societies in [Noida Extension](/ac-repair-greater-noida) (Greater Noida West) see a steady stream of installations and [AC shifts](/services/ac-shifting). We [vacuum every install and check drain fall](/guides/ac-installation-checklist) — new flats often have pre-drilled holes at the wrong slope.",
       },
     ],
     faqs: [
@@ -368,8 +368,8 @@ export const AREAS: Area[] = [
 
 /** Locally relevant guides per city (city → guide interlinking). */
 export const AREA_GUIDES: Record<string, string[]> = {
-  delhi: ["ac-stabilizer-guide", "ac-not-cooling", "reduce-ac-electricity-bill", "repair-or-replace-ac"],
-  noida: ["ac-gas-leak-signs", "ac-installation-checklist", "ac-not-cooling", "ac-tonnage-guide"],
+  delhi: ["ac-stabilizer-guide", "ac-not-cooling", "ac-gas-filling-cost", "reduce-ac-electricity-bill"],
+  noida: ["ac-gas-filling-cost", "ac-gas-leak-signs", "ac-installation-checklist", "ac-not-cooling"],
   "greater-noida": ["ac-amc-worth-it", "ac-service-schedule", "ac-not-cooling", "ac-water-leakage"],
   gurugram: ["ac-stabilizer-guide", "ac-error-codes", "inverter-vs-non-inverter-ac", "ac-outdoor-unit-not-working"],
   ghaziabad: ["repair-or-replace-ac", "ac-gas-filling-cost", "ac-making-noise", "ac-not-cooling"],

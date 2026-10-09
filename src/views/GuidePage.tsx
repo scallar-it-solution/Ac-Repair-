@@ -164,10 +164,9 @@ export function GuidePage({ route }: { route: RouteDef }) {
               {pillar && (
                 <div className="rounded-2xl bg-forest p-5 text-cream">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-mint">Need it fixed?</p>
-                  <p className="font-display mt-2 text-lg font-semibold">{pillar.name}</p>
-                  <p className="mt-1 text-sm text-mint">{pillar.price}</p>
+                  <p className="mt-2 text-sm text-mint">{pillar.price}</p>
                   <Link to={servicePath(pillar.slug)} className="btn btn-light mt-4 w-full px-4 py-2.5 text-sm">
-                    See service <IconArrow size={14} />
+                    {pillar.name} <IconArrow size={14} />
                   </Link>
                 </div>
               )}
@@ -224,6 +223,16 @@ export function GuidePage({ route }: { route: RouteDef }) {
                 {cluster.name.toLowerCase()} guides
               </Link>
               .
+              {g.slug !== "ac-glossary" && (
+                <>
+                  {" "}
+                  Technical terms such as tonnage, PCB, R32 or superheat are explained in the{" "}
+                  <Link to="/guides/ac-glossary" className="font-medium text-forest underline underline-offset-4">
+                    AC glossary
+                  </Link>
+                  .
+                </>
+              )}
             </p>
           </article>
         </div>

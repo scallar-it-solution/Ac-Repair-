@@ -34,8 +34,14 @@ export function CTA({
               <IconPhone size={18} /> Call now
             </a>
           </div>
-          {emergencyLink && (
           <p className="mt-4 text-sm text-mist/70">
+            Email, hours and what to send for the fastest slot:{" "}
+            <Link to="/contact" className="font-semibold text-mint underline underline-offset-4 hover:text-cream">
+              contact and booking
+            </Link>
+          </p>
+          {emergencyLink && (
+          <p className="mt-2 text-sm text-mist/70">
             AC dead at night or someone vulnerable at home?{" "}
             <Link to="/services/emergency-ac-repair" className="font-semibold text-mint underline underline-offset-4 hover:text-cream">
               Emergency AC repair
