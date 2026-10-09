@@ -1,6 +1,6 @@
 import { CTA } from "../components/CTA";
 import { FAQ } from "../components/FAQ";
-import { GuideList, ServiceCard } from "../components/cards";
+import { GuideList, PriceTable, ServiceCard } from "../components/cards";
 import { IconAlert, IconArrow, IconCheck, IconPin, IconShield } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
@@ -10,7 +10,7 @@ import { BRAND_PAGES, brandBySlug, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { guideBySlug, type Guide } from "../data/guides";
 import { serviceBySlug } from "../data/services";
-import { BRAND_DISCLAIMER, SITE, waLink } from "../data/site";
+import { BRAND_DISCLAIMER, KEY_PRICES, SITE, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 import { NotFound } from "./NotFound";
@@ -118,6 +118,25 @@ export function BrandDetail({ route }: { route: RouteDef }) {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-cream py-20" aria-labelledby="brand-prices">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-12 md:px-8">
+          <div className="md:col-span-5">
+            <SectionHead
+              id="brand-prices"
+              kicker="Prices"
+              title={`${b.name} AC service & installation charges`}
+              text={`Frostwright charges the same published rates for ${b.name} as for every other brand, starting with a ${SITE.visitFee} inspection that is waived if you approve the repair. These are our independent rates — ${b.name}’s authorised service centres set their own.`}
+            />
+            <Link to="/pricing" className="btn btn-primary mt-8">
+              Full price list
+            </Link>
+          </div>
+          <div className="md:col-span-7">
+            <PriceTable rows={KEY_PRICES} caption={`Frostwright starting prices for ${b.name} AC service, repair and installation`} />
           </div>
         </div>
       </section>

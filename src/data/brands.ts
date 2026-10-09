@@ -29,6 +29,12 @@ const authorised = (brand: string): Faq => ({
   a: `No. Frostwright is an independent multi-brand AC service and is not affiliated with ${brand}. If your ${brand} AC is still under the manufacturer’s warranty, contact ${brand} first for free cover; we help with out-of-warranty machines, expired AMCs, or when you need someone today.`,
 });
 
+/** Brand "service charges" / "installation charges" searches: Frostwright's rates are the same for every brand. */
+const charges = (brand: string): Faq => ({
+  q: `What are ${brand} AC service and installation charges at Frostwright?`,
+  a: `The same as for any brand: a wet service is ₹499 for a split AC and ₹449 for a window AC, standard split AC installation starts at ₹1,499, and repairs are quoted after a ₹199 inspection that is waived if you approve the work. These are Frostwright’s independent rates; ${brand}’s authorised service centres set their own charges.`,
+});
+
 export const BRAND_PAGES: BrandPage[] = [
   {
     slug: "daikin-ac-repair",
@@ -67,6 +73,7 @@ export const BRAND_PAGES: BrandPage[] = [
     ],
     faqs: [
       authorised("Daikin"),
+      charges("Daikin"),
       {
         q: "Can you fix a Daikin U4 error?",
         a: "Usually. U4 is a communication error, so we check the interconnecting cable, power at the outdoor unit and both boards — in that order, cheapest first — before replacing anything.",
@@ -116,6 +123,7 @@ export const BRAND_PAGES: BrandPage[] = [
     ],
     faqs: [
       authorised("LG"),
+      charges("LG"),
       {
         q: "What does CH38 mean on an LG AC?",
         a: "CH38 means the AC has detected low refrigerant, which means a leak. The fix is a leak test and repair, then a weighed recharge — not a top-up.",
@@ -162,6 +170,7 @@ export const BRAND_PAGES: BrandPage[] = [
     ],
     faqs: [
       authorised("Samsung"),
+      charges("Samsung"),
       {
         q: "What does E101 mean on a Samsung AC?",
         a: "E101 is a communication error between the indoor and outdoor units — usually the interconnecting cable, power at the outdoor unit, or a board.",
@@ -202,6 +211,7 @@ export const BRAND_PAGES: BrandPage[] = [
     ],
     faqs: [
       authorised("Voltas"),
+      charges("Voltas"),
       {
         q: "What does the error code on my Voltas AC mean?",
         a: "It depends on the series — Voltas codes are not the same across models. Check the manual for your exact model, or send us a photo of the display and the model sticker on WhatsApp.",

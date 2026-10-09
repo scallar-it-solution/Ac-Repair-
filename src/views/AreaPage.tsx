@@ -10,14 +10,10 @@ import { BRAND_PAGES, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { guideBySlug, type Guide } from "../data/guides";
 import { SERVICES } from "../data/services";
-import { PRICING, SITE, TESTIMONIALS, waLink } from "../data/site";
+import { KEY_PRICES, SITE, TESTIMONIALS, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 import { NotFound } from "./NotFound";
-
-/** The jobs city searches ask about most; the full list stays on /pricing. */
-const CITY_PRICE_JOBS = ["Split AC wet service", "Window AC wet service", "Water leak repair", "PCB inspection & repair", "Gas filling (R32 / R410A)", "Split AC installation"];
-const CITY_PRICES = PRICING.filter((p) => CITY_PRICE_JOBS.includes(p.job));
 
 export function AreaPage({ route }: { route: RouteDef }) {
   const a = areaBySlug(route.slug!);
@@ -144,7 +140,7 @@ export function AreaPage({ route }: { route: RouteDef }) {
             </Link>
           </div>
           <div className="md:col-span-7">
-            <PriceTable rows={CITY_PRICES} caption={`Frostwright AC service starting prices in ${a.city}`} />
+            <PriceTable rows={KEY_PRICES} caption={`Frostwright AC service starting prices in ${a.city}`} />
           </div>
         </div>
       </section>

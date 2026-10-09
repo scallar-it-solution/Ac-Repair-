@@ -456,7 +456,7 @@ export const SERVICES: Service[] = [
       },
       {
         q: "Why is R22 gas filling more expensive?",
-        a: "R22 is an ozone-depleting HCFC being phased out under the Montreal Protocol, so supply is shrinking and prices are rising. For an old R22 machine with a recurring leak, replacement is often the better long-term spend.",
+        a: "R22 is an ozone-depleting HCFC. India stopped using HCFCs to make new equipment after 2024 and is phasing them out completely by 1 January 2030, with only a small servicing allowance after that, so supply is shrinking and prices are rising. For an old R22 machine with a recurring leak, replacement is often the better long-term spend.",
       },
       {
         q: "How long does AC gas filling take?",
@@ -474,11 +474,11 @@ export const SERVICES: Service[] = [
     priceValue: 1499,
     blurb:
       "Core cutting, copper running, vacuuming, drainage fall — done like a fit-out, not a jugaad on the balcony.",
-    metaTitle: "AC Installation in Delhi NCR from ₹1,499 | Split AC | Frostwright",
+    metaTitle: "AC Installation & Fitting in Delhi NCR from ₹1,499 | Frostwright",
     metaDescription:
       "AC installation charges from ₹1,499 for a standard split: 3 m copper kit, core cutting, drain fall and vacuum. Uninstallation and shifting too, across Delhi NCR.",
     h1: "AC installation & uninstallation in Delhi NCR",
-    lede: "Standard 1–2 ton split installs, high-wall mounts, heavy outdoor stands, copper extension and shifting between rooms or houses. Vacuumed every time — never ‘purged’ with the machine’s own gas.",
+    lede: "AC installation — or AC fitting, as many people call it — for standard 1–2 ton split (ductless) units, high-wall mounts, heavy outdoor stands, copper extension and shifting between rooms or houses. Vacuumed every time — never ‘purged’ with the machine’s own gas.",
     answer:
       "Split AC installation at Frostwright starts at ₹1,499 for a standard 1–1.5 ton unit in Delhi NCR. It includes core cutting, indoor and outdoor mounting, the standard 3-metre copper kit, drain routing with proper fall, vacuuming and a run test. Uninstallation, shifting and extra copper are quoted on WhatsApp before the visit.",
     facts: [
@@ -533,6 +533,10 @@ export const SERVICES: Service[] = [
       {
         q: "Can you install an AC I bought online?",
         a: "Yes. Send us the model and a photo of the wall and outdoor spot on WhatsApp and we will confirm what is needed before the visit.",
+      },
+      {
+        q: "What are AC installation (fitting) charges in Delhi NCR?",
+        a: "Standard split AC installation starts at ₹1,499 for a 1–1.5 ton unit, including core cutting, indoor and outdoor mounting, the 3-metre copper kit, drain routing, vacuum and a run test. Extra copper, an outdoor stand if one did not come with the AC, and wall patching are quoted on WhatsApp before the visit.",
       },
       {
         q: "Is civil work included?",
@@ -622,9 +626,9 @@ export const SERVICES: Service[] = [
       "Cassette, ductable and small VRF for shops, clinics, restaurants and offices. Night work if you cannot shut the floor.",
     metaTitle: "Cassette, Ductable & VRF AC Repair in Delhi NCR | Frostwright",
     metaDescription:
-      "Cassette, ductable and VRF/VRV AC service and repair for offices, clinics, restaurants and shops in Delhi NCR. Night work, GST invoices and AMC for 5+ machines.",
+      "Commercial HVAC service in Delhi NCR: cassette, ductable and VRF/VRV repair for offices, clinics, restaurants, shops. Night work, GST invoices, AMC for 5+ machines.",
     h1: "Cassette, ductable & VRF AC service in Delhi NCR",
-    lede: "Drain-pump failures, indoor PCBs, outdoor inverter boards, communication errors and gas circuits. We coordinate with facility managers and keep a paper trail.",
+    lede: "Commercial HVAC work on the systems shops, clinics and offices actually run: drain-pump failures, indoor PCBs, outdoor inverter boards, communication errors and gas circuits. We coordinate with facility managers and keep a paper trail.",
     answer:
       "Frostwright services cassette, ductable and small VRF/VRV systems for shops, clinics, restaurants and offices across Delhi NCR. Typical work covers drain-pump failures, indoor and outdoor PCB faults, communication errors and refrigerant circuits. Night and weekend work is available so the floor stays open, and every job comes with a GST invoice.",
     facts: [

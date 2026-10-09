@@ -68,7 +68,16 @@ export const GAS: Guide[] = [
       { t: "h2", id: "r22", text: "What about R22?" },
       {
         t: "p",
-        text: "R22 is an ozone-depleting HCFC being phased out under the Montreal Protocol, so supply is shrinking and prices are rising. We still charge R22 while stock lasts. For an old R22 machine with a recurring leak or a weak compressor, replacing it is often the better long-term spend — see [repair or replace?](/guides/repair-or-replace-ac).",
+        text: "R22 (HCFC-22) is an ozone-depleting HCFC. Under India’s HCFC phase-out plan, HCFCs could no longer be used to make new equipment after 31 December 2024, and they are to be phased out completely by 1 January 2030 for all controlled uses. The Montreal Protocol leaves only a small servicing allowance after that — an annual average of 2.5% of the baseline until 2040 — so R22 supply keeps shrinking and its price keeps rising.",
+      },
+      {
+        t: "p",
+        text: "We still charge R22 while stock lasts. For an old R22 machine with a recurring leak or a weak compressor, replacing it is often the better long-term spend — see [repair or replace?](/guides/repair-or-replace-ac).",
+      },
+      { t: "h3", text: "Are R32 and R410A being phased out too?" },
+      {
+        t: "p",
+        text: "Not soon. R32 and R410A are HFCs: they do not harm the ozone layer, but they are greenhouse gases, so the Kigali Amendment to the Montreal Protocol phases them down slowly. India’s cuts run in four steps — 10% by 2032, 20% by 2037, 30% by 2042 and 85% by 2047. Gas for today’s R32 and R410A ACs will be available for many years, so there is no reason to replace a working machine because of its refrigerant.",
       },
       { t: "h2", id: "price-factors", text: "What changes the final price" },
       {
@@ -110,7 +119,12 @@ export const GAS: Guide[] = [
     ],
     related: ["ac-gas-filling", "ac-coil-repair", "split-ac-repair", "window-ac-repair"],
     relatedGuides: ["ac-gas-leak-signs", "ac-not-cooling", "repair-or-replace-ac"],
-    sources: [{ label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" }],
+    sources: [
+      { label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" },
+      { label: "Ministry of Environment, Forest and Climate Change (PIB, 16 Sep 2023) — HCFC phase-out dates for India", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1957968" },
+      { label: "UNEP Ozone Secretariat — Decision XIX/6: accelerated HCFC phase-out and 2030–2040 servicing allowance", url: "https://ozone.unep.org/treaties/montreal-protocol/meetings/nineteenth-meeting-parties/decisions/decision-xix6-adjustments-montreal-protocol-regard-annex-c-group-i-substances" },
+      { label: "Union Cabinet (PIB, 18 Aug 2021) — Kigali Amendment ratification and India’s HFC phase-down steps", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1746948" },
+    ],
   },
   {
     slug: "ac-gas-leak-signs",

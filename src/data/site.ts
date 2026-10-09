@@ -214,6 +214,10 @@ export const PRICING: PriceRow[] = PRICE_GROUPS.flatMap((g) => g.rows).filter(
   (r) => r.value && r.job !== "Inspection visit"
 );
 
+/** The jobs city and brand searches ask about most (city and brand pages); the full list stays on /pricing. */
+const KEY_JOBS = ["Split AC wet service", "Window AC wet service", "Water leak repair", "PCB inspection & repair", "Gas filling (R32 / R410A)", "Split AC installation"];
+export const KEY_PRICES: PriceRow[] = PRICING.filter((p) => KEY_JOBS.includes(p.job));
+
 export const TESTIMONIALS = [
   {
     name: "Ritika Malhotra",

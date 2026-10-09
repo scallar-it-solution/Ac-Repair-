@@ -66,6 +66,34 @@ export function Areas({ route }: { route: RouteDef }) {
               </Reveal>
             ))}
           </div>
+
+          <h2 className="font-display mt-16 text-2xl font-bold md:text-3xl">Coverage at a glance</h2>
+          <div className="mt-6 overflow-x-auto rounded-2xl border border-line">
+            <table className="w-full min-w-[36rem] text-left text-sm md:text-[15px]">
+              <caption className="sr-only">Frostwright AC repair coverage, arrival times and travel charges by city</caption>
+              <thead className="bg-forest text-cream">
+                <tr>
+                  <th scope="col" className="px-5 py-3.5 font-medium">City</th>
+                  <th scope="col" className="px-5 py-3.5 font-medium">Typical arrival</th>
+                  <th scope="col" className="px-5 py-3.5 font-medium">Travel add-on</th>
+                </tr>
+              </thead>
+              <tbody>
+                {AREAS.map((a) => (
+                  <tr key={a.slug} className="border-t border-line align-top">
+                    <th scope="row" className="bg-paper px-5 py-4 font-semibold">
+                      <Link to={areaPath(a.slug)} className="text-forest hover:underline">
+                        {a.city}
+                      </Link>
+                      <span className="block text-xs font-normal text-muted">{a.state}</span>
+                    </th>
+                    <td className="px-5 py-4 text-muted">{a.eta}</td>
+                    <td className="px-5 py-4 text-muted">{a.travel ?? `None — standard ${SITE.visitFee} inspection`}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 

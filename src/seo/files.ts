@@ -1,7 +1,8 @@
 import { AREAS, areaPath } from "../data/areas";
 import { CLUSTERS, GUIDES, guidePath, guidesInCluster } from "../data/guides";
 import { SERVICES, servicePath } from "../data/services";
-import { BRAND_DISCLAIMER, BRANDS, PRICE_GROUPS, SITE, abs } from "../data/site";
+import { PRICING_FAQS } from "../data/faqs";
+import { BRAND_DISCLAIMER, BRANDS, FAQS, PRICE_GROUPS, SITE, abs } from "../data/site";
 
 /** Photo for a URL, if the page has one — used for image entries in sitemap.xml. */
 export function photoUrlFor(path: string) {
@@ -74,6 +75,9 @@ Key facts:
 - It is not an authorised service centre for any brand: ACs still under the manufacturer's warranty should go to the brand first.
 - It does not top up refrigerant without a leak test, and does not fit unbranded circuit boards.
 - It does not take on large central plants, chillers, ducting fabrication or building electrical works.
+
+## Frequently asked questions
+${[...FAQS, ...PRICING_FAQS].map((f) => `- Q: ${f.q}\n  A: ${f.a}`).join("\n")}
 
 ## Services
 ${SERVICES.map((s) => `- [${s.name}](${abs(servicePath(s.slug))}): ${s.answer}${s.facts ? ` (${s.facts.map((f) => `${f.k}: ${f.v}`).join("; ")})` : ""}`).join("\n")}

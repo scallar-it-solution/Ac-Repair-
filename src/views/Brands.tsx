@@ -92,6 +92,10 @@ export function Brands({ route }: { route: RouteDef }) {
           </ul>
           <p className="mt-10 max-w-3xl rounded-2xl border border-line p-5 text-sm text-muted">{BRAND_DISCLAIMER}</p>
           <p className="mt-6 text-sm text-muted">
+            Installing a new AC? <Link to="/services/ac-installation" className="font-medium text-forest underline underline-offset-4">AC installation</Link>{" "}
+            is the same for every brand — Daikin, Voltas, LG, Samsung, Carrier, Hitachi or any other — from ₹1,499 for a standard split.
+          </p>
+          <p className="mt-3 text-sm text-muted">
             Seeing an error code? Read <Link to="/guides/ac-error-codes" className="font-medium text-forest underline underline-offset-4">AC error codes explained</Link>.
           </p>
         </div>

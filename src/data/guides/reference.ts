@@ -15,7 +15,7 @@ export const REFERENCE: Guide[] = [
     answer:
       "This glossary defines the terms that appear on AC quotes and in technicians’ explanations — from capacity and efficiency (ton, BTU, ISEER, star rating) to parts (compressor, condenser, evaporator, capacitor, PCB, thermistor), refrigerants (R32, R410A, R22) and service work (wet service, vacuuming, nitrogen leak test, AMC).",
     published: D,
-    updated: D,
+    updated: "2026-10-09",
     photo: "training",
     blocks: [
       { t: "h2", id: "capacity", text: "Capacity and efficiency" },
@@ -55,8 +55,8 @@ export const REFERENCE: Guide[] = [
         items: [
           ["Refrigerant (‘gas’)", "The fluid that carries heat from the room to the outdoor unit in a sealed loop. It is not consumed — low gas means a leak."],
           ["R32", "The refrigerant in most split ACs sold in India in recent years. Mildly flammable, lower global-warming impact than R410A."],
-          ["R410A", "A refrigerant blend used in many split and inverter ACs from the 2010s."],
-          ["R22", "An older, ozone-depleting refrigerant being phased out under the Montreal Protocol; common in old window ACs."],
+          ["R410A", "An HFC refrigerant blend used in many split and inverter ACs from the 2010s. No ozone damage, but a greenhouse gas being phased down slowly under the Kigali Amendment."],
+          ["R22", "HCFC-22: an older, ozone-depleting refrigerant common in old window ACs. India stopped using it in new equipment after 2024 and is phasing it out completely by 2030 under the Montreal Protocol. See [gas filling cost](/guides/ac-gas-filling-cost)."],
           ["Flare joint", "The threaded copper connection at the indoor and outdoor units — the most common leak point."],
           ["Nitrogen leak test", "Pressurising the system with dry nitrogen to find leaks safely before refrigerant is added."],
           ["Vacuuming (evacuation)", "Removing air and moisture from the system with a vacuum pump before charging or opening valves."],
@@ -89,6 +89,6 @@ export const REFERENCE: Guide[] = [
     ],
     related: ["ac-service", "split-ac-repair", "ac-gas-filling"],
     relatedGuides: ["ac-tonnage-guide", "ac-error-codes", "inverter-vs-non-inverter-ac"],
-    sources: [{ label: "Bureau of Energy Efficiency — Standards & Labelling: Air Conditioners", url: "https://beeindia.gov.in/en/standards-labelling/air-conditioners" }, { label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" }],
+    sources: [{ label: "Bureau of Energy Efficiency — Standards & Labelling: Air Conditioners", url: "https://beeindia.gov.in/en/standards-labelling/air-conditioners" }, { label: "UNEP Ozone Secretariat — The Montreal Protocol", url: "https://ozone.unep.org/treaties/montreal-protocol" }, { label: "Ministry of Environment, Forest and Climate Change (PIB, 16 Sep 2023) — HCFC phase-out dates for India", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1957968" }, { label: "Union Cabinet (PIB, 18 Aug 2021) — Kigali Amendment and India’s HFC phase-down", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1746948" }],
   },
 ];

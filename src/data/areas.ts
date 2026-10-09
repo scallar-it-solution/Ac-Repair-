@@ -271,7 +271,7 @@ export const AREAS: Area[] = [
     pin: "2010xx",
     geo: { lat: 28.6692, lng: 77.4538 },
     wiki: "https://en.wikipedia.org/wiki/Ghaziabad",
-    metaTitle: "AC Repair in Ghaziabad & Indirapuram | Same-Day | Frostwright",
+    metaTitle: "AC Repair & Service in Ghaziabad, Indirapuram | Frostwright",
     metaDescription:
       "Same-day AC repair, service and gas filling in Ghaziabad — Indirapuram, Vaishali, Vasundhara, Kaushambi, Raj Nagar Extension and Crossings Republik. 90-day warranty.",
     h1: "AC repair & service in Ghaziabad",

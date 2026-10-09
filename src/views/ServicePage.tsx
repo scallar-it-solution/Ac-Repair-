@@ -183,20 +183,24 @@ export function ServicePage({ route }: { route: RouteDef }) {
 
             <section aria-labelledby="coverage" className="rounded-2xl bg-forest p-7 text-cream md:p-9">
               <h2 id="coverage" className="font-display text-2xl font-bold">
-                Same-day across Delhi NCR
+                {s.short} across Delhi NCR
               </h2>
               <p className="mt-2 text-sm text-mist/80">
                 Same-day slots in every city below. All major brands: {BRANDS.slice(0, 8).join(", ")} and more.
               </p>
-              <ul className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-6 grid gap-x-6 gap-y-4 sm:grid-cols-2">
                 {AREAS.map((a) => (
-                  <li key={a.slug}>
-                    <Link
-                      to={areaPath(a.slug)}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-cream/20 px-3.5 py-2 text-sm transition hover:border-mint hover:text-mint"
-                    >
-                      <IconPin size={14} className="text-mint" /> {a.city}
-                    </Link>
+                  <li key={a.slug} className="flex gap-2.5">
+                    <IconPin size={16} className="mt-1 shrink-0 text-mint" />
+                    <span>
+                      <Link to={areaPath(a.slug)} className="font-semibold text-cream underline-offset-4 hover:text-mint hover:underline">
+                        {a.city}
+                      </Link>
+                      <span className="block text-xs leading-relaxed text-mist/70">
+                        {a.eta}
+                        {a.travel ? `. ${a.travel}` : ""}
+                      </span>
+                    </span>
                   </li>
                 ))}
               </ul>

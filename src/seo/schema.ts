@@ -3,7 +3,7 @@ import { brandBySlug, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES, clusterOf, guideBySlug, guidePath, readingMinutes } from "../data/guides";
 import { SERVICES, serviceBySlug, servicePath } from "../data/services";
-import { AUTHOR, HERO_IMAGE, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, abs } from "../data/site";
+import { AUTHOR, HERO_IMAGE, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, WHATSAPP_BASE, abs } from "../data/site";
 import { allRoutes, type RouteDef } from "../routes";
 
 type Node = Record<string, unknown>;
@@ -37,6 +37,18 @@ for (const kind of FAQ_OWNER_ORDER)
 /** The FAQs this route marks up as FAQPage (a subset of the FAQs it shows). */
 export const markedUpFaqs = (route: RouteDef) => routeFaqs(route).filter((f) => FAQ_OWNER.get(f.q) === route.path);
 
+const WEEK = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+const HOURS = { "@type": "OpeningHoursSpecification", dayOfWeek: WEEK, opens: SITE.opens, closes: SITE.closes };
+
+/** How every service is booked: WhatsApp (preferred) or phone. */
+const CHANNEL: Node = {
+  "@type": "ServiceChannel",
+  name: "WhatsApp or phone booking",
+  serviceUrl: WHATSAPP_BASE,
+  servicePhone: { "@type": "ContactPoint", telephone: SITE.phone, hoursAvailable: HOURS },
+  availableLanguage: SITE.languages,
+};
+
 const cityNode = (a: (typeof AREAS)[number]) => ({
   "@type": "City",
   name: a.city,
@@ -69,21 +81,16 @@ function business(): Node {
     },
     geo: { "@type": "GeoCoordinates", latitude: SITE.geo.lat, longitude: SITE.geo.lng },
     areaServed: AREAS.map(cityNode),
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: SITE.opens,
-        closes: SITE.closes,
-      },
-    ],
+    openingHoursSpecification: [HOURS],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: SITE.phone,
       contactType: "customer service",
       areaServed: "IN",
       availableLanguage: SITE.languages,
+      hoursAvailable: HOURS,
     },
+    knowsLanguage: ["en-IN", "hi-IN"],
     knowsAbout: [
       "Split AC repair",
       "Window AC repair",
@@ -151,6 +158,7 @@ function serviceNode(slug: string): Node {
     url,
     image: photoUrl(s.photo),
     provider: { "@id": BUSINESS_ID },
+    availableChannel: CHANNEL,
     areaServed: AREAS.map(cityNode),
     offers: {
       "@type": "AggregateOffer",
@@ -179,6 +187,7 @@ function areaServiceNode(slug: string): Node {
     description: a.answer,
     url,
     provider: { "@id": BUSINESS_ID },
+    availableChannel: CHANNEL,
     areaServed: {
       ...cityNode(a),
       geo: { "@type": "GeoCoordinates", latitude: a.geo.lat, longitude: a.geo.lng },
@@ -207,6 +216,7 @@ function brandServiceNode(slug: string): Node {
     url,
     brand: { "@type": "Brand", name: b.name },
     provider: { "@id": BUSINESS_ID },
+    availableChannel: CHANNEL,
     areaServed: AREAS.map(cityNode),
   };
 }
@@ -239,6 +249,22 @@ function articleNode(slug: string, webpageId: string): Node {
     ...(g.sources?.length
       ? { citation: g.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })) }
       : {}),
+  };
+}
+
+/** Plain text of a guide string: `[label](/path)` → label, `**bold**` → bold. */
+const plain = (t: string) => t.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/\*\*([^*]+)\*\*/g, "$1");
+
+/** A guide's definition lists (e.g. the glossary) as a DefinedTermSet — the format answer engines lift definitions from. */
+function definedTerms(slug: string): Node | undefined {
+  const g = guideBySlug(slug)!;
+  const items = g.blocks.flatMap((b) => (b.t === "defs" ? b.items : []));
+  if (!items.length) return undefined;
+  return {
+    "@type": "DefinedTermSet",
+    "@id": `${abs(guidePath(g.slug))}#terms`,
+    name: g.title,
+    hasDefinedTerm: items.map(([term, def]) => ({ "@type": "DefinedTerm", name: term, description: plain(def) })),
   };
 }
 
@@ -306,9 +332,12 @@ export function buildGraph(route: RouteDef): Node {
     case "brand":
       graph.push(brandServiceNode(route.slug!));
       break;
-    case "guide":
+    case "guide": {
       graph.push(articleNode(route.slug!, webpageId));
+      const terms = definedTerms(route.slug!);
+      if (terms) graph.push(terms);
       break;
+    }
     case "services":
       graph.push(...SERVICES.map((s) => serviceNode(s.slug)));
       graph.push(itemList("AC services", SERVICES.map((s) => ({ name: s.name, path: servicePath(s.slug) }))));

@@ -22,7 +22,7 @@ import {
   IconX,
 } from "../components/Icons";
 import { Reveal } from "../components/Reveal";
-import { Photo, SectionHead } from "../components/ui";
+import { AnswerBox, Photo, SectionHead } from "../components/ui";
 import { AREAS } from "../data/areas";
 import { routeFaqs } from "../data/faqs";
 import { GUIDES } from "../data/guides";
@@ -120,6 +120,19 @@ export function Home({ route }: { route: RouteDef }) {
       </section>
 
       <BrandMarquee />
+
+      {/* Entity summary: the one paragraph search and AI engines should be able to quote about the business. */}
+      <section className="bg-cream pt-16 md:pt-20" aria-label="Frostwright in short">
+        <div className="mx-auto max-w-7xl px-5 md:px-8">
+          <div className="max-w-3xl">
+            <AnswerBox
+              label="Frostwright in short"
+              updated={SITE.updated}
+              text={`${SITE.description} It is an independent multi-brand service, not an authorised service centre of any manufacturer. Book on WhatsApp or call ${SITE.phoneDisplay} (${SITE.hours}); the ${SITE.visitFee} inspection is waived if you approve the repair.`}
+            />
+          </div>
+        </div>
+      </section>
 
       {/* ---------------- Services ---------------- */}
       <section className="bg-cream py-20 md:py-28" aria-labelledby="services-heading">

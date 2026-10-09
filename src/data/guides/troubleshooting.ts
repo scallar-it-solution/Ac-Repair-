@@ -107,6 +107,10 @@ export const TROUBLESHOOTING: Guide[] = [
         a: "At Frostwright, a wet service that fixes the most common cause costs ₹449 (window) to ₹499 (split). Gas filling after a leak test starts at ₹1,799 for R32/R410A, and PCB repair starts at ₹799. The ₹199 inspection is waived if you approve the repair.",
       },
       {
+        q: "My AC suddenly stopped cooling — what usually causes that?",
+        a: "A sudden stop points to something electrical or mechanical: a failed outdoor fan or compressor capacitor, a tripped MCB, a stabiliser cut-off, or a board fault after a power cut. Cooling that faded slowly over weeks points instead to a dirty coil or a refrigerant leak. Check the MCB, the stabiliser and whether the outdoor fan is spinning before you book.",
+      },
+      {
         q: "Why is my split AC fan running but not cooling?",
         a: "If the indoor fan blows but the air is not cold, the outdoor unit is usually not doing its job — a failed capacitor, a stabiliser holding it off, a board fault — or the coil is clogged or the system is low on refrigerant. Check the outdoor unit: if it is silent, or hums without the fan turning, switch off and book a technician.",
       },
