@@ -191,13 +191,13 @@ Then proxy `frostwright.in` to `http://127.0.0.1:3000` and redirect `www` to the
   all prices. Also confirm `hello@frostwright.in`, the dispatch desk
   address `New Delhi 110019` and phone `+91 93155 15700`. Deployment does not establish that these claims are accurate.
 
-- Search indexing is temporarily disabled site-wide by `src/data/indexing.json` (`enabled: false`): pages emit
-  `noindex, follow`, responses carry `X-Robots-Tag: noindex, follow`, and the sitemap has no URLs. Crawling stays
-  allowed so search engines can see the directives. Removal of existing results requires recrawling.
-- The existing Vercel copy (`airkraft-ac-repair.vercel.app`) was also updated with these directives at the owner's
-  request. It is not Git-connected; future indexing changes must be deployed there separately, or the project removed.
-- When the owner decides to restore indexing, set `enabled` to `true` and deploy. In Google Search Console, add
-  `frostwright.in` as a Domain property and submit `https://frostwright.in/sitemap.xml` after it contains URLs again.
+- Search indexing is enabled site-wide by `src/data/indexing.json` (`enabled: true`, 9 October 2026): content pages
+  emit `index, follow` with self-referencing canonicals and the sitemap lists every indexable URL. Setting `enabled`
+  to `false` restores site-wide `noindex, follow` (plus `X-Robots-Tag`) and an empty sitemap.
+- The Vercel copy (`airkraft-ac-repair.vercel.app`) deliberately stays on noindex with canonicals pointing to
+  frostwright.in, so it cannot compete with the live site. It is not Git-connected; delete the project when convenient.
+- In Google Search Console, add `frostwright.in` as a Domain property (DNS TXT verification) and submit
+  `https://frostwright.in/sitemap.xml`. Do the same in Bing Webmaster Tools (it can import the Search Console property).
 
 ## Shared VPS configuration (7 October 2026)
 

@@ -69,12 +69,12 @@ All copy lives in `src/data/`. Change it there and every place that uses it — 
 
 ## Deployment
 
-Search indexing is temporarily disabled for the entire site through `src/data/indexing.json` (`enabled: false`).
-All pages emit `noindex, follow`, responses also carry `X-Robots-Tag: noindex, follow`, and the sitemap has no URLs.
-`robots.txt` allows crawling so search engines can read the noindex directives. Existing search results disappear only
-after recrawling. After the owner decides to restore indexing, set `enabled` to `true` and deploy again; the 404 remains noindex.
-The existing `airkraft-ac-repair.vercel.app` copy also has noindex enabled. It is not Git-connected, so it needs a separate
-manual deployment for future indexing changes, or removal if the owner no longer wants that copy.
+Search indexing is enabled (`src/data/indexing.json`, `enabled: true`, since 9 October 2026): every content page emits
+`index, follow` with a self-referencing canonical and is listed in the sitemap; only the 404 is noindex. Setting
+`enabled` to `false` and deploying switches the whole site to `noindex, follow`, adds `X-Robots-Tag: noindex, follow`
+and empties the sitemap — use it only for a deliberate de-indexing.
+The old `airkraft-ac-repair.vercel.app` copy is intentionally left on noindex (with canonicals to frostwright.in) so it
+never competes with the live site. It is not Git-connected; delete that Vercel project when convenient.
 
 Production runs as a Docker container on a Hostinger VPS, behind Caddy (automatic HTTPS). GitHub Actions verifies the site and builds the Docker image on pushes and pull requests. Pushes to `main` publish `docker.io/pateldeepesh/acrepair` when Docker Hub credentials are set; the VPS receives the immutable `sha-<commit>` tag once `DEPLOY_ENABLED=true`. Server setup, secrets and rollback: [DEPLOY.md](DEPLOY.md).
 
