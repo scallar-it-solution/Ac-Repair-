@@ -6,25 +6,27 @@ import { Reveal } from "../components/Reveal";
 import { AnswerBox } from "../components/ui";
 import { brandPathByName } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
+import { serviceBySlug, servicePath } from "../data/services";
 import { BRAND_DISCLAIMER, SITE, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 
-const BRAND_NOTES: { name: string; note: string }[] = [
+/** `service` links brands without their own page to the service that matches the note. */
+const BRAND_NOTES: { name: string; note: string; service?: string }[] = [
   { name: "Daikin", note: "Inverter splits and VRV systems. Two-character error codes such as U4, A5 and E7." },
   { name: "Voltas", note: "Split, window and inverter ACs across every price band — from decade-old windows to new inverter splits." },
   { name: "LG", note: "Dual-inverter splits with CH-series error codes; outdoor PCB and fan-motor faults." },
   { name: "Samsung", note: "Inverter splits with three-digit E-codes such as E101 and E554." },
-  { name: "Lloyd", note: "Inverter and fixed-speed splits; PCB, sensor and fan-motor work." },
-  { name: "Blue Star", note: "Splits, windows and cassette units in homes, shops and clinics." },
-  { name: "Hitachi", note: "Inverter splits and windows; sensor and PCB diagnostics." },
-  { name: "Carrier", note: "Splits and long-running window units." },
-  { name: "Mitsubishi", note: "Inverter splits and VRF systems." },
-  { name: "O General", note: "Inverter splits; outdoor-unit and PCB work." },
-  { name: "Panasonic", note: "Inverter splits; sensor, drainage and PCB issues." },
-  { name: "Godrej", note: "Splits and windows; capacitor, relay and gas work." },
-  { name: "Haier", note: "Inverter and fixed-speed splits." },
-  { name: "Whirlpool", note: "Splits and windows; electrical and gas faults." },
+  { name: "Lloyd", note: "Inverter and fixed-speed splits; PCB, sensor and fan-motor work.", service: "inverter-ac-pcb-repair" },
+  { name: "Blue Star", note: "Splits, windows and cassette units in homes, shops and clinics.", service: "commercial-ac-repair" },
+  { name: "Hitachi", note: "Inverter splits and windows; sensor and PCB diagnostics.", service: "inverter-ac-pcb-repair" },
+  { name: "Carrier", note: "Splits and long-running window units.", service: "window-ac-repair" },
+  { name: "Mitsubishi", note: "Inverter splits and VRF systems.", service: "commercial-ac-repair" },
+  { name: "O General", note: "Inverter splits; outdoor-unit and PCB work.", service: "inverter-ac-pcb-repair" },
+  { name: "Panasonic", note: "Inverter splits; sensor, drainage and PCB issues.", service: "split-ac-repair" },
+  { name: "Godrej", note: "Splits and windows; capacitor, relay and gas work.", service: "ac-gas-filling" },
+  { name: "Haier", note: "Inverter and fixed-speed splits.", service: "split-ac-repair" },
+  { name: "Whirlpool", note: "Splits and windows; electrical and gas faults.", service: "split-ac-repair" },
 ];
 
 export function Brands({ route }: { route: RouteDef }) {
@@ -49,6 +51,7 @@ export function Brands({ route }: { route: RouteDef }) {
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BRAND_NOTES.map((b, i) => {
               const page = brandPathByName(b.name);
+              const service = b.service ? serviceBySlug(b.service) : undefined;
               return (
                 <Reveal as="li" key={b.name} delay={(i % 3) + 1}>
                   <article className="flex h-full flex-col rounded-2xl border border-line bg-paper p-6">
@@ -68,13 +71,18 @@ export function Brands({ route }: { route: RouteDef }) {
                           Faults, codes & service <IconArrow size={16} />
                         </Link>
                       )}
+                      {!page && service && (
+                        <Link to={servicePath(service.slug)} className="inline-flex items-center gap-2 text-forest">
+                          {service.short} <IconArrow size={16} />
+                        </Link>
+                      )}
                       <a
                         href={waLink(`Hi Frostwright, I need ${b.name} AC repair/service in Delhi NCR. Please share a slot.`)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={page ? "text-muted hover:text-forest" : "inline-flex items-center gap-2 text-forest"}
+                        className="text-muted hover:text-forest"
                       >
-                        Book {b.name} service {!page && <IconArrow size={16} />}
+                        Book {b.name} service
                       </a>
                     </div>
                   </article>

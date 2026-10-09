@@ -95,7 +95,7 @@ export const SPECIALIST: Service[] = [
     price: "On quote",
     blurb:
       "Many ‘dead compressors’ are really a failed capacitor, contactor or overload. We test before anyone says ‘replace’ — and replace properly when it is needed.",
-    metaTitle: "AC Compressor Replacement in Delhi NCR | Tested First | Frostwright",
+    metaTitle: "AC Compressor Repair & Replacement in Delhi NCR | Frostwright",
     metaDescription:
       "AC compressor not starting? We test windings, capacitor and overload before quoting a replacement — then braze, flush, vacuum and weigh in the gas. Delhi NCR.",
     h1: "AC compressor repair & replacement in Delhi NCR",

@@ -37,7 +37,19 @@ export function ServicePage({ route }: { route: RouteDef }) {
       <div className="bg-cream py-16 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:px-8 lg:grid-cols-12">
           <div className="space-y-16 lg:col-span-8">
-            <AnswerBox text={s.answer} updated={SITE.updated} />
+            <div>
+              <AnswerBox text={s.answer} updated={SITE.updated} />
+              {s.facts && (
+                <dl className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
+                  {s.facts.map((f) => (
+                    <div key={f.k} className="bg-paper p-5">
+                      <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-sage">{f.k}</dt>
+                      <dd className="mt-1.5 text-[15px] font-medium text-ink">{f.v}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
+            </div>
 
             <section aria-labelledby="symptoms">
               <SectionHead id="symptoms" kicker="Symptoms" title={s.symptomsTitle} />
@@ -78,6 +90,40 @@ export function ServicePage({ route }: { route: RouteDef }) {
                 ))}
               </ol>
             </section>
+
+            {s.table && (
+              <section aria-labelledby="compare">
+                <SectionHead id="compare" kicker="Compared" title={s.table.title} />
+                <div className="mt-8 overflow-x-auto rounded-2xl border border-line">
+                  <table className="w-full min-w-[34rem] text-left text-sm md:text-[15px]">
+                    <caption className="sr-only">{s.table.caption}</caption>
+                    <thead className="bg-forest text-cream">
+                      <tr>
+                        {s.table.head.map((h) => (
+                          <th key={h} scope="col" className="px-5 py-3.5 font-medium">
+                            {h}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {s.table.rows.map(([first, ...rest]) => (
+                        <tr key={first} className="border-t border-line align-top">
+                          <th scope="row" className="bg-paper px-5 py-4 font-semibold text-ink">
+                            {first}
+                          </th>
+                          {rest.map((c, i) => (
+                            <td key={i} className="px-5 py-4 text-muted">
+                              {c}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
 
             <section aria-labelledby="included" className="grid gap-6 md:grid-cols-2">
               <div className="rounded-2xl border border-line bg-paper p-6">

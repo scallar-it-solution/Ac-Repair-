@@ -33,13 +33,20 @@ export const SITE = {
   payment: ["UPI", "Cash", "Card"],
   languages: ["English", "Hindi"],
   /** Date the content was last reviewed — shown on pages and used for sitemap <lastmod>. */
-  updated: "2026-10-05",
+  updated: "2026-10-09",
   /**
    * Official profiles (Google Business Profile, Facebook, Instagram, Justdial, LinkedIn…).
    * Add real URLs here — they become `sameAs` in structured data, which links the entity across the web.
    */
   sameAs: [] as string[],
 } as const;
+
+/**
+ * Google Analytics 4 measurement ID ("G-XXXXXXXXXX"). Empty means no analytics script, and the privacy policy says
+ * so. Once set, call and WhatsApp clicks are reported as GA4 `generate_lead` events (src/lib/track.ts) and the
+ * privacy policy describes the analytics cookies automatically.
+ */
+export const GA4_ID: string = "";
 
 /**
  * Absolute URL for a site path. The homepage is "https://frostwright.in" (no trailing slash) — the form Next.js
@@ -285,11 +292,12 @@ export const BRANDS = [
 export const BRAND_DISCLAIMER =
   "Frostwright is an independent multi-brand AC service provider. We are not affiliated with, or an authorised service centre of, any air-conditioner manufacturer. Brand names are used only to identify the equipment we service.";
 
+/**
+ * Named people shown on the site. List only people the owner has confirmed; unverified staff profiles mislead
+ * customers and conflict with Google's spam policies. Technicians are named per visit on WhatsApp instead.
+ */
 export const TEAM = [
   { name: "Arjun Mehta", role: "Lead diagnostic engineer", years: "14 yrs", focus: "Inverter PCB & VRF" },
-  { name: "Farhan Siddiqui", role: "Field supervisor, South & Central", years: "11 yrs", focus: "Split & cassette" },
-  { name: "Kavita Rao", role: "AMC & dispatch", years: "8 yrs", focus: "Slots, parts, follow-ups" },
-  { name: "Rakesh Yadav", role: "Installation crew lead", years: "12 yrs", focus: "Copper, vacuum, civil" },
 ] as const;
 
 /** Default author / reviewer for guides (E-E-A-T). */

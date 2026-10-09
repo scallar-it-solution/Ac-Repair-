@@ -65,7 +65,7 @@ const STATIC: RouteDef[] = [
   {
     path: "/pricing",
     kind: "pricing",
-    title: "AC Repair & Service Price List in Delhi NCR (2026) | Frostwright",
+    title: "AC Service Charges & Price List in Delhi NCR (2026) | Frostwright",
     description:
       "AC service from ₹449, repair ₹499, PCB ₹799, installation ₹1,499, gas filling ₹1,799, AMC ₹2,499. ₹199 visit charge, waived when you approve the repair.",
     crumbs: [HOME, { name: "Pricing", path: "/pricing" }],

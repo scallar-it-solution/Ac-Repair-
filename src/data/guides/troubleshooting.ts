@@ -15,7 +15,7 @@ export const TROUBLESHOOTING: Guide[] = [
     answer:
       "An AC that runs but does not cool is most often caused by dirty filters or a clogged coil, a failed outdoor fan capacitor, a refrigerant leak, or a dirty outdoor condenser. Check the mode, set temperature, filters and whether the outdoor fan is spinning first. A wet service (₹449–₹499) fixes the most common cause; gas is only needed if a leak is found.",
     published: D,
-    updated: D,
+    updated: "2026-10-09",
     photo: "living",
     blocks: [
       { t: "h2", id: "quick-checks", text: "Five-minute checks before you call anyone" },
@@ -105,6 +105,10 @@ export const TROUBLESHOOTING: Guide[] = [
       {
         q: "How much does it cost to fix an AC that is not cooling in Delhi?",
         a: "At Frostwright, a wet service that fixes the most common cause costs ₹449 (window) to ₹499 (split). Gas filling after a leak test starts at ₹1,799 for R32/R410A, and PCB repair starts at ₹799. The ₹199 inspection is waived if you approve the repair.",
+      },
+      {
+        q: "Why is my split AC fan running but not cooling?",
+        a: "If the indoor fan blows but the air is not cold, the outdoor unit is usually not doing its job — a failed capacitor, a stabiliser holding it off, a board fault — or the coil is clogged or the system is low on refrigerant. Check the outdoor unit: if it is silent, or hums without the fan turning, switch off and book a technician.",
       },
       {
         q: "Does an AC need gas every year?",

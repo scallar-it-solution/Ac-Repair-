@@ -33,13 +33,23 @@ const BILLING = [
   },
 ];
 
+/** Worked examples from the published rates only — what a visit typically ends up costing. */
+const SCENARIOS: [situation: string, pay: string][] = [
+  ["The AC only needed cleaning", "₹449 (window) or ₹499 (split) wet service — the inspection is waived because you approved the work"],
+  ["Water dripping from a blocked drain", "From ₹499 for the drain or insulation repair"],
+  ["An error code traced to the circuit board", "From ₹799, plus any components, quoted after testing"],
+  ["Low on gas — leak found and fixed", "From ₹1,799 (R32 / R410A) or ₹2,499 (R22); brazing or coil work quoted once the leak is found"],
+  ["You decide not to go ahead", `${SITE.visitFee} inspection only`],
+  ["Night emergency call-out", "Surcharge told before booking"],
+];
+
 export function Pricing({ route }: { route: RouteDef }) {
   return (
     <>
       <PageHero
         crumbs={route.crumbs}
         kicker={`Price list · updated ${formatDate(SITE.updated)}`}
-        title="AC repair & service prices in Delhi NCR"
+        title="AC service charges & repair prices in Delhi NCR"
         lede="Published starting prices for every job we do. The final bill comes after diagnosis — and you approve it before any work starts."
         aside={
           <dl className="grid grid-cols-2 gap-3">
@@ -83,6 +93,33 @@ export function Pricing({ route }: { route: RouteDef }) {
             Starting prices for standard jobs in Delhi NCR. Spare parts, leak repairs, extra copper, difficult access and
             outlying-area travel are quoted separately and approved by you on WhatsApp before work begins.
           </p>
+
+          <h2 className="font-display mt-16 text-2xl font-bold md:text-3xl">What a typical visit costs</h2>
+          <div className="mt-6 max-w-4xl overflow-hidden rounded-2xl border border-line">
+            <table className="w-full text-left text-sm md:text-[15px]">
+              <caption className="sr-only">Typical total cost of a Frostwright AC visit by situation</caption>
+              <thead className="bg-forest text-cream">
+                <tr>
+                  <th scope="col" className="w-2/5 px-5 py-3.5 font-medium">
+                    Situation
+                  </th>
+                  <th scope="col" className="px-5 py-3.5 font-medium">
+                    What you pay
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {SCENARIOS.map(([situation, pay]) => (
+                  <tr key={situation} className="border-t border-line align-top">
+                    <th scope="row" className="bg-paper px-5 py-4 font-semibold text-ink">
+                      {situation}
+                    </th>
+                    <td className="px-5 py-4 text-muted">{pay}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 

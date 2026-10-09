@@ -17,6 +17,8 @@ export type Area = {
   lede: string;
   answer: string;
   eta: string;
+  /** Travel add-on note for outlying pockets — only where it applies; shown with the city's prices. */
+  travel?: string;
   zones: { name: string; places: string[] }[];
   /** Local insight paragraphs. Supports [label](/path) inline links. */
   local: { title: string; text: string }[];
@@ -35,7 +37,7 @@ export const AREAS: Area[] = [
     wiki: "https://en.wikipedia.org/wiki/Delhi",
     metaTitle: "AC Repair in Delhi | Same-Day AC Service & Gas Filling | Frostwright",
     metaDescription:
-      "Same-day AC repair and service across Delhi — South Extension, GK, Saket, Dwarka, Rohini, Janakpuri, Laxmi Nagar and more. Split, window, inverter. 90-day warranty.",
+      "Same-day AC repair and service across Delhi — Dwarka, Rohini, Janakpuri, South Extension, GK, Saket, Laxmi Nagar and more. Split, window, inverter. 90-day warranty.",
     h1: "AC repair & service in Delhi",
     lede: "Builder floors in South Delhi, DDA flats in Dwarka and Rohini, old window units in Karol Bagh, inverter splits in Vasant Kunj. Our dispatch desk is in New Delhi — this is home ground.",
     answer:
@@ -71,7 +73,11 @@ export const AREAS: Area[] = [
       },
       {
         title: "Older window ACs still at work",
-        text: "Delhi has more working window ACs than anywhere else in NCR — in DDA flats, shops and offices. We still [repair them](/services/window-ac-repair), and still carry the capacitors, relays and fan motors they need.",
+        text: "Delhi still runs a lot of working window ACs — in DDA flats, shops and offices. We still [repair them](/services/window-ac-repair), and still carry the capacitors, relays and fan motors they need.",
+      },
+      {
+        title: "Dwarka and Rohini sector societies",
+        text: "Both sub-cities are laid out in numbered sectors of DDA flats and group-housing societies, many of them a few decades old. One building can hold an R22 window unit, a first-generation split and a new inverter AC, with outdoor units on balcony grilles or shared ledges. Send your sector and society name when you book — it tells the technician which gauges, gas and ladder to bring, and whether a [window AC](/services/window-ac-repair) or an [inverter board](/services/inverter-ac-pcb-repair) is likely on the job.",
       },
       {
         title: "Dust storms and 45 °C afternoons",
@@ -110,6 +116,7 @@ export const AREAS: Area[] = [
     answer:
       "Frostwright provides same-day AC repair, servicing, gas filling and installation across Noida, from Sector 18 and Sector 62 to Sector 137, Sector 150 and Noida Extension. Daytime arrival is typically 45–90 minutes. Visits start with a ₹199 inspection, waived if you approve the repair, and repairs carry a 90-day warranty.",
     eta: "45–90 min across central Noida",
+    travel: "Noida Extension (Greater Noida West) may carry a small travel add-on, confirmed on WhatsApp before the visit.",
     zones: [
       { name: "Central Noida", places: ["Sector 18", "Sector 37", "Sector 50", "Sector 62", "Sector 76"] },
       { name: "Expressway", places: ["Sector 137", "Sector 150"] },
@@ -136,7 +143,7 @@ export const AREAS: Area[] = [
     faqs: [
       {
         q: "Do you cover all sectors of Noida?",
-        a: "Yes — including Sector 18, 37, 50, 62, 76, 137, 150 and Noida Extension. If your sector is not listed, WhatsApp your location and we will confirm the slot.",
+        a: "Yes — including Sector 18, 37, 50, 62, 76, 137, 150 and Noida Extension. Noida Extension is officially Greater Noida West, and parts of it may carry a small travel add-on that we confirm on WhatsApp before the visit. If your sector is not listed, WhatsApp your location and we will confirm the slot.",
       },
       {
         q: "Can you service outdoor units on high floors?",
@@ -165,6 +172,7 @@ export const AREAS: Area[] = [
     answer:
       "Frostwright provides AC repair, wet servicing, gas filling and installation across Greater Noida, including Pari Chowk, Alpha, Beta, Gamma, Knowledge Park and Greater Noida West. Same-day slots are available; outlying pockets may carry a small travel add-on, which we confirm on WhatsApp before the visit. Repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
+    travel: "Some outlying pockets, including parts of the western sectors, may carry a small travel add-on, confirmed on WhatsApp before booking.",
     zones: [
       { name: "Sectors", places: ["Alpha / Beta / Gamma", "Pari Chowk", "Knowledge Park"] },
       { name: "West", places: ["Greater Noida West"] },
@@ -189,6 +197,10 @@ export const AREAS: Area[] = [
         a: "Most of the city is covered at the standard ₹199 inspection. Some outlying pockets, including parts of the western sectors, may carry a small travel add-on, which we tell you on WhatsApp before booking.",
       },
       {
+        q: "Is Greater Noida West the same as Noida Extension?",
+        a: "Yes. Greater Noida West is the official name of the area most people call Noida Extension — the high-rise belt west of the main Greater Noida sectors. It is covered from our Greater Noida schedule, and parts of it may carry a small travel add-on, which we confirm on WhatsApp before the visit.",
+      },
+      {
         q: "Do you service ACs in hostels and PGs?",
         a: "Yes. We service multiple machines in one visit, provide a GST invoice and a machine list, and offer AMC for properties with several ACs.",
       },
@@ -211,6 +223,7 @@ export const AREAS: Area[] = [
     answer:
       "Frostwright provides same-day AC repair, servicing, gas filling and installation across Gurugram (Gurgaon), including DLF Phase 1–5, Golf Course Road, Sushant Lok, South City, Sohna Road and Dwarka Expressway. Daytime arrival is typically 45–90 minutes. Offices and clinics get night slots and GST invoices; repairs carry a 90-day warranty.",
     eta: "45–90 min across central Gurugram",
+    travel: "Sohna town may carry a small travel add-on, confirmed on WhatsApp before the visit.",
     zones: [
       { name: "DLF & Golf Course", places: ["DLF Phase 1–5", "Golf Course Road", "MG Road"] },
       { name: "Central & South", places: ["Sushant Lok", "South City", "Sohna Road", "Sector 49–57"] },
@@ -272,6 +285,10 @@ export const AREAS: Area[] = [
     ],
     local: [
       {
+        title: "Indirapuram tower societies",
+        text: "Indirapuram is laid out in khands — Niti, Shakti, Ahinsa, Nyay, Gyan and Abhay among them — and is mostly high-rise group housing. Outdoor units sit on service ledges or balcony cages, so access is planned before the visit, and the long copper runs in tower flats make flare joints a common slow-leak point. That is why gas is never charged before a [leak test](/guides/ac-gas-leak-signs). Share your khand, society and tower when you book.",
+      },
+      {
         title: "A mix of old and new machines",
         text: "Vaishali and Vasundhara flats still run many window and older R22 splits, while Raj Nagar Extension and Crossings Republik are mostly newer inverter units. Our technicians carry parts and gauges for both.",
       },
@@ -312,6 +329,7 @@ export const AREAS: Area[] = [
     answer:
       "Frostwright provides AC repair, wet servicing, gas filling and installation across Faridabad, including NIT, Sector 15–21, Greater Faridabad and Ballabhgarh. Same-day slots are available, with the arrival window confirmed on WhatsApp; outlying areas such as Ballabhgarh may carry a small travel add-on. Repairs carry a 90-day warranty.",
     eta: "Same-day — exact window confirmed on WhatsApp",
+    travel: "Greater Faridabad is covered at standard rates; Ballabhgarh and other outlying areas may carry a small travel add-on, confirmed on WhatsApp before booking.",
     zones: [
       { name: "Old Faridabad", places: ["NIT Faridabad", "Sector 15–21"] },
       { name: "Greater Faridabad", places: ["Greater Faridabad"] },
@@ -335,6 +353,10 @@ export const AREAS: Area[] = [
       {
         q: "Do you cover Greater Faridabad and Ballabhgarh?",
         a: "Yes. Greater Faridabad is covered at standard rates; Ballabhgarh and other outlying areas may carry a small travel add-on, which we confirm on WhatsApp before booking.",
+      },
+      {
+        q: "Do you service ACs in Faridabad shops and workshops?",
+        a: "Yes. Shops and small industrial units run their ACs for long hours in dusty conditions, so condensers clog quickly and compressors trip in the afternoon heat. A mid-summer wash between the pre-summer and post-monsoon services prevents most of it; for five or more machines, an AMC with a fixed schedule is usually cheaper.",
       },
       {
         q: "Can you service several ACs in one visit?",

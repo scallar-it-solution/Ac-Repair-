@@ -3,17 +3,21 @@ import { FAQ } from "../components/FAQ";
 import { IconClock, IconPin, IconShield, IconStar } from "../components/Icons";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import { GuideList, ServiceLinkGrid } from "../components/cards";
+import { GuideList, PriceTable, ServiceLinkGrid } from "../components/cards";
 import { AnswerBox, RichText, SectionHead } from "../components/ui";
 import { AREAS, AREA_GUIDES, areaBySlug, areaPath } from "../data/areas";
 import { BRAND_PAGES, brandPath } from "../data/brands";
 import { routeFaqs } from "../data/faqs";
 import { guideBySlug, type Guide } from "../data/guides";
 import { SERVICES } from "../data/services";
-import { SITE, TESTIMONIALS, waLink } from "../data/site";
+import { PRICING, SITE, TESTIMONIALS, waLink } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 import { NotFound } from "./NotFound";
+
+/** The jobs city searches ask about most; the full list stays on /pricing. */
+const CITY_PRICE_JOBS = ["Split AC wet service", "Window AC wet service", "Water leak repair", "PCB inspection & repair", "Gas filling (R32 / R410A)", "Split AC installation"];
+const CITY_PRICES = PRICING.filter((p) => CITY_PRICE_JOBS.includes(p.job));
 
 export function AreaPage({ route }: { route: RouteDef }) {
   const a = areaBySlug(route.slug!);
@@ -125,7 +129,27 @@ export function AreaPage({ route }: { route: RouteDef }) {
         </div>
       </section>
 
-      <section className="bg-cream py-20 md:py-24" aria-labelledby="area-services">
+      <section className="bg-cream py-20 md:py-24" aria-labelledby="area-prices">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 md:grid-cols-12 md:px-8">
+          <div className="md:col-span-5">
+            <SectionHead
+              id="area-prices"
+              kicker="Prices"
+              title={`AC repair & service prices in ${a.city}`}
+              text={`The same published starting prices apply in ${a.city} as across Delhi NCR. Every visit starts with a ${SITE.visitFee} inspection, waived if you approve the repair on the same visit.`}
+            />
+            {a.travel && <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">{a.travel}</p>}
+            <Link to="/pricing" className="btn btn-primary mt-8">
+              Full price list
+            </Link>
+          </div>
+          <div className="md:col-span-7">
+            <PriceTable rows={CITY_PRICES} caption={`Frostwright AC service starting prices in ${a.city}`} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-line bg-cream py-20 md:py-24" aria-labelledby="area-services">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionHead id="area-services" kicker="Services" title="Every AC service, same-day" />
           <div className="mt-10">

@@ -7,7 +7,7 @@ export const GAS: Guide[] = [
     slug: "ac-gas-filling-cost",
     cluster: "gas",
     title: "AC gas filling cost in Delhi NCR (2026): R32 vs R410A vs R22",
-    metaTitle: "AC Gas Filling Cost in Delhi NCR (2026) — R32, R410A, R22 Prices",
+    metaTitle: "AC Gas Filling Charges & Refill Cost in Delhi NCR (2026) — R32, R22",
     metaDescription:
       "AC gas refill costs in Delhi NCR for 2026 — R32, R410A and R22 — plus what a proper charge includes and how to tell which gas your AC uses.",
     excerpt:
@@ -15,7 +15,7 @@ export const GAS: Guide[] = [
     answer:
       "In Delhi NCR, Frostwright’s AC gas filling starts at ₹1,799 for R32 or R410A and ₹2,499 for R22 (subject to stock), including a nitrogen leak test, vacuum and a weighed charge. The final price depends on where the leak is and whether a coil or joint needs repair. A healthy AC never needs routine gas top-ups.",
     published: D,
-    updated: D,
+    updated: "2026-10-09",
     photo: "leakTest",
     blocks: [
       { t: "h2", id: "prices", text: "Gas filling prices at a glance" },
@@ -98,6 +98,14 @@ export const GAS: Guide[] = [
       {
         q: "Is R32 gas filling cheaper than R22?",
         a: "Yes. R32 is widely available, while R22 is being phased out and is harder to source, so R22 charges cost more.",
+      },
+      {
+        q: "What are window AC gas filling charges?",
+        a: "Older window ACs usually run on R22, which starts at ₹2,499 at Frostwright (subject to stock); newer window units on R32 or R410A start at ₹1,799. The leak test, vacuum and weighed charge are the same as for a split AC, and the nameplate on the back of the unit shows which gas it uses.",
+      },
+      {
+        q: "Does gas filling cost more for a 1.5 ton or 2 ton AC?",
+        a: "Our published starting prices are the same for every tonnage. The final quote depends on how much refrigerant is missing and how long the copper run is, so a larger AC on a long pipe run can cost more than a 1 ton AC with a short run.",
       },
     ],
     related: ["ac-gas-filling", "ac-coil-repair", "split-ac-repair", "window-ac-repair"],

@@ -59,7 +59,12 @@ export function About({ route }: { route: RouteDef }) {
       <section className="bg-paper py-20 md:py-28" aria-labelledby="team">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <Reveal>
-            <SectionHead id="team" kicker="People" title="Who turns up" />
+            <SectionHead
+              id="team"
+              kicker="People"
+              title="Who turns up"
+              text="You get the technician’s name and phone number on WhatsApp before every visit, so you know who is coming and can approve society entry. Diagnostics and every technical guide on this site are reviewed by our lead engineer."
+            />
           </Reveal>
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {TEAM.map((t, i) => (
