@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { PageHero } from "../components/PageHero";
 import { formatDate } from "../components/ui";
-import { BRAND_DISCLAIMER, SITE } from "../data/site";
+import { BRAND_DISCLAIMER, GA4_ID, SITE } from "../data/site";
 import { Link } from "../lib/router";
 import type { RouteDef } from "../routes";
 
@@ -29,7 +29,10 @@ const PRIVACY: Section[] = [
       <>
         <p>
           This website has no user accounts and no server-side forms. The booking form builds a WhatsApp message inside your
-          browser; nothing is sent to us until you press send in WhatsApp. We do not use advertising or analytics cookies.
+          browser; nothing is sent to us until you press send in WhatsApp.{" "}
+          {GA4_ID
+            ? "We use Google Analytics to count visits and clicks on our call and WhatsApp links. It sets first-party cookies (such as _ga), and Google processes that data under its own privacy policy. We do not use advertising cookies."
+            : "We do not use advertising or analytics cookies."}
         </p>
         <p>
           Fonts and images are served from this website itself, not from third-party services. Clicking a WhatsApp link

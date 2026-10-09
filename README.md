@@ -65,7 +65,8 @@ All copy lives in `src/data/`. Change it there and every place that uses it — 
 - Connected JSON-LD graph on every page; FAQ markup always matches the visible FAQs
 - Topic clusters: guides ↔ services ↔ city pages are interlinked from data, so links never go stale
 - `robots.txt` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers
-- Lead tracking: clicks on call / WhatsApp links push `lead_click` to `dataLayer` (GTM) and `generate_lead` to GA4 when either is installed — no code changes needed
+- Lead tracking: clicks on call / WhatsApp links push `lead_click` to `dataLayer` (GTM) and `generate_lead` to GA4. Set `GA4_ID` in `src/data/site.ts` to load GA4; the privacy policy then describes the analytics cookies automatically
+- IndexNow: after a deploy, `npm run indexnow` (all sitemap URLs) or `npm run indexnow -- /pricing /faq` (changed paths) notifies Bing, Yandex and other IndexNow engines; the key file lives in `public/`
 
 ## Deployment
 

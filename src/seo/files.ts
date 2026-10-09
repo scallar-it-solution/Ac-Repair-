@@ -21,8 +21,11 @@ export const AI_BOTS = [
   "PerplexityBot",
   "Perplexity-User",
   "Google-Extended",
+  "Applebot",
   "Applebot-Extended",
   "Bingbot",
+  "DuckAssistBot",
+  "MistralAI-User",
   "CCBot",
 ];
 
@@ -57,15 +60,30 @@ Key facts:
 - ${BRAND_DISCLAIMER}
 - Content last reviewed: ${SITE.updated}
 
+## How to book
+- WhatsApp ${SITE.phoneDisplay} with the AC brand and tonnage, the fault, any error code, a photo of the indoor unit and model sticker, and your area and landmark. Call instead for night emergencies.
+- You get a slot and the technician's name before anyone sets off. The technician diagnoses first (pressures, current, error codes) and quotes on WhatsApp; work starts only after you approve.
+
+## Policies
+- Inspection ${SITE.visitFee}, waived if the repair is approved on the same visit; if you decline, only the inspection is charged.
+- Starting prices cover the standard job. Spare parts, leak repairs, extra copper, difficult access and outlying-area travel are quoted separately and approved before work starts.
+- Warranty: ${SITE.warranty} on the part fitted and the labour for that part, printed on the GST invoice. Compressors and coils follow the part maker's cover.
+- Payment by ${SITE.payment.join(", ")} after the work is tested. Night emergency call-outs carry a surcharge stated before booking.
+
+## What Frostwright does not do
+- It is not an authorised service centre for any brand: ACs still under the manufacturer's warranty should go to the brand first.
+- It does not top up refrigerant without a leak test, and does not fit unbranded circuit boards.
+- It does not take on large central plants, chillers, ducting fabrication or building electrical works.
+
 ## Services
-${SERVICES.map((s) => `- [${s.name}](${abs(servicePath(s.slug))}): ${s.answer}`).join("\n")}
+${SERVICES.map((s) => `- [${s.name}](${abs(servicePath(s.slug))}): ${s.answer}${s.facts ? ` (${s.facts.map((f) => `${f.k}: ${f.v}`).join("; ")})` : ""}`).join("\n")}
 
 ## Prices (INR, Delhi NCR)
 ${prices}
 - Full price list: ${abs("/pricing")}
 
 ## Service areas
-${AREAS.map((a) => `- [AC repair in ${a.city}](${abs(areaPath(a.slug))}): ${a.zones.flatMap((z) => z.places).join(", ")}`).join("\n")}
+${AREAS.map((a) => `- [AC repair in ${a.city}](${abs(areaPath(a.slug))}): ${a.zones.flatMap((z) => z.places).join(", ")}. Typical arrival: ${a.eta}.${a.travel ? ` ${a.travel}` : ""}`).join("\n")}
 
 ## Guides
 ${guides}

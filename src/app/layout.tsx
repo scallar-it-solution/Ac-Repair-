@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Oswald, Outfit } from "next/font/google";
+import Script from "next/script";
 import type { ReactNode } from "react";
 import { ClientEffects } from "@/components/ClientEffects";
 import { Footer } from "@/components/Footer";
@@ -7,7 +8,7 @@ import { Header, type MenuArea, type MenuService } from "@/components/Header";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { AREAS, areaPath } from "@/data/areas";
 import { SERVICES, servicePath } from "@/data/services";
-import { SITE } from "@/data/site";
+import { GA4_ID, SITE } from "@/data/site";
 import "./globals.css";
 
 // Oswald is the Frostwright brand face (headings, lockup); Outfit stays for body copy.
@@ -91,6 +92,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Footer />
         <WhatsAppButton />
         <ClientEffects />
+        {GA4_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`} strategy="afterInteractive" />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","${GA4_ID}");`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
