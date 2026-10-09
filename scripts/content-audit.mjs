@@ -7,7 +7,8 @@
  *   - thin pages, keyword stuffing, missing or duplicate titles / descriptions
  *   - canonical, robots, one H1, image alt text
  *   - broken internal links and orphan pages (inbound link counts)
- *   - structured data: valid JSON-LD, no self-serving review markup, FAQ markup matches visible text
+ *   - structured data: valid JSON-LD, no self-serving review markup, FAQ markup matches visible text and appears on
+ *     one page per question, no @id reference to a node missing from the page, no empty BreadcrumbList
  * Exits with code 1 if any hard failure is found.
  */
 import fs from "node:fs";
@@ -70,6 +71,7 @@ const isNotFound = (p) => p.url.includes("not-found");
 // ---- per-page checks
 const titles = new Map();
 const descs = new Map();
+const faqMarkup = new Map(); // question → the one page allowed to mark it up
 for (const p of pages) {
   if (isNotFound(p)) {
     if (!p.robots.includes("noindex")) fails.push(`${p.url}: 404 page is indexable`);
@@ -106,10 +108,29 @@ for (const p of pages) {
     const graph = JSON.parse(p.ld)["@graph"];
     const flat = JSON.stringify(graph);
     if (/"aggregateRating"|"@type":"Review"/.test(flat)) fails.push(`${p.url}: self-serving review/rating markup`);
+    // Google resolves @id only within the page: a bare {"@id"} with no node behind it becomes an empty, unnamed item
+    // (e.g. "BreadcrumbList: missing field itemListElement" in Search Console).
+    const defined = new Set();
+    const refs = [];
+    const visit = (n) => {
+      if (Array.isArray(n)) return n.forEach(visit);
+      if (!n || typeof n !== "object") return;
+      if (n["@id"] && Object.keys(n).length === 1) refs.push(n["@id"]);
+      else if (n["@id"]) defined.add(n["@id"]);
+      if ([].concat(n["@type"]).includes("BreadcrumbList") && !n.itemListElement?.length)
+        fails.push(`${p.url}: BreadcrumbList without itemListElement`);
+      for (const [k, v] of Object.entries(n)) if (!k.startsWith("@")) visit(v);
+    };
+    visit(graph);
+    for (const id of new Set(refs)) if (!defined.has(id)) fails.push(`${p.url}: JSON-LD reference to undefined node ${id}`);
+
     const faqNode = graph.find((n) => [].concat(n["@type"]).includes("FAQPage"));
     if (faqNode) {
       const visible = p.mainText.toLowerCase();
       for (const q of faqNode.mainEntity) {
+        // Google's FAQ guidelines: a question repeated across the site is marked up on one page only.
+        if (faqMarkup.has(q.name)) fails.push(`${p.url}: FAQ "${q.name}" is also marked up on ${faqMarkup.get(q.name)}`);
+        else faqMarkup.set(q.name, p.url);
         if (!visible.includes(q.name.toLowerCase())) fails.push(`${p.url}: FAQ markup question not visible: "${q.name}"`);
         if (!visible.includes(q.acceptedAnswer.text.toLowerCase().slice(0, 60)))
           fails.push(`${p.url}: FAQ markup answer not visible for "${q.name}"`);

@@ -4,7 +4,7 @@ import { routeFaqs } from "../data/faqs";
 import { GUIDES, clusterOf, guideBySlug, guidePath, readingMinutes } from "../data/guides";
 import { SERVICES, serviceBySlug, servicePath } from "../data/services";
 import { AUTHOR, HERO_IMAGE, OG_IMAGE, PRICE_GROUPS, PHOTOS, SITE, abs } from "../data/site";
-import type { RouteDef } from "../routes";
+import { allRoutes, type RouteDef } from "../routes";
 
 type Node = Record<string, unknown>;
 
@@ -12,6 +12,30 @@ const BUSINESS_ID = `${SITE.url}/#business`;
 const WEBSITE_ID = `${SITE.url}/#website`;
 const LOGO_ID = `${SITE.url}/#logo`;
 const photoUrl = (key: keyof typeof PHOTOS) => abs(`/images/photos/${key}-1600.webp`);
+
+/**
+ * Reference to a service described in full on its own page. Google resolves `@id` only within the current page,
+ * so a bare `{ "@id" }` pointing elsewhere reads as an empty, unnamed item; type, name and url keep it valid here
+ * and merge with the full node on the service page itself.
+ */
+function serviceRef(slug: string): Node {
+  const s = serviceBySlug(slug)!;
+  const url = abs(servicePath(s.slug));
+  return { "@type": "Service", "@id": `${url}#service`, name: s.name, url };
+}
+
+/**
+ * Google's FAQ guidelines: a question repeated across the site is marked up once. Every FAQ stays visible wherever
+ * it is shown; the markup goes to the most specific page that shows it (earliest kind below, then route order).
+ */
+const FAQ_OWNER_ORDER: RouteDef["kind"][] = ["service", "area", "brand", "guide", "pricing", "brands", "areas", "faq", "home", "contact", "services"];
+const FAQ_OWNER = new Map<string, string>();
+for (const kind of FAQ_OWNER_ORDER)
+  for (const r of allRoutes().filter((x) => x.kind === kind))
+    for (const f of routeFaqs(r)) if (!FAQ_OWNER.has(f.q)) FAQ_OWNER.set(f.q, r.path);
+
+/** The FAQs this route marks up as FAQPage (a subset of the FAQs it shows). */
+export const markedUpFaqs = (route: RouteDef) => routeFaqs(route).filter((f) => FAQ_OWNER.get(f.q) === route.path);
 
 const cityNode = (a: (typeof AREAS)[number]) => ({
   "@type": "City",
@@ -74,7 +98,7 @@ function business(): Node {
       name: "AC repair and maintenance services",
       itemListElement: SERVICES.map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@id": `${abs(servicePath(s.slug))}#service` },
+        itemOffered: serviceRef(s.slug),
         ...(s.priceValue
           ? {
               priceSpecification: {
@@ -165,7 +189,7 @@ function areaServiceNode(slug: string): Node {
       name: `AC services in ${a.city}`,
       itemListElement: SERVICES.map((s) => ({
         "@type": "Offer",
-        itemOffered: { "@id": `${abs(servicePath(s.slug))}#service` },
+        itemOffered: serviceRef(s.slug),
       })),
     },
   };
@@ -211,7 +235,7 @@ function articleNode(slug: string, webpageId: string): Node {
     },
     publisher: { "@id": BUSINESS_ID },
     mainEntityOfPage: { "@id": webpageId },
-    about: g.related.map((r) => ({ "@id": `${abs(servicePath(r))}#service` })),
+    about: g.related.map(serviceRef),
     ...(g.sources?.length
       ? { citation: g.sources.map((s) => ({ "@type": "CreativeWork", name: s.label, url: s.url })) }
       : {}),
@@ -242,7 +266,7 @@ const PAGE_TYPE: Partial<Record<RouteDef["kind"], string>> = {
 export function buildGraph(route: RouteDef): Node {
   const url = abs(route.path === "/" ? "/" : route.path);
   const webpageId = `${url}#webpage`;
-  const faqs = routeFaqs(route);
+  const faqs = markedUpFaqs(route);
 
   const baseType = PAGE_TYPE[route.kind] ?? "WebPage";
   const webpage: Node = {
@@ -254,7 +278,8 @@ export function buildGraph(route: RouteDef): Node {
     inLanguage: "en-IN",
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": BUSINESS_ID },
-    breadcrumb: { "@id": `${url}#breadcrumb` },
+    // The homepage has no breadcrumb trail, so it must not reference one (Search Console: missing itemListElement).
+    ...(route.kind === "home" ? {} : { breadcrumb: { "@id": `${url}#breadcrumb` } }),
     primaryImageOfPage: { "@type": "ImageObject", url: abs(OG_IMAGE.src) },
     dateModified: route.lastmod ?? SITE.updated,
     ...(faqs.length
