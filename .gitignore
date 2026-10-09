@@ -33,3 +33,6 @@ next-env.d.ts
 
 # Environment files (secrets)
 .env*
+
+# Local SEO planning files
+/SEO, AIO and GEO/
