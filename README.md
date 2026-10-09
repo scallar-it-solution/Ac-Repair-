@@ -66,7 +66,7 @@ All copy lives in `src/data/`. Change it there and every place that uses it — 
 - Topic clusters: guides ↔ services ↔ city pages are interlinked from data, so links never go stale
 - `robots.txt` explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers
 - Lead tracking: clicks on call / WhatsApp links push `lead_click` to `dataLayer` (GTM) and `generate_lead` to GA4. Set `GA4_ID` in `src/data/site.ts` to load GA4; the privacy policy then describes the analytics cookies automatically
-- IndexNow: after a deploy, `npm run indexnow` (all sitemap URLs) or `npm run indexnow -- /pricing /faq` (changed paths) notifies Bing, Yandex and other IndexNow engines; the key file lives in `public/`
+- IndexNow: after a deploy, `npm run indexnow` (all sitemap URLs) or `npm run indexnow -- /pricing /faq` (changed paths; prefix `MSYS_NO_PATHCONV=1` in Git Bash on Windows) notifies Bing, Yandex and other IndexNow engines; the key file lives in `public/`
 
 ## Deployment
 

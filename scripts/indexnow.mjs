@@ -12,6 +12,9 @@ const SITE = "https://frostwright.in";
 const KEY = "4b997ed617befddd920d3f036145c558";
 
 const paths = process.argv.slice(2);
+// Git Bash on Windows rewrites "/pricing" into "C:/Program Files/Git/pricing" unless MSYS_NO_PATHCONV=1 is set.
+const bad = paths.filter((p) => !/^\/[a-z0-9/-]*$/.test(p));
+if (bad.length) throw new Error(`Not site paths: ${bad.join(", ")}. On Git Bash, run: MSYS_NO_PATHCONV=1 npm run indexnow -- /pricing`);
 let urls;
 if (paths.length) {
   urls = paths.map((p) => (p === "/" ? SITE : SITE + p));
